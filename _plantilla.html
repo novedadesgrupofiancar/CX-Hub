@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<!--
+  ===========================================================
+  PLANTILLA PARA SECCIÓN NUEVA
+  ===========================================================
+  1. Copiá este archivo y renombralo (ej: promociones.html)
+     Usá siempre minúsculas y sin espacios ni tildes.
+  2. Cambiá el <title> y el encabezado de abajo.
+  3. Abrí assets/js/hub.js y en la lista "nav" poné el href
+     de tu archivo nuevo (reemplazá el null).
+  4. Subilo al repo. El menú se actualiza solo en todas las páginas.
+  ===========================================================
+-->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NOMBRE DE LA SECCIÓN — Contact Center Hub</title>
+<link rel="stylesheet" href="assets/css/sidebar.css">
+<link rel="stylesheet" href="assets/css/hub.css">
+</head>
+<body>
+<div class="app">
+
+  <div id="sidebar"></div>
+
+  <div class="main">
+
+    <div class="topbar">
+      <div class="greeting">
+        <h1>📄 Nombre de la sección</h1>
+        <p>Bajada corta que explique para qué sirve esta pantalla</p>
+      </div>
+      <a href="index.html" style="font-size:12px;color:var(--blue);font-weight:600;">← Volver al inicio</a>
+    </div>
+
+    <!-- ========== TU CONTENIDO ARRANCA ACÁ ========== -->
+
+    <!-- Ejemplo: fila de 3 tarjetas -->
+    <div class="row cols-3">
+      <div class="card">
+        <div class="card-head"><div class="t">TÍTULO DE LA TARJETA</div></div>
+        <p style="font-size:13px;color:var(--sub);margin:0;">Contenido de la tarjeta.</p>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="t">OTRA TARJETA</div></div>
+        <p style="font-size:13px;color:var(--sub);margin:0;">Contenido de la tarjeta.</p>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="t">OTRA MÁS</div></div>
+        <p style="font-size:13px;color:var(--sub);margin:0;">Contenido de la tarjeta.</p>
+      </div>
+    </div>
+
+    <!-- Ejemplo: ítem con imagen ampliable -->
+    <div class="card">
+      <div class="card-head"><div class="t">EJEMPLO CON IMAGEN</div></div>
+      <div class="promo-item on-white">
+        <img class="promo-thumb" src="assets/img/promo-sonic-thumb.jpg" alt="Descripción"
+             onclick="openLightbox('assets/img/promo-sonic.jpg')">
+        <div class="promo-txt">
+          <div class="brandtag">MARCA</div>
+          <b>Título del ítem</b>
+          <p>Descripción breve del ítem.</p>
+          <span class="pill">Vigente</span>
+        </div>
+        <div class="edit-ic">✏️</div>
+      </div>
+    </div>
+
+    <!-- ========== FIN DE TU CONTENIDO ========== -->
+
+    <div data-hub-footer></div>
+
+  </div>
+</div>
+
+<div class="lightbox-overlay" id="lightboxOverlay" onclick="closeLightbox()">
+  <img id="lightboxImg" src="" alt="Vista ampliada">
+</div>
+
+<script src="assets/js/hub.js"></script>
+</body>
+</html>

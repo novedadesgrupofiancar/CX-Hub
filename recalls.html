@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Recalls activos — Contact Center Hub</title>
+<link rel="stylesheet" href="assets/css/sidebar.css">
+<link rel="stylesheet" href="assets/css/hub.css">
+</head>
+<body>
+<div class="app">
+
+  <div id="sidebar"></div>
+
+  <div class="main">
+
+    <div class="topbar">
+      <div class="greeting">
+        <h1>🛠️ Recalls activos</h1>
+        <p>Campañas de seguridad vigentes de todas las marcas</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;">
+        <label class="view-toggle" style="color:var(--sub)">
+          <input type="checkbox" onchange="toggleCoord('recallsPageList', this)">
+          <span>Vista coordinador</span>
+        </label>
+        <a href="index.html" style="font-size:12px;color:var(--blue);font-weight:600;">← Volver al inicio</a>
+      </div>
+    </div>
+
+    <div class="card recalls" id="recallsPageList" style="margin-bottom:16px;">
+      <div class="card-head">
+        <div class="t" style="color:#fff"><span class="sq" style="background:rgba(255,255,255,.28)">🛠️</span>1 RECALL ACTIVO</div>
+      </div>
+
+      <button class="add-alert-btn" type="button">＋ Nuevo recall</button>
+
+      <div class="recall-grid">
+        <div class="promo-item on-white recall-item">
+          <img class="promo-thumb" src="assets/img/recall-fiat-airbags-thumb.jpg" alt="Recall airbags Takata"
+               onclick="openLightbox('assets/img/recall-fiat-airbags.jpg')">
+          <div class="promo-txt">
+            <div class="brandtag">FIAT</div>
+            <b>Airbags Takata</b>
+            <p>Chequeá si tu Fiat requiere revisión · Recall sin costo · Vigente desde 01/08/2026</p>
+            <a class="recall-link" href="https://sevel.com.uy/recall" target="_blank" rel="noopener">Verificar chasis en sevel.com.uy/recall →</a>
+          </div>
+          <div class="edit-ic">✏️</div>
+        </div>
+      </div>
+
+      <div class="new-alert-form on-recall-form">
+        <div class="form-row two">
+          <input placeholder="Marca (ej: Fiat)">
+          <input placeholder="Modelo / afectados">
+        </div>
+        <div class="form-row"><input placeholder="Breve descripción del recall"></div>
+        <div class="form-row"><input placeholder="Link de verificación (ej: sevel.com.uy/recall)"></div>
+        <div class="form-row">
+          <label class="upload-btn">📷 Subir imagen (opcional)<input type="file" accept="image/*"></label>
+        </div>
+        <button class="save-alert-btn on-recall-btn" type="button">Publicar recall</button>
+      </div>
+    </div>
+
+    <div data-hub-footer></div>
+
+  </div>
+</div>
+
+<div class="lightbox-overlay" id="lightboxOverlay" onclick="closeLightbox()">
+  <img id="lightboxImg" src="" alt="Vista ampliada">
+</div>
+
+<script src="assets/js/hub.js"></script>
+</body>
+</html>

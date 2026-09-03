@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard · Reporte mensual — Contact Center Hub</title>
+<link rel="stylesheet" href="assets/css/sidebar.css">
+<link rel="stylesheet" href="assets/css/dashboard.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+</head>
+<body>
+<div class="app">
+
+  <!-- Mismo menú lateral que el resto del Hub. Se arma desde assets/js/hub.js -->
+  <div id="sidebar"></div>
+
+  <div class="main">
+
+<header class="topbar">
+  <div class="topbar-in">
+    <div>
+      <div class="greet-title" id="greetTitle">Reporte mensual · Contact Center</div>
+      <div class="greet-sub">Performance operativa · <strong id="periodTag">SIN DATA</strong></div>
+    </div>
+    <div class="search">
+      <span class="search-ico">🔍</span>
+      <input id="q" placeholder="Buscar agente o cola…" oninput="filtrar(this.value)">
+    </div>
+    <div class="user">
+      <span class="chip" id="syncTag">Cargando…</span>
+      <button class="bell" onclick="document.getElementById('panelCrit').scrollIntoView({behavior:'smooth'})">🔔<span class="bell-badge" id="bellBadge">0</span></button>
+      <div class="avatar" id="avatar">CC</div>
+      <div>
+        <div class="user-name" id="userName">Contact Center</div>
+        <div class="user-role" id="userRole">Grupo Fiancar</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ===== 3 PANELES DE COLOR ===== -->
+  <div class="row-panels">
+    <div class="panel crit" id="panelCrit">
+      <div class="panel-head">
+        <div class="panel-ico">🚨</div>
+        <div class="panel-title">Requiere atención</div>
+        <div class="panel-tools">
+          <label class="panel-check"><input type="checkbox" data-rev="crit"> Revisado</label>
+          <button class="panel-link" onclick="verTodas('listCrit',this)">Ver todas</button>
+        </div>
+      </div>
+      <div class="panel-list collapsed" id="listCrit"><div class="p-empty">Sin datos cargados</div></div>
+    </div>
+
+    <div class="panel warn">
+      <div class="panel-head">
+        <div class="panel-ico">⏱️</div>
+        <div class="panel-title">Para seguir de cerca</div>
+        <div class="panel-tools">
+          <label class="panel-check"><input type="checkbox" data-rev="warn"> Revisado</label>
+          <button class="panel-link" onclick="verTodas('listWarn',this)">Ver todas</button>
+        </div>
+      </div>
+      <div class="panel-list collapsed" id="listWarn"><div class="p-empty">Sin datos cargados</div></div>
+    </div>
+
+    <div class="panel good">
+      <div class="panel-head">
+        <div class="panel-ico">🏆</div>
+        <div class="panel-title">Destacados del período</div>
+        <div class="panel-tools">
+          <label class="panel-check"><input type="checkbox" data-rev="good"> Revisado</label>
+          <button class="panel-link" onclick="verTodas('listGood',this)">Ver todas</button>
+        </div>
+      </div>
+      <div class="panel-list collapsed" id="listGood"><div class="p-empty">Sin datos cargados</div></div>
+    </div>
+  </div>
+
+  <!-- ===== ACCESOS RÁPIDOS ===== -->
+  <div class="card" id="tilesCard" style="margin-bottom:16px">
+    <div class="card-title">Accesos rápidos</div>
+    <div class="tiles" id="tiles"></div>
+  </div>
+
+  <!-- ===== CARGA DE DATOS (solo admin) ===== -->
+  <div class="card" id="dmCard" style="margin-bottom:16px;display:none">
+    <div class="card-head">
+      <div class="card-title">Gestión de datos</div>
+      <div class="card-meta" id="dmStatus">Esperando archivos…</div>
+    </div>
+    <div class="up-grid">
+      <label class="up" id="up_1"><input type="file" accept=".csv" onchange="handleCSV(event,'agentes')">
+        <div class="up-ico">1</div><div><div class="up-lb">Agente × cola</div><div class="up-fn" id="file_1">Estadisticas_de_agente_por_cola.csv</div></div></label>
+      <label class="up" id="up_2"><input type="file" accept=".csv" onchange="handleCSV(event,'cola')">
+        <div class="up-ico">2</div><div><div class="up-lb">Llamadas por cola</div><div class="up-fn" id="file_2">Estadisticas_generales_de_la_cola…csv</div></div></label>
+      <label class="up" id="up_3"><input type="file" accept=".csv" onchange="handleCSV(event,'rendimiento')">
+        <div class="up-ico">3</div><div><div class="up-lb">Rendimiento de cola</div><div class="up-fn" id="file_3">Vista_general_del_rendimiento_de_la_cola.csv</div></div></label>
+      <label class="up" id="up_4"><input type="file" accept=".csv" onchange="handleCSV(event,'abandonadas')">
+        <div class="up-ico">4</div><div><div class="up-lb">Abandonadas por cola</div><div class="up-fn" id="file_4">Abandonadas_por_cola.csv</div></div></label>
+      <label class="up" id="up_5"><input type="file" accept=".csv" onchange="handleCSV(event,'salientes')">
+        <div class="up-ico">5</div><div><div class="up-lb">Llamadas salientes</div><div class="up-fn" id="file_5">Llamadas_salientes.csv</div></div></label>
+    </div>
+    <div class="acts">
+      <button class="btn primary" onclick="applyData()">Actualizar dashboard</button>
+      <button class="btn go" onclick="publicar()">↑ Publicar para el equipo</button>
+      <button class="btn" onclick="clearData()">Limpiar datos</button>
+    </div>
+  </div>
+
+  <!-- ===== KPIs ===== -->
+  <div class="sec-title" id="kpis">Vista general</div>
+  <div class="row-4" id="kpiGrid">
+    <div class="card"><div class="kpi-label">Llamadas recibidas</div><div class="kpi-value">—</div><div class="kpi-sub">Sin datos</div></div>
+    <div class="card"><div class="kpi-label">% Atención</div><div class="kpi-value">—</div><div class="kpi-sub">Atendidas / recibidas</div></div>
+    <div class="card"><div class="kpi-label">% No atendidas</div><div class="kpi-value">—</div><div class="kpi-sub">No atendidas / recibidas</div></div>
+    <div class="card"><div class="kpi-label">TMO promedio</div><div class="kpi-value">—</div><div class="kpi-sub">Tiempo medio de operación</div></div>
+  </div>
+
+  <!-- ===== CHARTS ===== -->
+  <div class="row-2">
+    <div class="card">
+      <div class="card-head"><div class="card-title">Distribución</div><div class="card-meta">Total llamadas</div></div>
+      <div id="donut" class="empty">Sin datos cargados</div>
+    </div>
+    <div class="card">
+      <div class="card-head"><div class="card-title">Llamadas por cola</div><div class="card-meta">Recibidas vs atendidas</div></div>
+      <div id="bars" class="empty">Sin datos cargados</div>
+    </div>
+  </div>
+
+  <!-- ===== PERFORMANCE POR COLA ===== -->
+  <div class="sec-title" id="colas">Performance por cola</div>
+  <div class="card" style="margin-bottom:16px;padding:16px 4px 4px">
+    <table>
+      <thead><tr><th style="padding-left:12px">Cola</th><th class="r">Agentes</th><th class="r">Recibidas</th><th class="r">Atendidas</th><th class="r">% Atención</th><th class="r">No atendidas</th><th class="r" style="padding-right:12px">TMO</th></tr></thead>
+      <tbody id="colaTable"><tr><td colspan="7" class="empty">Sin datos</td></tr></tbody>
+    </table>
+  </div>
+
+  <!-- ===== RANKINGS ===== -->
+  <div class="sec-title" id="rankings">Rankings</div>
+  <div class="row-4" style="grid-template-columns:1fr 1fr">
+    <div class="card" style="padding:16px 4px 4px">
+      <div class="card-head" style="padding:0 12px"><div class="card-title">Ranking por atención</div><div class="card-meta">Cant. atendidas</div></div>
+      <table><thead><tr><th style="padding-left:12px">#</th><th>Agente</th><th class="r">Atendidas</th><th class="r" style="padding-right:12px">% Atención</th></tr></thead>
+      <tbody id="rankAtt"><tr><td colspan="4" class="empty">—</td></tr></tbody></table>
+    </div>
+    <div class="card" style="padding:16px 4px 4px">
+      <div class="card-head" style="padding:0 12px"><div class="card-title">Ranking por TMO</div><div class="card-meta">Más bajo, mejor</div></div>
+      <table><thead><tr><th style="padding-left:12px">#</th><th>Agente</th><th class="r">TMO</th><th class="r" style="padding-right:12px">Atendidas</th></tr></thead>
+      <tbody id="rankTmo"><tr><td colspan="4" class="empty">—</td></tr></tbody></table>
+    </div>
+  </div>
+
+  <!-- ===== DETALLE POR AGENTE ===== -->
+  <div class="sec-title" id="agentes">Detalle por agente</div>
+  <div class="card" style="margin-bottom:16px;padding:16px 4px 4px">
+    <table>
+      <thead><tr><th style="padding-left:12px">Agente</th><th class="r">Atendidas</th><th class="r">% Atención</th><th class="r">TMO</th><th class="r">Talk time total</th><th class="r">Logged in</th><th class="r" style="padding-right:12px">Por hora</th></tr></thead>
+      <tbody id="agentTable"><tr><td colspan="7" class="empty">Sin datos</td></tr></tbody>
+    </table>
+  </div>
+
+  <!-- ===== LLAMADAS SALIENTES ===== -->
+  <div id="secSalientes" style="display:none">
+    <div class="sec-title" id="salientes">Llamadas salientes</div>
+    <div class="row-4" id="salKpis"></div>
+    <div class="card" style="margin-bottom:16px;padding:16px 4px 4px">
+      <div class="card-head" style="padding:0 12px">
+        <div class="card-title">Detalle por agente</div>
+        <div class="card-meta" id="salMeta"></div>
+      </div>
+      <table>
+        <thead><tr><th style="padding-left:12px">Agente</th><th class="r">Salientes</th><th class="r">Contestadas</th>
+        <th class="r">% Contacto</th><th class="r">Sin respuesta</th><th class="r">Duración media</th>
+        <th class="r" style="padding-right:12px">Tiempo total</th></tr></thead>
+        <tbody id="salTable"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===== FILA INFERIOR ===== -->
+  <div class="row-4">
+    <div class="card">
+      <div class="card-title">Resumen operativo</div>
+      <div class="grid2" id="resumen"><div class="li"><div class="li-tx li-lb">Sin datos</div></div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Top atendidas</div>
+      <div id="topRank"><div class="li-lb">Sin datos</div></div>
+      <a class="link" href="#agentes" style="display:inline-block;margin-top:10px">Ver más →</a>
+    </div>
+    <div class="card">
+      <div class="card-title">Archivos del reporte</div>
+      <div id="archivos"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Definiciones y objetivos</div>
+      <div id="defs"></div>
+    </div>
+  </div>
+
+</main>
+
+  </div>
+</div>
+
+<script src="assets/js/hub.js"></script>
+<script src="assets/js/dashboard.js"></script>
+</body>
+</html>
