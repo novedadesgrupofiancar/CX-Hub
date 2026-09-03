@@ -12,7 +12,7 @@
 
 const HUB = {
 
-  version: '1.2.0',
+  version: '1.3.0',
   actualizado: '18/08/2026 10:45',
 
   /* ---- MENÚ PRINCIPAL ----------------------------------
@@ -26,7 +26,7 @@ const HUB = {
     { icon: '🔎',  label: 'Buscar',              href: null },
     { icon: '🚗',  label: 'Productos y Modelos', href: null },
     { icon: '🏷️',  label: 'Promociones',         href: null },
-    { icon: '🔧',  label: 'Taller y Postventa',  href: null },
+    { icon: '🔧',  label: 'Taller y Postventa',  href: 'taller-postventa.html' },
     { icon: '🛠️',  label: 'Recalls activos',     href: 'recalls.html', badge: '1' },
     { icon: '📅',  label: 'Agendamientos',       href: null },
     { icon: '💬',  label: 'Guiones',             href: null },

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Taller y Postventa — Contact Center Hub</title>
+<link rel="stylesheet" href="assets/css/sidebar.css">
+<link rel="stylesheet" href="assets/css/hub.css">
+</head>
+<body>
+<div class="app">
+
+  <div id="sidebar"></div>
+
+  <div class="main">
+
+    <div class="topbar">
+      <div class="greeting">
+        <h1>🔧 Taller y Postventa</h1>
+        <p>Ubicaciones, capacidad, criterios de agenda y tarifarios</p>
+      </div>
+      <a href="index.html" style="font-size:12px;color:var(--blue);font-weight:600;">← Volver al inicio</a>
+    </div>
+
+    <!-- ===== LO QUE NO HACEMOS ===== -->
+    <div class="ts-nohace">
+      <span class="ts-nohace-ic">🚫</span>
+      <div>
+        <b>No hacemos chapa y pintura</b>
+        <p>Ninguno de los tres talleres toma este trabajo. No agendar ni derivar por este motivo.</p>
+      </div>
+    </div>
+
+    <!-- ===== FILTRO POR MARCA ===== -->
+    <div class="ts-filtros">
+      <span class="ts-lbl-filtro">¿QUÉ MARCA CONSULTA EL CLIENTE?</span>
+      <div id="filtrosMarca" style="display:flex;gap:8px;flex-wrap:wrap;"></div>
+    </div>
+
+    <!-- ===== TALLERES (se arman desde assets/js/taller.js) ===== -->
+    <div class="ts-grid" id="listaTalleres"></div>
+
+    <!-- ===== RESTRICCIONES ===== -->
+    <div class="card ts-limites" style="margin-bottom:16px;">
+      <div class="card-head">
+        <div class="t"><span class="sq" style="background:#fff;color:#9a6b00">⚠️</span>ANTES DE AGENDAR — RESTRICCIONES</div>
+      </div>
+      <div class="ts-regla">
+        <span class="ts-bullet">1</span>
+        <div><strong>Geely EX5/2 y Lynk &amp; Co que requieran actualización:</strong> máximo 3 por día entre todos los talleres. Si ya hay 3 agendados, dar fecha para el día siguiente.</div>
+      </div>
+      <div class="ts-regla">
+        <span class="ts-bullet">2</span>
+        <div><strong>Camiones JAC en Rondeau:</strong> solo se trabajan los modelos <strong>Sunray, X200 y M3</strong>. Cualquier otro modelo de camión JAC va a Carrasco u Obisun.</div>
+      </div>
+    </div>
+
+    <!-- ===== CÓMO DERIVAR LA LLAMADA ===== -->
+    <div class="row cols-2" style="margin-bottom:16px;grid-template-columns:1.5fr 1fr;">
+
+      <div class="card">
+        <div class="card-head">
+          <div class="t"><span class="sq" style="background:#2fb8c4">📞</span>CÓMO DERIVAR LA LLAMADA</div>
+        </div>
+        <div class="ts-regla">
+          <span class="ts-bullet">→</span>
+          <div><strong>Revisiones:</strong> las autoriza recepción de taller. Pasamos la llamada para que ellos/as agenden. No agendamos nosotros.</div>
+        </div>
+        <div class="ts-regla">
+          <span class="ts-bullet">→</span>
+          <div><strong>Estado de un vehículo:</strong> llamamos a recepción de taller. Si la respuesta es que <strong>ya está listo</strong>, se lo decimos al cliente. En cualquier otro caso, pasamos la llamada.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="t"><span class="sq" style="background:var(--navy)">👤</span>GERENCIA DE TALLER</div>
+        </div>
+        <div class="ts-gerencia">
+          <div class="ts-ger">
+            <span class="ts-lbl">Gerente de taller</span>
+            <div class="ts-ger-nombre">Leonardo Biccherai</div>
+          </div>
+          <div class="ts-ger">
+            <span class="ts-lbl">Gerente de taller Chevrolet</span>
+            <div class="ts-ger-nombre">Fernando Sánchez</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ===== CRITERIOS OPERATIVOS ===== -->
+    <div class="row cols-3">
+
+      <div class="card">
+        <div class="card-head">
+          <div class="t"><span class="sq" style="background:var(--blue)">📅</span>AL DAR FECHA</div>
+        </div>
+        <div class="ts-regla">
+          <span class="ts-bullet">✓</span>
+          <div>Ofrecer siempre <strong>la fecha más próxima disponible</strong>, salvo que el cliente pida expresamente una más adelante.</div>
+        </div>
+        <div class="ts-regla">
+          <span class="ts-bullet">✓</span>
+          <div>Si la fecha que damos es <strong>para mañana, confirmamos la agenda en el momento</strong>. Eso le saca trabajo a quien está confirmando taller.</div>
+        </div>
+        <div class="ts-regla">
+          <span class="ts-bullet">✓</span>
+          <div>Si un taller <strong>se acerca a su capacidad</strong>, avisar al coordinador para cerrar la agenda.</div>
+        </div>
+        <div class="ts-regla">
+          <span class="ts-bullet">✓</span>
+          <div>Si se ve <strong>desequilibrio entre días</strong> (uno flojo y otros cargados), mover turnos para emparejar.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="t"><span class="sq" style="background:var(--green)">☎️</span>CONFIRMACIÓN DE TALLER</div>
+        </div>
+        <div class="ts-regla">
+          <span class="ts-bullet">✓</span>
+          <div>Si <strong>no están entrando respuestas</strong> a los mensajes o entran pocas, empezar a llamar. No esperar a la tarde.</div>
+        </div>
+        <div class="ts-regla">
+          <span class="ts-bullet">✓</span>
+          <div>Objetivo: <strong>cerrar la confirmación a las 14:00</strong>, con todos confirmados o al menos contactados.</div>
+        </div>
+        <div class="ts-regla">
+          <span class="ts-bullet">✓</span>
+          <div>Terminar temprano deja <strong>margen para mover turnos</strong> si algo se cae.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="t"><span class="sq" style="background:var(--red)">🔄</span>CANCELACIONES</div>
+        </div>
+        <div class="ts-regla">
+          <span class="ts-bullet">✓</span>
+          <div>Ante una cancelación, <strong>siempre ofrecer reagendar</strong> para otro día antes de cerrar la gestión.</div>
+        </div>
+        <div class="ts-regla">
+          <span class="ts-bullet">✓</span>
+          <div>Aplica igual si <strong>nosotros llamamos a confirmar</strong> y el cliente cancela en esa llamada.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ===== TARIFARIOS ===== -->
+    <div class="card" style="margin-bottom:16px;">
+      <div class="card-head">
+        <div class="t"><span class="sq" style="background:var(--purple)">💲</span>TARIFARIOS POR MARCA</div>
+      </div>
+      <div class="ts-tarifas">
+        <a class="ts-tarifa" target="_blank" rel="noopener"
+           href="https://postventa.grupofiancar.com/servicios/CHEVROLET">
+          <b>Chevrolet</b><span>Ver tarifario →</span></a>
+        <a class="ts-tarifa" target="_blank" rel="noopener"
+           href="https://postventa.grupofiancar.com/servicios/GEELY">
+          <b>Geely</b><span>Ver tarifario →</span></a>
+        <a class="ts-tarifa" target="_blank" rel="noopener"
+           href="https://postventa.grupofiancar.com/servicios/LYNK%20CO">
+          <b>Lynk &amp; Co</b><span>Ver tarifario →</span></a>
+        <a class="ts-tarifa" target="_blank" rel="noopener"
+           href="https://postventa.grupofiancar.com/servicios/FIAT">
+          <b>Fiat</b><span>Ver tarifario →</span></a>
+        <a class="ts-tarifa" target="_blank" rel="noopener"
+           href="https://postventa.grupofiancar.com/servicios/JAC%20CAMIONES?codigo=62d794082d4c5ec9">
+          <b>JAC Camiones</b><span>Ver tarifario →</span></a>
+      </div>
+    </div>
+
+    <!-- ===== OTROS ENLACES ===== -->
+    <div class="row cols-2" style="margin-bottom:16px;grid-template-columns:1fr 1.6fr;">
+
+      <div class="card">
+        <div class="card-head">
+          <div class="t"><span class="sq" style="background:var(--blue)">📋</span>FICHAS TÉCNICAS</div>
+        </div>
+        <a class="ts-tarifa" target="_blank" rel="noopener"
+           href="https://vehiculos.grupofiancar.com/fichas/">
+          <b>Fichas técnicas de vehículos</b><span>vehiculos.grupofiancar.com →</span></a>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="t"><span class="sq" style="background:var(--green)">🗺️</span>TALLERES EN EL INTERIOR</div>
+        </div>
+        <div class="ts-interior">
+          <a class="ts-tarifa" target="_blank" rel="noopener"
+             href="https://jacauto.com.uy/servicios">
+            <b>JAC Auto</b><span>jacauto.com.uy →</span></a>
+          <a class="ts-tarifa" target="_blank" rel="noopener"
+             href="https://jac.com.uy/servicios-de-mantenimiento">
+            <b>JAC Camiones</b><span>jac.com.uy →</span></a>
+          <a class="ts-tarifa" target="_blank" rel="noopener"
+             href="https://geely.com.uy/talleres/">
+            <b>Geely y Lynk &amp; Co</b><span>geely.com.uy →</span></a>
+        </div>
+      </div>
+
+    </div>
+
+    <div data-hub-footer></div>
+
+  </div>
+</div>
+
+<script src="assets/js/hub.js"></script>
+<script src="assets/js/taller.js"></script>
+</body>
+</html>

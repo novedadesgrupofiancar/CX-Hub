@@ -347,3 +347,159 @@ a.resolve:hover{border-color:var(--blue);}
 .row.cols-9{grid-template-columns:repeat(9,1fr);}
 @media (max-width:1200px){ .row.cols-9{grid-template-columns:repeat(5,1fr);} }
 @media (max-width:900px){ .row.cols-9{grid-template-columns:repeat(2,1fr);} }
+
+/* =========================================================
+   TALLER Y POSTVENTA (v1.3)
+   ========================================================= */
+
+/* --- Filtros por marca --- */
+.ts-filtros{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+.ts-filtros .ts-lbl-filtro{font-size:12px;font-weight:700;color:var(--sub);letter-spacing:.04em;margin-right:2px;}
+.ts-chip{
+  background:var(--card);border:1px solid var(--line);border-radius:20px;
+  padding:7px 15px;font-size:12.5px;font-weight:600;color:var(--ink);
+  cursor:pointer;font-family:inherit;
+}
+.ts-chip:hover{border-color:var(--blue);color:var(--blue);}
+.ts-chip.on{background:var(--navy);border-color:var(--navy);color:#fff;}
+
+/* --- Tarjeta de taller --- */
+.ts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px;}
+.ts-card{
+  background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:0 18px 18px;border-top:4px solid var(--acento);
+  display:flex;flex-direction:column;
+  box-shadow:0 1px 3px rgba(20,30,60,.05);
+}
+.ts-top{
+  display:flex;align-items:flex-start;justify-content:space-between;gap:10px;
+  padding:18px 0 12px;
+  /* Alto fijo: si un nombre ocupa dos líneas, las tarjetas siguen alineadas */
+  min-height:84px;   /* alcanza para nombres de hasta 2 líneas */
+  align-items:flex-start;
+}
+.ts-top .ts-nombre{align-self:flex-start;}
+/* Nombre del taller: el elemento más grande de la tarjeta */
+.ts-nombre{
+  font-size:23px;line-height:1.15;margin:0;
+  font-weight:800;letter-spacing:-.02em;color:var(--navy);
+}
+.ts-estado{
+  font-size:10.5px;font-weight:800;border-radius:20px;padding:4px 10px;
+  white-space:nowrap;flex:none;margin-top:3px;
+}
+.ts-estado.on{background:var(--green-light);color:#0b7b45;}
+.ts-estado.off{background:#eef0f5;color:var(--sub);}
+
+.ts-dir{
+  display:flex;align-items:center;gap:8px;
+  background:#fafbfe;border:1px solid var(--line);border-radius:9px;
+  padding:10px 11px;margin-bottom:10px;font-size:12.5px;
+  /* Alto mínimo: no todos los talleres tienen línea de referencia */
+  min-height:62px;
+}
+.ts-pin{flex:none;font-size:13px;line-height:1.3;}
+.ts-calle{font-weight:700;line-height:1.35;}
+.ts-ref{color:var(--sub);font-size:11.5px;margin-top:2px;line-height:1.35;}
+.ts-copiar{
+  margin-left:auto;flex:none;align-self:center;
+  background:var(--blue-light);color:var(--blue);border:none;border-radius:6px;
+  padding:5px 10px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;
+}
+.ts-copiar.ok{background:var(--green-light);color:#0b7b45;}
+
+.ts-lbl{
+  display:block;font-size:10px;font-weight:800;letter-spacing:.07em;
+  color:var(--sub);text-transform:uppercase;margin-bottom:3px;
+}
+.ts-horario{margin-bottom:12px;font-size:13.5px;}
+.ts-horario b{color:var(--ink);}
+
+.ts-marcas{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;}
+.ts-marca{
+  background:var(--blue-light);color:#1b4fb8;border-radius:5px;
+  padding:3px 8px;font-size:11px;font-weight:700;
+}
+.ts-marca.match{background:var(--navy);color:#fff;}
+
+.ts-gente{
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;
+  border-top:1px solid var(--line);padding-top:12px;margin-bottom:14px;
+}
+.ts-persona{font-size:12.5px;font-weight:600;line-height:1.5;}
+
+.ts-cap{
+  margin-top:auto;background:#fafbfe;border:1px solid var(--line);
+  border-radius:9px;padding:11px 13px;
+}
+.ts-cap-num{font-size:26px;font-weight:800;color:var(--acento);line-height:1;}
+.ts-cap-txt{font-size:11.5px;color:var(--sub);font-weight:600;margin-top:3px;}
+.ts-cap-nota{font-size:11px;color:var(--sub);margin-top:6px;font-style:italic;line-height:1.35;}
+
+.ts-vacio{
+  grid-column:1/-1;background:var(--card);border:1px dashed var(--line);
+  border-radius:12px;padding:28px;text-align:center;color:var(--sub);font-size:13px;
+}
+
+/* --- Reglas operativas --- */
+.ts-regla{display:flex;gap:10px;padding:10px 0;border-top:1px solid var(--line);font-size:12.5px;line-height:1.5;}
+.ts-regla:first-of-type{border-top:none;}
+.ts-regla .ts-bullet{
+  flex:none;width:20px;height:20px;border-radius:50%;margin-top:1px;
+  background:var(--blue-light);color:var(--blue);
+  font-size:10px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;
+}
+.ts-regla strong{color:var(--ink);}
+
+/* Card de restricciones: se destaca porque es lo que más errores genera */
+.card.ts-limites{background:var(--amber-light);border-color:#f3ddb3;}
+.card.ts-limites .ts-regla{border-top-color:#f3ddb3;}
+.card.ts-limites .ts-bullet{background:#fff;color:#9a6b00;}
+
+/* --- Tarifarios --- */
+.ts-tarifas{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
+.ts-tarifa{
+  display:flex;flex-direction:column;gap:6px;
+  background:#fafbfe;border:1px solid var(--line);border-radius:9px;
+  padding:13px;text-decoration:none;color:var(--ink);
+}
+.ts-tarifa:hover{border-color:var(--blue);background:var(--blue-light);}
+.ts-tarifa b{font-size:13px;}
+.ts-tarifa span{font-size:11px;color:var(--blue);font-weight:700;}
+
+@media (max-width:1200px){
+  .ts-grid{grid-template-columns:1fr 1fr;}
+  .ts-tarifas{grid-template-columns:repeat(3,1fr);}
+}
+@media (max-width:900px){
+  .ts-grid{grid-template-columns:1fr;}
+  .ts-tarifas{grid-template-columns:1fr 1fr;}
+  .ts-nombre{font-size:20px;}
+}
+
+/* --- Grilla de 2 columnas (Taller y Postventa v1.3) --- */
+.row.cols-2{grid-template-columns:1fr 1fr;}
+
+/* --- Banda de "no hacemos" --- */
+.ts-nohace{
+  display:flex;align-items:center;gap:12px;
+  background:var(--red-light);border:1px solid #f6c9c6;border-left:5px solid var(--red);
+  border-radius:10px;padding:13px 16px;margin-bottom:16px;
+}
+.ts-nohace-ic{font-size:20px;flex:none;}
+.ts-nohace b{display:block;font-size:14.5px;color:#b02a24;letter-spacing:-.01em;}
+.ts-nohace p{margin:2px 0 0;font-size:12.5px;color:#8c3a35;}
+
+/* --- Gerencia de taller --- */
+.ts-gerencia{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.ts-ger{background:#fafbfe;border:1px solid var(--line);border-radius:9px;padding:12px 13px;}
+.ts-ger-nombre{font-size:15px;font-weight:700;color:var(--navy);line-height:1.3;}
+
+/* --- Talleres del interior --- */
+.ts-interior{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+
+@media (max-width:900px){
+  .row.cols-2{grid-template-columns:1fr;}
+  .ts-gerencia,.ts-interior{grid-template-columns:1fr;}
+}
