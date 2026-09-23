@@ -503,3 +503,151 @@ a.resolve:hover{border-color:var(--blue);}
   .row.cols-2{grid-template-columns:1fr;}
   .ts-gerencia,.ts-interior{grid-template-columns:1fr;}
 }
+
+/* =========================================================
+   GUIONES (v1.4)
+   ========================================================= */
+
+/* --- Regla general, arriba de todo --- */
+.gu-regla{
+  display:flex;gap:11px;align-items:flex-start;
+  background:var(--blue-light);border:1px solid #cbdcfb;border-left:5px solid var(--blue);
+  border-radius:10px;padding:13px 16px;margin-bottom:16px;
+}
+.gu-regla-ic{font-size:16px;flex:none;line-height:1.4;}
+.gu-regla p{margin:0;font-size:13px;line-height:1.55;color:#1b3f8f;font-weight:600;}
+
+/* --- Buscador --- */
+.gu-buscador{
+  display:flex;align-items:center;gap:10px;
+  background:var(--card);border:1px solid var(--line);border-radius:10px;
+  padding:4px 6px 4px 14px;margin-bottom:20px;
+}
+.gu-buscar-ic{font-size:14px;flex:none;opacity:.6;}
+.gu-buscador input{
+  flex:1;border:none;outline:none;background:transparent;
+  padding:11px 0;font-size:13.5px;font-family:inherit;color:var(--ink);
+}
+.gu-limpiar{
+  flex:none;background:#eef1f7;border:none;border-radius:7px;
+  padding:8px 14px;font-size:12px;font-weight:700;color:var(--sub);
+  cursor:pointer;font-family:inherit;
+}
+.gu-limpiar:hover{background:var(--blue-light);color:var(--blue);}
+
+/* --- Encabezado de bloque grande --- */
+.gu-seccion{display:flex;align-items:center;gap:11px;margin-bottom:12px;}
+.gu-seccion-ic{
+  width:34px;height:34px;border-radius:9px;flex:none;color:#fff;font-size:16px;
+  display:flex;align-items:center;justify-content:center;
+}
+.gu-seccion h2{margin:0;font-size:16px;font-weight:800;color:var(--navy);letter-spacing:-.01em;}
+.gu-seccion p{margin:1px 0 0;font-size:12px;color:var(--sub);}
+
+/* --- Pestañas de categoría --- */
+.gu-tabs{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:16px;}
+
+/* --- Cabecera de la categoría elegida --- */
+.gu-head{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  flex-wrap:wrap;border-bottom:1px solid var(--line);
+  padding-bottom:13px;margin-bottom:12px;
+}
+.gu-titulo{margin:0;font-size:19px;font-weight:800;color:var(--navy);letter-spacing:-.02em;}
+.gu-alcance{
+  font-size:10.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;
+  background:#eef1f7;color:var(--sub);border-radius:20px;padding:5px 11px;
+}
+.gu-subtabs{display:flex;gap:5px;flex-wrap:wrap;}
+.gu-subtab{
+  background:#eef1f7;border:none;border-radius:7px;
+  padding:7px 14px;font-size:12px;font-weight:700;color:var(--sub);
+  cursor:pointer;font-family:inherit;
+}
+.gu-subtab:hover{background:var(--blue-light);color:var(--blue);}
+.gu-subtab.on{background:var(--navy);color:#fff;}
+
+/* --- Un mensaje --- */
+.gu-bloque{margin-bottom:6px;}
+.gu-bloque-top{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:10px;margin-bottom:7px;
+}
+.gu-etiqueta{
+  font-size:11px;font-weight:800;letter-spacing:.05em;
+  color:var(--sub);text-transform:uppercase;
+}
+.gu-copiar{
+  margin-left:auto;flex:none;
+  background:var(--blue-light);color:var(--blue);border:none;border-radius:7px;
+  padding:7px 13px;font-size:11.5px;font-weight:700;cursor:pointer;font-family:inherit;
+}
+.gu-copiar:hover{background:var(--blue);color:#fff;}
+.gu-copiar.ok{background:var(--green-light);color:#0b7b45;}
+
+/* El mensaje en sí. pre-wrap respeta los saltos de línea del speech. */
+.gu-mensaje{
+  background:#f7f9fc;border:1px solid var(--line);border-radius:10px;
+  padding:15px 17px;font-size:13.5px;line-height:1.62;color:var(--ink);
+  white-space:pre-wrap;word-break:break-word;
+}
+.gu-mensaje strong{font-weight:700;color:var(--navy);}
+.gu-mensaje mark{background:#fde68a;color:inherit;border-radius:2px;padding:0 1px;}
+
+/* --- Nota "Tener en cuenta" --- */
+.gu-nota{
+  background:var(--amber-light);border:1px solid #f3ddb3;border-radius:9px;
+  padding:11px 14px;margin-top:9px;font-size:12px;line-height:1.55;color:#6b4a00;
+}
+.gu-nota b{color:#8a5d00;}
+
+/* --- Conector entre dos mensajes de un mismo flujo --- */
+.gu-conector{
+  display:flex;align-items:center;gap:10px;
+  margin:16px 0 14px;color:var(--sub);
+}
+.gu-conector::before,.gu-conector::after{
+  content:'';flex:1;height:1px;background:var(--line);
+}
+.gu-conector span{
+  font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;
+  background:#eef1f7;border-radius:20px;padding:5px 13px;white-space:nowrap;
+}
+
+/* --- Aviso del speech de llamada --- */
+.gu-aviso{
+  background:#f7f9fc;border:1px dashed var(--line);border-radius:9px;
+  padding:11px 14px;margin-bottom:14px;font-size:12px;color:var(--sub);line-height:1.55;
+}
+
+/* --- Pasos de la llamada --- */
+.gu-pasos{display:flex;flex-direction:column;gap:12px;margin-bottom:16px;}
+.gu-paso-head{
+  display:flex;align-items:center;gap:12px;
+  border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:14px;
+}
+.gu-paso-num{
+  width:32px;height:32px;border-radius:50%;flex:none;
+  background:var(--navy);color:#fff;font-size:14px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;
+}
+.gu-paso-titulo{margin:0;font-size:16px;font-weight:800;color:var(--navy);letter-spacing:-.01em;}
+.gu-paso-bajada{font-size:11.5px;color:var(--sub);margin-top:2px;}
+
+/* --- Resultados de búsqueda --- */
+.gu-res-titulo{
+  font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;
+  color:var(--sub);margin-bottom:11px;
+}
+.card.gu-res{margin-bottom:12px;}
+.gu-origen{
+  font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;
+  color:var(--blue);margin-bottom:11px;
+  border-bottom:1px solid var(--line);padding-bottom:9px;
+}
+
+@media (max-width:900px){
+  .gu-head{flex-direction:column;align-items:flex-start;gap:9px;}
+  .gu-mensaje{font-size:13px;padding:13px 14px;}
+  .gu-buscador{flex-wrap:wrap;}
+}
