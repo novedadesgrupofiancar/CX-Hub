@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guiones — Contact Center Hub</title>
+<link rel="stylesheet" href="assets/css/sidebar.css">
+<link rel="stylesheet" href="assets/css/hub.css">
+</head>
+<body>
+<div class="app">
+
+  <div id="sidebar"></div>
+
+  <div class="main">
+
+    <div class="topbar">
+      <div class="greeting">
+        <h1>💬 Guiones</h1>
+        <p>Speeches de WhatsApp y estructura de llamada</p>
+      </div>
+      <a href="index.html" style="font-size:12px;color:var(--blue);font-weight:600;">← Volver al inicio</a>
+    </div>
+
+    <!-- ===== REGLA GENERAL ===== -->
+    <div class="gu-regla">
+      <span class="gu-regla-ic">📌</span>
+      <p id="guRegla"></p>
+    </div>
+
+    <!-- ===== BUSCADOR ===== -->
+    <div class="gu-buscador">
+      <span class="gu-buscar-ic">🔎</span>
+      <input id="guBuscar" type="search" autocomplete="off"
+             placeholder="Buscar en todos los speeches: clearing, permuta, agenda, repuestos..."
+             oninput="buscar(this.value)">
+      <button class="gu-limpiar" type="button" onclick="limpiarBusqueda()">Limpiar</button>
+    </div>
+
+    <!-- ===== RESULTADOS DE BÚSQUEDA ===== -->
+    <div id="guResultados" hidden></div>
+
+    <!-- ===== SPEECHES DE WHATSAPP ===== -->
+    <div id="guTabsWrap">
+      <div class="gu-seccion">
+        <span class="gu-seccion-ic" style="background:var(--green)">💬</span>
+        <div>
+          <h2>Speeches de WhatsApp</h2>
+          <p>Elegí la categoría de la consulta</p>
+        </div>
+      </div>
+      <div class="gu-tabs" id="guTabs"></div>
+    </div>
+
+    <div id="guWpp"></div>
+
+    <!-- ===== SPEECH DE LLAMADA ===== -->
+    <div class="gu-seccion" style="margin-top:26px;">
+      <span class="gu-seccion-ic" style="background:var(--blue)">📞</span>
+      <div>
+        <h2>Speech de llamada</h2>
+        <p>Los 5 pasos, siempre en orden</p>
+      </div>
+    </div>
+
+    <div class="gu-aviso">
+      Los textos corresponden a <b>Marcas</b>. Si la llamada entra por la línea de
+      Chevrolet Montevideo, cambiar el nombre de la empresa en los pasos 1 y 5.
+    </div>
+
+    <div class="gu-pasos" id="guLlamada"></div>
+
+    <div data-hub-footer></div>
+
+  </div>
+</div>
+
+<script src="assets/js/hub.js"></script>
+<script src="assets/js/guiones-datos.js"></script>
+<script src="assets/js/guiones.js"></script>
+</body>
+</html>
