@@ -12,13 +12,13 @@
 
 const TALLERES = [
   {
-    nombre: 'BOR Carrasco',
+    nombre: 'Taller Carrasco',
     color: '#2f6fed',
     direccion: 'Av. Giannattasio esq. Tacuarí',
     referencia: 'Frente al Puente de las Américas',
     horarios: [['08:30','12:30'], ['14:00','18:30']],
     marcas: ['Lynk & Co', 'Geely', 'JAC'],
-    recepcionistas: ['Javier Laespiga', 'Mathias Ibañez'],
+    recepcionistas: ['Mathias Ibañez', 'Luciara Sosa'],
     jefe: 'Leonardo Landeira',
     capacidad: '15',
     capacidadUnidad: 'autos por día'
@@ -30,7 +30,7 @@ const TALLERES = [
     referencia: '',
     horarios: [['08:00','18:15']],
     marcas: ['Fiat', 'Lynk & Co', 'Geely', 'JAC', 'Chevrolet'],
-    recepcionistas: ['Luciara Sosa', 'Lucero Alamos'],
+    recepcionistas: ['Lucero Alamos', 'Alison'],
     jefe: 'Fernando Rodríguez',
     capacidad: '70',
     capacidadUnidad: 'horas por día',
@@ -52,6 +52,18 @@ const TALLERES = [
 
 /* Marcas para los filtros. El orden es el que se ve en pantalla. */
 const MARCAS = ['Chevrolet', 'Fiat', 'Geely', 'Lynk & Co', 'JAC'];
+
+
+/* ---- ASISTENCIA TÉCNICA --------------------------------
+   telefono: opcional. Si lo dejás vacío ('') no se muestra.
+------------------------------------------------------- */
+const ASISTENCIA_TECNICA = {
+  jefe: { nombre: 'Nicolas Vazquez', cargo: 'Jefe de asistencia técnica y red de talleres oficiales', telefono: '' },
+  equipo: [
+    { nombre: 'Agustina Galañena', telefono: '' },
+    { nombre: 'Alvaro Rodriguez',  telefono: '' }
+  ]
+};
 
 
 /* ========== ¿Está abierto ahora? (lunes a viernes) ========== */
@@ -183,8 +195,34 @@ function copiarDireccion(btn, texto){
   });
 }
 
+/* ========== Asistencia técnica ========== */
+
+function personaAT(p){
+  const tel = p.telefono ? `<div class="ts-at-tel">📞 ${p.telefono}</div>` : '';
+  return `<div class="ts-persona">${p.nombre}</div>${tel}`;
+}
+
+function renderAsistencia(){
+  const at = ASISTENCIA_TECNICA;
+  const jefe   = document.getElementById('atJefe');
+  const equipo = document.getElementById('atEquipo');
+  if (jefe) jefe.innerHTML = `
+    <span class="ts-lbl">${at.jefe.cargo}</span>
+    <div class="ts-ger-nombre">${at.jefe.nombre}</div>
+    ${at.jefe.telefono ? `<div class="ts-at-tel">📞 ${at.jefe.telefono}</div>` : ''}`;
+  if (equipo) equipo.innerHTML = `
+    <span class="ts-lbl">Equipo de asistencia técnica</span>
+    ${at.equipo.map(personaAT).join('')}`;
+  // Los nombres que aparecen en las reglas también salen de la lista
+  document.querySelectorAll('[data-at="jefe"]').forEach(el => el.textContent = at.jefe.nombre);
+  document.querySelectorAll('[data-at="equipo"]').forEach(el =>
+    el.textContent = at.equipo.map(p => p.nombre).join(' o '));
+}
+
+
 document.addEventListener('DOMContentLoaded', () => {
   renderFiltros();
+  renderAsistencia();
   renderTalleres('');
   // Refresca el cartel de abierto/cerrado cada minuto
   setInterval(() => renderTalleres(filtroActivo), 60000);

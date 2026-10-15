@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sucursales — Contact Center Hub</title>
+<link rel="stylesheet" href="assets/css/sidebar.css">
+<link rel="stylesheet" href="assets/css/hub.css">
+</head>
+<body>
+<div class="app">
+
+  <div id="sidebar"></div>
+
+  <div class="main">
+
+    <div class="topbar">
+      <div class="greeting">
+        <h1>📍 Sucursales</h1>
+        <p>Dónde está cada salón de venta, qué marcas vende y cómo contactarlo</p>
+      </div>
+      <a href="index.html" style="font-size:12px;color:var(--blue);font-weight:600;">← Volver al inicio</a>
+    </div>
+
+    <!-- ===== FILTRO POR MARCA ===== -->
+    <div class="ts-filtros">
+      <span class="ts-lbl-filtro">¿QUÉ BUSCA EL CLIENTE?</span>
+      <div id="filtrosMarca" style="display:flex;gap:8px;flex-wrap:wrap;"></div>
+    </div>
+
+    <!-- ===== SUCURSALES (se arman desde assets/js/sucursales.js) ===== -->
+    <div class="ts-grid" id="listaSucursales"></div>
+
+    <!-- ===== INTERIOR ===== -->
+    <div class="card" style="margin-bottom:16px;">
+      <div class="card-head">
+        <div class="t"><span class="sq" style="background:var(--green)">🗺️</span>CONCESIONARIOS EN EL INTERIOR</div>
+      </div>
+      <p class="su-nota">Cada marca tiene su red. Abrí la página de la marca y filtrá por departamento.
+        Para talleres del interior, ver <a href="taller-postventa.html">Taller y Postventa</a>.</p>
+      <div class="ts-interior" id="listaInterior"></div>
+    </div>
+
+    <div data-hub-footer></div>
+
+  </div>
+</div>
+
+<script src="assets/js/hub.js"></script>
+<script src="assets/js/sucursales.js"></script>
+</body>
+</html>

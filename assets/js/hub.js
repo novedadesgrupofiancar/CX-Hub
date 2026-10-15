@@ -12,8 +12,8 @@
 
 const HUB = {
 
-  version: '1.4.0',
-  actualizado: '18/08/2026 10:45',
+  version: '1.6.0',
+  actualizado: '15/10/2026',
 
   /* ---- MENÚ PRINCIPAL ----------------------------------
      href: null  -> se muestra en gris, sin link (sección todavía no construida)
@@ -33,8 +33,8 @@ const HUB = {
     { icon: '❓',  label: 'FAQ',                 href: null },
     { icon: '📄',  label: 'Procedimientos',      href: null },
     { icon: '🗄️',  label: 'CRM y Tipificaciones', href: null },
-    { icon: '⚠️',  label: 'Escalamientos',       href: null },
-    { icon: '📍',  label: 'Sucursales',          href: null },
+    { icon: '⚠️',  label: 'Escalamientos',       href: 'escalamientos.html' },
+    { icon: '📍',  label: 'Sucursales',          href: 'sucursales.html' },
     { icon: '🔁',  label: 'Cambios recientes',   href: null }
   ],
 

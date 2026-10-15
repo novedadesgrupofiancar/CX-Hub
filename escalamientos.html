@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Escalamientos — Contact Center Hub</title>
+<link rel="stylesheet" href="assets/css/sidebar.css">
+<link rel="stylesheet" href="assets/css/hub.css">
+</head>
+<body>
+<div class="app">
+
+  <div id="sidebar"></div>
+
+  <div class="main">
+
+    <div class="topbar">
+      <div class="greeting">
+        <h1>⚠️ Escalamientos</h1>
+        <p>Registro de reclamos: le llega por mail al encargado del área</p>
+      </div>
+      <a href="index.html" style="font-size:12px;color:var(--blue);font-weight:600;">← Volver al inicio</a>
+    </div>
+
+    <div class="es-sinconectar" id="esSinConectar" hidden>
+      ⚠️ El formulario todavía no está conectado al Apps Script. Se puede completar, pero no envía.
+    </div>
+
+    <div class="es-layout">
+
+      <!-- ===== FORMULARIO (las listas se arman desde assets/js/escalamientos.js) ===== -->
+      <form class="card es-form" id="esForm" novalidate autocomplete="off">
+        <div class="card-head">
+          <div class="t"><span class="sq" style="background:var(--red)">📝</span>NUEVO RECLAMO</div>
+          <span class="es-oblig">Todos los campos son obligatorios</span>
+        </div>
+
+        <div class="es-fila">
+          <label class="es-campo">
+            <span class="ts-lbl">Agente</span>
+            <select name="agente" id="esAgente"></select>
+            <span class="es-error"></span>
+          </label>
+          <label class="es-campo">
+            <span class="ts-lbl">Área del reclamo</span>
+            <select name="area" id="esArea"></select>
+            <span class="es-error"></span>
+          </label>
+        </div>
+        <div class="es-destino" id="esDestino" hidden></div>
+
+        <div class="es-bloque">🚗 Vehículo</div>
+        <label class="es-campo">
+          <span class="ts-lbl">Matrícula o chasis</span>
+          <input name="vehiculo" placeholder="Ej: SBC 1234 o número de chasis">
+          <span class="es-error"></span>
+        </label>
+
+        <div class="es-bloque">👤 Cliente</div>
+        <label class="es-campo">
+          <span class="ts-lbl">Nombre y apellido</span>
+          <input name="clienteNombre">
+          <span class="es-error"></span>
+        </label>
+        <div class="es-fila">
+          <label class="es-campo">
+            <span class="ts-lbl">Mail</span>
+            <input name="clienteMail" type="email" placeholder="cliente@mail.com">
+            <span class="es-error"></span>
+          </label>
+          <label class="es-campo">
+            <span class="ts-lbl">Teléfono</span>
+            <input name="clienteTelefono" type="tel" placeholder="09X XXX XXX">
+            <span class="es-error"></span>
+          </label>
+        </div>
+
+        <div class="es-bloque">💬 Reclamo</div>
+        <label class="es-campo">
+          <span class="ts-lbl">Descripción</span>
+          <textarea name="descripcion" rows="5" placeholder="Qué pasó, desde cuándo, con quién habló el cliente y qué espera que se haga"></textarea>
+          <span class="es-error"></span>
+        </label>
+
+        <!-- Campo invisible: si un robot lo completa, el script descarta el envío -->
+        <input name="web" class="es-trampa" tabindex="-1" aria-hidden="true">
+
+        <div id="esAviso" hidden></div>
+
+        <button class="es-enviar" id="esEnviar" type="submit">Enviar reclamo</button>
+      </form>
+
+      <!-- ===== CÓMO FUNCIONA ===== -->
+      <div class="card es-info">
+        <div class="card-head">
+          <div class="t"><span class="sq" style="background:var(--navy)">ℹ️</span>CÓMO FUNCIONA</div>
+        </div>
+        <div class="ts-regla"><span class="ts-bullet">1</span>
+          <div>Al enviar, el reclamo <strong>le llega por mail al encargado del área</strong>, con copia a coordinación.</div></div>
+        <div class="ts-regla"><span class="ts-bullet">2</span>
+          <div>Queda <strong>registrado con un número</strong>. Dáselo al cliente como referencia.</div></div>
+        <div class="ts-regla"><span class="ts-bullet">3</span>
+          <div>La respuesta del área <strong>le llega a coordinación</strong>, que hace el seguimiento.</div></div>
+        <div class="ts-regla"><span class="ts-bullet">!</span>
+          <div>Antes de enviar, <strong>repetile al cliente sus datos</strong> para confirmar mail y teléfono.</div></div>
+      </div>
+
+    </div>
+
+    <div data-hub-footer></div>
+
+  </div>
+</div>
+
+<script src="assets/js/hub.js"></script>
+<script src="assets/js/escalamientos.js"></script>
+</body>
+</html>

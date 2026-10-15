@@ -651,3 +651,126 @@ a.resolve:hover{border-color:var(--blue);}
   .gu-mensaje{font-size:13px;padding:13px 14px;}
   .gu-buscador{flex-wrap:wrap;}
 }
+
+/* =========================================================
+   SUCURSALES (v1.5)
+   Reusa la tarjeta, chips y botones de Taller (ts-).
+   Acá solo lo propio de Sucursales.
+   ========================================================= */
+
+.su-top{padding:18px 0 12px;}
+.su-top .ts-nombre{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.su-sub{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:6px;}
+.su-sub .ts-estado{margin-top:0;}
+.su-zona{font-size:12px;color:var(--sub);font-weight:600;}
+
+/* Botones Copiar / Mapa de la dirección */
+.su-dir-btns{margin-left:auto;display:flex;flex-direction:column;gap:5px;flex:none;}
+.su-dir-btns .ts-copiar{margin-left:0;text-align:center;}
+.su-mapa{text-decoration:none;}
+
+/* Horario: una fila por tipo de día */
+.su-horario{
+  display:flex;flex-direction:column;gap:4px;
+  margin-bottom:12px;font-size:13px;
+}
+.su-h-fila{display:flex;justify-content:space-between;gap:10px;}
+.su-h-fila span{color:var(--sub);font-weight:600;}
+.su-h-fila b{color:var(--ink);}
+.su-h-fila b.su-cerrado{color:var(--sub);font-weight:600;}
+
+/* Chip "Usados": verde, para distinguirlo de las marcas */
+.ts-marca.su-usados{background:var(--green-light);color:#0b7b45;}
+.ts-marca.su-usados.match{background:#0b7b45;color:#fff;}
+
+/* Teléfono / WhatsApp / Mail */
+.su-contactos{border-top:1px solid var(--line);padding-top:10px;margin-bottom:12px;}
+.su-contacto{display:flex;align-items:center;gap:9px;padding:5px 0;}
+.su-c-ic{flex:none;width:18px;text-align:center;font-size:13px;}
+.su-c-txt{min-width:0;}
+.su-c-txt .ts-lbl{margin-bottom:0;}
+.su-c-txt b{display:block;font-size:13.5px;overflow-wrap:anywhere;}
+
+.su-gerente{margin-bottom:14px;}
+
+/* Pie de la tarjeta: taller + copiar ficha */
+.su-pie{margin-top:auto;display:flex;flex-direction:column;gap:8px;}
+.su-taller{font-size:11.5px;font-weight:700;border-radius:7px;padding:7px 10px;}
+.su-taller.si{background:var(--amber-light);color:#9a6b00;text-decoration:none;}
+.su-taller.si:hover{background:#fde6c1;}
+.su-taller.no{background:#f4f5f8;color:var(--sub);}
+.su-ficha{
+  background:var(--navy);color:#fff;border:none;border-radius:8px;
+  padding:10px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit;
+}
+.su-ficha:hover{background:var(--navy2);}
+.su-ficha.ok{background:var(--green);}
+
+.su-nota{font-size:12.5px;color:var(--sub);margin:0 0 12px;line-height:1.5;}
+.su-nota a{color:var(--blue);font-weight:600;}
+
+/* --- Asistencia técnica (Taller y Postventa v1.5.2) --- */
+.ts-at{display:grid;grid-template-columns:1.5fr 1fr;gap:20px;align-items:start;}
+.ts-at-gente{display:flex;flex-direction:column;gap:10px;}
+.ts-at-gente .ts-persona{font-size:13.5px;}
+.ts-at-tel{font-size:12px;color:var(--sub);font-weight:600;margin-top:2px;}
+.ts-regla .ts-bullet.no{background:var(--red-light);color:var(--red);}
+@media (max-width:900px){ .ts-at{grid-template-columns:1fr;} }
+
+/* =========================================================
+   ESCALAMIENTOS (v1.6)
+   ========================================================= */
+
+.es-layout{display:grid;grid-template-columns:1.7fr 1fr;gap:16px;align-items:start;margin-bottom:16px;}
+.es-oblig{font-size:11px;color:var(--sub);font-weight:600;}
+
+.es-sinconectar{
+  background:var(--amber-light);border:1px solid #f3ddb3;border-left:5px solid var(--amber);
+  border-radius:10px;padding:11px 16px;margin-bottom:16px;font-size:12.5px;font-weight:600;color:#7a5400;
+}
+
+/* --- Campos --- */
+.es-fila{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.es-campo{display:block;margin-bottom:12px;}
+.es-campo input,.es-campo select,.es-campo textarea{
+  width:100%;border:1px solid var(--line);border-radius:8px;background:#fafbfe;
+  padding:10px 12px;font-size:13.5px;font-family:inherit;color:var(--ink);
+}
+.es-campo textarea{resize:vertical;line-height:1.5;}
+.es-campo input:focus,.es-campo select:focus,.es-campo textarea:focus{
+  outline:none;border-color:var(--blue);background:#fff;box-shadow:0 0 0 3px var(--blue-light);
+}
+.es-error{display:none;font-size:11.5px;font-weight:700;color:var(--red);margin-top:4px;}
+.es-campo.error input,.es-campo.error select,.es-campo.error textarea{border-color:var(--red);background:var(--red-light);}
+.es-campo.error .es-error{display:block;}
+
+.es-bloque{
+  font-size:12px;font-weight:800;color:var(--navy);letter-spacing:.02em;
+  border-top:1px solid var(--line);padding-top:12px;margin:4px 0 10px;
+}
+.es-destino{
+  background:var(--blue-light);color:#1b3f8f;border-radius:8px;
+  padding:8px 12px;font-size:12.5px;margin:-2px 0 14px;
+}
+.es-trampa{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;}
+
+/* --- Botón y avisos --- */
+.es-enviar{
+  width:100%;background:var(--red);color:#fff;border:none;border-radius:9px;
+  padding:13px;font-size:14px;font-weight:800;cursor:pointer;font-family:inherit;
+}
+.es-enviar:hover{background:#cf3b31;}
+.es-enviar:disabled{opacity:.6;cursor:wait;}
+
+.es-aviso{
+  display:flex;align-items:center;gap:12px;justify-content:space-between;
+  border-radius:9px;padding:12px 14px;margin-bottom:12px;font-size:13px;
+}
+.es-aviso p{margin:3px 0 0;font-size:12px;}
+.es-aviso.ok{background:var(--green-light);color:#0b6b3d;border:1px solid #bfe9d2;}
+.es-aviso.ok b{font-size:15px;}
+.es-aviso.mal{background:var(--red-light);color:#9b2a23;border:1px solid #f6c9c6;font-weight:600;}
+
+@media (max-width:900px){
+  .es-layout,.es-fila{grid-template-columns:1fr;}
+}
