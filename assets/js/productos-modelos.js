@@ -32,7 +32,7 @@ const PRECIOS = [
 ];
 
 /* Texto que se repite en Geely y Lynk & Co */
-const NOTA_ACTUALIZACION = '💻 <b>Actualización de software (Geely EX2, EX5 y Lynk &amp; Co):</b> se hace en el primer service. Si el cliente la hace aparte, tiene costo: <b>2.850 + IVA</b>.';
+const NOTA_ACTUALIZACION = '💻 <b>Actualización de software (Geely EX2, EX5 y Lynk &amp; Co):</b> se hace en el primer service. Si el cliente la hace aparte, tiene costo: <b>$U 2.850 + IVA</b>.';
 
 const MARCAS_PM = [
   {
