@@ -288,8 +288,7 @@ En ese caso quedaría descartada la financiación bancaria, ya que para el banco
     variantes: [
       { nombre: 'Geely',      bloques: [{ texto: speechRepuestos('Geely') }] },
       { nombre: 'JAC',        bloques: [{ texto: speechRepuestos('JAC') }] },
-      { nombre: 'Lynk & Co.', bloques: [{ texto: speechRepuestos('Lynk & Co.') }] },
-      { nombre: 'Tata',       bloques: [{ texto: speechRepuestos('Tata') }] }
+      { nombre: 'Lynk & Co.', bloques: [{ texto: speechRepuestos('Lynk & Co.') }] }
     ]
   },
 
