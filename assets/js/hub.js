@@ -12,7 +12,7 @@
 
 const HUB = {
 
-  version: '1.7.3',
+  version: '1.7.4',
   actualizado: '23/10/2026',
 
   /* ---- MENÚ PRINCIPAL ----------------------------------

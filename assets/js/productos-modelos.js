@@ -247,26 +247,46 @@ function buscarModelo(valor){
 
 /* ========== ¿Le toca service? ========== */
 
+/* Nombres de modelo de un plan, uno por uno, para la lista de la calculadora.
+   "Resto de los modelos" / "Todos los modelos" se reemplaza por lo que dice "incluye". */
+function nombresDelPlan(p){
+  const propios = p.modelos.filter(n => !/^(resto|todos)/i.test(n));
+  const incluidos = p.incluye ? p.incluye.split(',').map(n => n.trim()).filter(Boolean) : [];
+  return propios.concat(incluidos);
+}
+
 function renderCalculadora(){
   const sel = document.getElementById('pmCalcModelo');
   if (!sel) return;
   sel.innerHTML = '<option value="">Elegí marca y modelo</option>' +
-    MARCAS_PM.map((m, i) => `<optgroup label="${m.marca}">` +
-      m.planes.map((p, j) => `<option value="${i}-${j}">${m.marca} · ${p.modelos.join(', ')}</option>`).join('') +
-      `</optgroup>`).join('');
+    MARCAS_PM.map((m, i) => {
+      const opciones = m.planes.flatMap((p, j) =>
+        nombresDelPlan(p).map(n => ({ n, valor: `${i}-${j}` })));
+      opciones.sort((a, b) => a.n.localeCompare(b.n, 'es'));
+      return `<optgroup label="${m.marca}">` +
+        opciones.map(o => `<option value="${o.valor}">${m.marca} · ${o.n}</option>`).join('') +
+        `</optgroup>`;
+    }).join('');
+}
+
+function avisoCalc(texto){
+  const caja = document.getElementById('pmCalcRes');
+  caja.className = 'pm-res aviso';
+  caja.innerHTML = texto;
+  caja.hidden = false;
 }
 
 function calcularService(){
   const sel = document.getElementById('pmCalcModelo').value;
-  const kmTxt = document.getElementById('pmCalcKm').value.replace(/\D/g, '');
+  const kmCrudo = document.getElementById('pmCalcKm').value.trim();
   const caja = document.getElementById('pmCalcRes');
 
-  if (!sel || !kmTxt){
-    caja.className = 'pm-res aviso';
-    caja.innerHTML = 'Elegí el modelo y escribí el kilometraje.';
-    caja.hidden = false;
-    return;
-  }
+  if (!sel) return avisoCalc('Elegí el modelo en la lista.');
+  if (!kmCrudo) return avisoCalc('Escribí el kilometraje que dice el cliente.');
+  // Solo números (se aceptan puntos y espacios: "11.200" o "11 200")
+  if (!/^[\d.\s]+$/.test(kmCrudo)) return avisoCalc('⚠️ En kilometraje va <b>solo el número</b>, por ejemplo 11200. El modelo se elige en la lista de la izquierda.');
+  const kmTxt = kmCrudo.replace(/\D/g, '');
+  if (!kmTxt) return avisoCalc('Escribí el kilometraje que dice el cliente.');
 
   const [i, j] = sel.split('-').map(Number);
   const m = MARCAS_PM[i], p = m.planes[j];
