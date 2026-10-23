@@ -12,7 +12,7 @@
 
 const HUB = {
 
-  version: '1.7.2',
+  version: '1.7.3',
   actualizado: '23/10/2026',
 
   /* ---- MENÚ PRINCIPAL ----------------------------------
@@ -125,6 +125,17 @@ function toggleCoord(idTarjeta, checkbox) {
   const el = document.getElementById(idTarjeta);
   if (el) el.classList.toggle('coord-mode', checkbox.checked);
 }
+
+/* ---- Ícono de la pestaña del navegador ----
+   Para cambiarlo, reemplazá assets/img/favicon.png por otra imagen cuadrada. */
+(function ponerFavicon(){
+  if (document.querySelector('link[rel="icon"]')) return;
+  const l = document.createElement('link');
+  l.rel = 'icon';
+  l.type = 'image/png';
+  l.href = 'assets/img/favicon.png';
+  document.head.appendChild(l);
+})();
 
 /* ---- Arranque ---- */
 document.addEventListener('DOMContentLoaded', () => {
