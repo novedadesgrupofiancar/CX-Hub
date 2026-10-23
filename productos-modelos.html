@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Productos y Modelos — Contact Center Hub</title>
+<link rel="stylesheet" href="assets/css/sidebar.css">
+<link rel="stylesheet" href="assets/css/hub.css">
+</head>
+<body>
+<div class="app">
+
+  <div id="sidebar"></div>
+
+  <div class="main">
+
+    <div class="topbar">
+      <div class="greeting">
+        <h1>🚗 Productos y Modelos</h1>
+        <p>Garantía, services y tolerancia por marca · los precios están en la web de cada marca</p>
+      </div>
+      <a href="index.html" style="font-size:12px;color:var(--blue);font-weight:600;">← Volver al inicio</a>
+    </div>
+
+    <!-- ===== PRECIOS Y CATÁLOGO (links en assets/js/productos-modelos.js) ===== -->
+    <div class="card" style="margin-bottom:16px;">
+      <div class="card-head">
+        <div class="t"><span class="sq" style="background:var(--green)">💲</span>PRECIOS Y CATÁLOGO</div>
+      </div>
+      <div class="pm-links" id="pmPrecios"></div>
+    </div>
+
+    <!-- ===== ¿LE TOCA SERVICE? ===== -->
+    <div class="card" style="margin-bottom:16px;">
+      <div class="card-head">
+        <div class="t"><span class="sq" style="background:var(--blue)">🧮</span>¿LE TOCA SERVICE?</div>
+      </div>
+      <div class="pm-calc">
+        <label><span class="ts-lbl">Modelo</span><select id="pmCalcModelo"></select></label>
+        <label><span class="ts-lbl">Kilometraje que dice el cliente</span>
+          <input id="pmCalcKm" inputmode="numeric" placeholder="Ej: 11200"></label>
+        <button class="pm-calc-btn" type="button" onclick="calcularService()">Calcular</button>
+      </div>
+      <div id="pmCalcRes" hidden></div>
+    </div>
+
+    <!-- ===== FILTRO + BUSCADOR ===== -->
+    <div class="pm-tools">
+      <div id="pmFiltros" style="display:flex;gap:8px;flex-wrap:wrap;"></div>
+      <div class="pm-buscar">
+        <span>🔎</span>
+        <input type="search" autocomplete="off" placeholder="Buscar modelo: Tracker, Coolray, T8..."
+               oninput="buscarModelo(this.value)">
+      </div>
+    </div>
+
+    <!-- ===== UNA TARJETA POR MARCA (se arman desde assets/js/productos-modelos.js) ===== -->
+    <div class="pm-grid" id="pmMarcas"></div>
+
+    <div data-hub-footer></div>
+
+  </div>
+</div>
+
+<script src="assets/js/hub.js"></script>
+<script src="assets/js/productos-modelos.js"></script>
+</body>
+</html>

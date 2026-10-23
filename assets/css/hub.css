@@ -774,3 +774,77 @@ a.resolve:hover{border-color:var(--blue);}
 @media (max-width:900px){
   .es-layout,.es-fila{grid-template-columns:1fr;}
 }
+
+/* =========================================================
+   PRODUCTOS Y MODELOS (v1.7)
+   Reusa chips, links y etiquetas de Taller (ts-).
+   ========================================================= */
+
+.pm-links{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;}
+
+/* --- ¿Le toca service? --- */
+.pm-calc{display:grid;grid-template-columns:1.4fr 1fr auto;gap:12px;align-items:end;}
+.pm-calc label{display:block;}
+.pm-calc select,.pm-calc input{
+  width:100%;border:1px solid var(--line);border-radius:8px;background:#fafbfe;
+  padding:10px 12px;font-size:13.5px;font-family:inherit;color:var(--ink);
+}
+.pm-calc select:focus,.pm-calc input:focus{outline:none;border-color:var(--blue);background:#fff;box-shadow:0 0 0 3px var(--blue-light);}
+.pm-calc-btn{
+  background:var(--navy);color:#fff;border:none;border-radius:8px;
+  padding:11px 22px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;
+}
+.pm-calc-btn:hover{background:var(--navy2);}
+.pm-res{margin-top:12px;border-radius:9px;padding:12px 14px;font-size:13.5px;line-height:1.5;}
+.pm-res.ok{background:var(--green-light);color:#0b6b3d;border:1px solid #bfe9d2;}
+.pm-res.mal{background:var(--red-light);color:#9b2a23;border:1px solid #f6c9c6;}
+.pm-res.aviso{background:var(--blue-light);color:#1b3f8f;border:1px solid #cbdcfb;}
+.pm-res-extra{margin-top:8px;padding-top:8px;border-top:1px dashed rgba(27,63,143,.25);color:#7a5400;}
+
+/* --- Filtro y buscador --- */
+.pm-tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:16px;}
+.pm-buscar{
+  flex:1;min-width:220px;display:flex;align-items:center;gap:8px;
+  background:var(--card);border:1px solid var(--line);border-radius:10px;padding:0 12px;
+}
+.pm-buscar span{opacity:.6;font-size:14px;}
+.pm-buscar input{flex:1;border:none;outline:none;background:transparent;padding:10px 0;font-size:13.5px;font-family:inherit;color:var(--ink);}
+
+/* --- Tarjeta de marca --- */
+.pm-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-bottom:20px;align-items:start;}
+.pm-marca{
+  background:var(--card);border:1px solid var(--line);border-top:4px solid var(--acento);
+  border-radius:12px;padding:16px 18px;box-shadow:0 1px 3px rgba(20,30,60,.05);
+}
+.pm-marca-top{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.pm-marca-top h2{margin:0;font-size:22px;font-weight:800;color:var(--navy);letter-spacing:-.02em;}
+.pm-imp{font-size:11.5px;color:var(--sub);font-weight:600;}
+.pm-kpis{display:grid;grid-template-columns:1.6fr 1fr;gap:10px;margin:12px 0;}
+.pm-kpi{background:#fafbfe;border:1px solid var(--line);border-radius:9px;padding:10px 12px;}
+.pm-kpi b{display:block;font-size:16px;color:var(--ink);line-height:1.3;}
+.pm-kpi.tol b{color:var(--acento);font-size:22px;}
+.pm-notas{display:flex;flex-direction:column;gap:6px;margin-bottom:12px;}
+.pm-nota{font-size:12px;line-height:1.45;background:var(--amber-light);color:#6b4a00;border-radius:7px;padding:7px 10px;}
+
+/* --- Tabla de services --- */
+.pm-tabla-wrap{overflow-x:auto;}
+.pm-tabla{width:100%;border-collapse:collapse;font-size:12.5px;}
+.pm-tabla th{
+  text-align:left;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--sub);padding:6px 8px;border-bottom:1px solid var(--line);white-space:nowrap;
+}
+.pm-tabla td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top;}
+.pm-tabla tr:last-child td{border-bottom:none;}
+.pm-tabla td:not(:first-child){font-weight:600;}
+.pm-tabla th:first-child{width:36%;}
+.pm-incluye{font-size:11px;color:var(--sub);font-weight:500;margin-top:3px;line-height:1.4;white-space:normal;}
+.pm-fila.match td{background:var(--blue-light);}
+
+@media (max-width:1200px){
+  .pm-links{grid-template-columns:repeat(4,1fr);}
+  .pm-grid{grid-template-columns:1fr;}
+}
+@media (max-width:900px){
+  .pm-links{grid-template-columns:1fr 1fr;}
+  .pm-calc{grid-template-columns:1fr;}
+}

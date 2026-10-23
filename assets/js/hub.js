@@ -12,8 +12,8 @@
 
 const HUB = {
 
-  version: '1.6.1',
-  actualizado: '15/10/2026',
+  version: '1.7.0',
+  actualizado: '23/10/2026',
 
   /* ---- MENÚ PRINCIPAL ----------------------------------
      href: null  -> se muestra en gris, sin link (sección todavía no construida)
@@ -24,7 +24,7 @@ const HUB = {
     { icon: '🏠',  label: 'Inicio',              href: 'index.html' },
     { icon: '📊',  label: 'Dashboard',           href: 'dashboard.html' },
     { icon: '🔎',  label: 'Buscar',              href: null },
-    { icon: '🚗',  label: 'Productos y Modelos', href: null },
+    { icon: '🚗',  label: 'Productos y Modelos', href: 'productos-modelos.html' },
     { icon: '🏷️',  label: 'Promociones',         href: null },
     { icon: '🔧',  label: 'Taller y Postventa',  href: 'taller-postventa.html' },
     { icon: '🛠️',  label: 'Recalls activos',     href: 'recalls.html', badge: '1' },
