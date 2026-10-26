@@ -12,8 +12,8 @@
 
 const HUB = {
 
-  version: '1.7.4',
-  actualizado: '23/10/2026',
+  version: '1.7.5',
+  actualizado: '26/10/2026',
 
   /* ---- MENÚ PRINCIPAL ----------------------------------
      href: null  -> se muestra en gris, sin link (sección todavía no construida)
@@ -40,13 +40,15 @@ const HUB = {
 
   /* ---- HERRAMIENTAS EXTERNAS ----------------------------
      Acá van los sistemas que ya usan (CRM, agenda, etc).
-     Poné la URL real y se abren en pestaña nueva.
+     Se abren en pestaña nueva. Esta misma lista arma el menú
+     lateral y la tarjeta "Herramientas de trabajo" de la home.
+     color: fondo del ícono en la home.
   ------------------------------------------------------- */
   herramientas: [
-    { icon: '🗄️', label: 'CRM',                 href: null },
-    { icon: '📅', label: 'Agenda Taller',       href: null },
-    { icon: '📞', label: 'Sistema de Llamadas', href: null },
-    { icon: '🚙', label: 'Web Chevrolet',       href: null }
+    { icon: '🗄️', label: 'CRM',                 href: 'https://crm.grupofiancar.com/',          color: 'var(--blue)' },
+    { icon: '📅', label: 'Agenda Taller',       href: 'https://xtaller.binomio.uy/',            color: 'var(--purple)' },
+    { icon: '📞', label: 'Sistema de Llamadas', href: 'https://grupofiancar.south.3cx.us:5001/', color: 'var(--green)' },
+    { icon: '🚙', label: 'Web Chevrolet',       href: 'https://chevroletmontevideo.com.uy/',    color: '#f4b400' }
   ]
 };
 
@@ -126,6 +128,18 @@ function toggleCoord(idTarjeta, checkbox) {
   if (el) el.classList.toggle('coord-mode', checkbox.checked);
 }
 
+/* ---- Tarjeta "Herramientas de trabajo" de la home ---- */
+function renderHerramientasHome() {
+  const cont = document.querySelector('[data-hub-herramientas]');
+  if (!cont) return;
+  cont.innerHTML = HUB.herramientas.map(h => {
+    const abrir = h.href
+      ? `<a class="btn-open" href="${h.href}" target="_blank" rel="noopener">Abrir</a>`
+      : `<span class="btn-open" style="opacity:.45">Sin link</span>`;
+    return `<div class="tool-item"><div class="tool-left"><span class="ic" style="background:${h.color || 'var(--blue)'}">${h.icon}</span>${h.label}</div>${abrir}</div>`;
+  }).join('');
+}
+
 /* ---- Ícono de la pestaña del navegador ----
    Para cambiarlo, reemplazá assets/img/favicon.png por otra imagen cuadrada. */
 (function ponerFavicon(){
@@ -141,4 +155,5 @@ function toggleCoord(idTarjeta, checkbox) {
 document.addEventListener('DOMContentLoaded', () => {
   renderSidebar();
   renderFooter();
+  renderHerramientasHome();
 });
