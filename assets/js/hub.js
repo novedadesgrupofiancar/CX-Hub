@@ -12,7 +12,7 @@
 
 const HUB = {
 
-  version: '1.9.0',
+  version: '1.9.1',
   actualizado: '29/10/2026',
 
   /* Backend del Hub (Google Apps Script "CX-Hub Backend" en la cuenta de novedades).
@@ -150,8 +150,10 @@ function escaparHTML(t){
 /* ---- Modo admin (Cambios recientes, Internos) ----
    Se entra con pagina.html?admin=CLAVE (la misma del Dashboard).
    La clave se valida en el servidor; acá solo se guarda mientras
-   la pestaña está abierta y se saca de la barra de direcciones. */
-const CLAVE_SESION = 'cxhub-admin';
+   la pestaña está abierta y se saca de la barra de direcciones.
+   Cada sección guarda la suya: entrar como admin en una NO deja
+   en modo admin a las demás. */
+const CLAVE_SESION = 'cxhub-admin:' + (location.pathname.split('/').pop() || 'index.html');
 let claveAdmin = '';       // vacío = modo equipo
 
 function tomarClaveDeURL(){
