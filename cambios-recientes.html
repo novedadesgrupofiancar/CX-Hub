@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cambios recientes — Contact Center Hub</title>
+<link rel="stylesheet" href="assets/css/sidebar.css">
+<link rel="stylesheet" href="assets/css/hub.css">
+</head>
+<body>
+<div class="app">
+
+  <div id="sidebar"></div>
+
+  <div class="main">
+
+    <div class="topbar">
+      <div class="greeting">
+        <h1>🔁 Cambios recientes</h1>
+        <p>Novedades de precios, procesos, información y horarios · lo vigente aparece en la home</p>
+      </div>
+      <a href="index.html" style="font-size:12px;color:var(--blue);font-weight:600;">← Volver al inicio</a>
+    </div>
+
+    <!-- Solo en modo admin (se activa con ?admin=CLAVE) -->
+    <div class="cr-admin-banner cr-solo-admin">
+      <span>🔐 <b>Modo administrador.</b> Lo que cargues acá se ve en la home de todo el equipo.</span>
+      <button type="button" onclick="salirAdmin()">Salir del modo admin</button>
+    </div>
+
+    <div id="crAviso" hidden></div>
+
+    <div class="cr-layout">
+
+      <!-- ===== IZQUIERDA ===== -->
+      <div>
+        <!-- Equipo: Importante hoy vigente -->
+        <div class="card important cr-solo-equipo">
+          <div class="card-head">
+            <div class="t" style="color:#fff"><span class="sq" style="background:rgba(255,255,255,.22)">⚠️</span>IMPORTANTE HOY</div>
+          </div>
+          <div id="crImportante"><div class="cr-home-vacio">Cargando…</div></div>
+        </div>
+
+        <!-- Admin: alta y edición -->
+        <form class="card cr-form cr-solo-admin" id="crForm" autocomplete="off">
+          <div class="card-head">
+            <div class="t"><span class="sq" style="background:var(--navy)">＋</span><span id="crFormTitulo">NUEVO</span></div>
+          </div>
+
+          <div class="cr-tabs">
+            <button type="button" class="ts-chip on" data-cr-contenido="cambio" onclick="elegirContenido('cambio')">🔁 Cambio reciente</button>
+            <button type="button" class="ts-chip" data-cr-contenido="importante" onclick="elegirContenido('importante')">⚠️ Importante hoy</button>
+          </div>
+
+          <div class="cr-fila cr-solo-cambio">
+            <label><span class="ts-lbl">Tipo</span>
+              <select name="tipo"><option>Precio</option><option>Proceso</option><option>Información</option><option>Horario</option></select></label>
+            <label><span class="ts-lbl">Link a sección (opcional)</span><select name="link" id="crLink"></select></label>
+          </div>
+          <label class="cr-solo-importante" hidden><span class="ts-lbl">Prioridad</span>
+            <select name="prioridad"><option>Alta</option><option selected>Media</option><option>Baja</option></select></label>
+
+          <label><span class="ts-lbl">Título</span><input name="titulo" maxlength="120" placeholder="Ej: Tracker — Financiación"></label>
+          <label><span class="ts-lbl" id="crEtiquetaTexto">Qué cambió</span>
+            <textarea name="texto" rows="3" maxlength="1000" placeholder="Corto y concreto: lo que el agente tiene que saber"></textarea></label>
+
+          <label><span class="ts-lbl">Vence (después sale de la home)</span><input type="date" name="vence"></label>
+          <label class="cr-check"><input type="checkbox" name="sinVence" onchange="alternarSinVence(this)"> Sin vencimiento</label>
+
+          <button type="submit" class="cr-btn" id="crGuardar">Publicar</button>
+          <button type="button" class="cr-btn-sec" id="crCancelar" hidden onclick="limpiarForm()">Cancelar edición</button>
+        </form>
+      </div>
+
+      <!-- ===== DERECHA: HISTORIAL ===== -->
+      <div class="card">
+        <div class="card-head">
+          <div class="t"><span class="sq" style="background:#f4b400">🔁</span>HISTORIAL</div>
+        </div>
+        <div class="cr-tools">
+          <div id="crFiltros" style="display:flex;gap:6px;flex-wrap:wrap;"></div>
+          <input class="cr-buscar" type="search" placeholder="🔎 Buscar: Tracker, horario, Carrasco..." oninput="buscarCR(this.value)">
+        </div>
+        <div id="crHistorial"><div class="ts-vacio">Cargando…</div></div>
+      </div>
+
+    </div>
+
+    <div data-hub-footer></div>
+
+  </div>
+</div>
+
+<script src="assets/js/hub.js"></script>
+<script src="assets/js/contenidos.js"></script>
+<script src="assets/js/cambios-recientes.js"></script>
+</body>
+</html>

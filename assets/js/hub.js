@@ -12,8 +12,13 @@
 
 const HUB = {
 
-  version: '1.7.5',
-  actualizado: '26/10/2026',
+  version: '1.8.0',
+  actualizado: '29/10/2026',
+
+  /* Backend del Hub (Google Apps Script "CX-Hub Backend" en la cuenta de novedades).
+     Lo usan Escalamientos (reclamos) y Cambios recientes / Importante hoy.
+     Si algún día se publica otra implementación, se cambia solo acá. */
+  api: 'https://script.google.com/macros/s/AKfycbwptnYqzGl6w0cBJY1Ocaj01A3bLxBFGsruGiU_jmU-wjTki6hghpPcMXutRtZ15Ip7/exec',
 
   /* ---- MENÚ PRINCIPAL ----------------------------------
      href: null  -> se muestra en gris, sin link (sección todavía no construida)
@@ -35,7 +40,7 @@ const HUB = {
     { icon: '🗄️',  label: 'CRM y Tipificaciones', href: null },
     { icon: '⚠️',  label: 'Escalamientos',       href: 'escalamientos.html' },
     { icon: '📍',  label: 'Sucursales',          href: 'sucursales.html' },
-    { icon: '🔁',  label: 'Cambios recientes',   href: null }
+    { icon: '🔁',  label: 'Cambios recientes',   href: 'cambios-recientes.html' }
   ],
 
   /* ---- HERRAMIENTAS EXTERNAS ----------------------------
@@ -121,12 +126,6 @@ function closeLightbox() {
   if (ov) ov.style.display = 'none';
 }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
-
-/* ---- Toggle "Vista coordinador" ---- */
-function toggleCoord(idTarjeta, checkbox) {
-  const el = document.getElementById(idTarjeta);
-  if (el) el.classList.toggle('coord-mode', checkbox.checked);
-}
 
 /* ---- Tarjeta "Herramientas de trabajo" de la home ---- */
 function renderHerramientasHome() {

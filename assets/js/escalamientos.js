@@ -17,9 +17,8 @@
    Si el id no coincide, el script rechaza el reclamo.
    ========================================================= */
 
-/* Dirección del Apps Script de reclamos. Se pega una sola vez,
-   cuando se publica el script (ver la guía). */
-const RECLAMOS_API_URL = 'https://script.google.com/macros/s/AKfycbwptnYqzGl6w0cBJY1Ocaj01A3bLxBFGsruGiU_jmU-wjTki6hghpPcMXutRtZ15Ip7/exec';
+/* Dirección del backend: está en hub.js (HUB.api), una sola vez para todo el Hub */
+const RECLAMOS_API_URL = HUB.api;
 
 const AGENTES = [
   'Sabrina', 'Alvaro', 'Melanie', 'Gianine',

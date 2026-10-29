@@ -31,114 +31,32 @@
     <!-- ================= FILA 1 ================= -->
     <div class="row cols-3">
 
-      <!-- IMPORTANTE HOY -->
-      <div class="card important" id="importantCard">
+      <!-- IMPORTANTE HOY (se carga desde Cambios recientes, modo admin) -->
+      <div class="card important">
         <div class="card-head">
           <div class="t" style="color:#fff"><span class="sq" style="background:rgba(255,255,255,.22)">⚠️</span>IMPORTANTE HOY</div>
-          <div style="display:flex;align-items:center;gap:10px;">
-            <label class="view-toggle">
-              <input type="checkbox" onchange="toggleCoord('importantCard', this)">
-              <span>Vista coordinador</span>
-            </label>
-            <a href="#" style="color:#fff">Ver todas</a>
-          </div>
+          <a href="cambios-recientes.html" style="color:#fff">Ver todas</a>
         </div>
-
-        <button class="add-alert-btn" type="button">＋ Nueva alerta</button>
-
-        <div class="alert-item on-dark">
-          <div class="ic" style="background:var(--red-light)">📅</div>
-          <div class="txt"><b>Agenda Taller Centro</b><p>Agenda temporalmente cerrada para el jueves 22/08.</p></div>
-          <div class="edit-ic">✏️</div>
-          <div class="chev">›</div>
-        </div>
-        <div class="alert-item on-dark">
-          <div class="ic" style="background:var(--amber-light)">⚠️</div>
-          <div class="txt"><b>Sistema CRM</b><p>Se detectaron demoras en la asignación de leads.</p></div>
-          <div class="edit-ic">✏️</div>
-          <div class="chev">›</div>
-        </div>
-        <div class="alert-item on-dark">
-          <div class="ic" style="background:var(--amber-light)">📢</div>
-          <div class="txt"><b>Campaña Chevrolet</b><p>Hoy es el último día de vigencia de la campaña S10 Power.</p></div>
-          <div class="edit-ic">✏️</div>
-          <div class="chev">›</div>
-        </div>
-
-        <div class="new-alert-form">
-          <div class="form-row"><input placeholder="Título (ej: Agenda Taller Centro)"></div>
-          <div class="form-row"><input placeholder="Descripción breve"></div>
-          <div class="form-row two">
-            <input type="date" placeholder="Vencimiento">
-            <select><option>Prioridad: Alta</option><option>Media</option><option>Baja</option></select>
-          </div>
-          <button class="save-alert-btn" type="button">Publicar alerta</button>
-        </div>
+        <div id="homeImportante"><div class="cr-home-vacio">Cargando…</div></div>
       </div>
 
-      <!-- CAMBIOS RECIENTES -->
-      <div class="card changes" id="changesCard">
+      <!-- CAMBIOS RECIENTES (se carga desde Cambios recientes, modo admin) -->
+      <div class="card changes">
         <div class="card-head">
           <div class="t" style="color:#fff"><span class="sq" style="background:rgba(255,255,255,.28)">🔁</span>CAMBIOS RECIENTES</div>
-          <div style="display:flex;align-items:center;gap:10px;">
-            <label class="view-toggle" style="color:rgba(20,20,10,.75)">
-              <input type="checkbox" onchange="toggleCoord('changesCard', this)">
-              <span>Vista coordinador</span>
-            </label>
-            <a href="#" style="color:#fff">Ver todas</a>
-          </div>
+          <a href="cambios-recientes.html" style="color:#fff">Ver todas</a>
         </div>
-
-        <button class="add-alert-btn" type="button">＋ Nuevo cambio</button>
-
-        <div class="day-label on-yellow">Hoy</div>
-        <div class="change-item on-white">
-          <div><b>💰 Tracker — Financiación</b><p>Se modificó la tasa vigente.</p></div>
-          <div class="edit-ic">✏️</div>
-          <div class="change-time">10:45</div>
-        </div>
-        <div class="change-item on-white">
-          <div><b>🔧 Taller Portones</b><p>Nuevo horario de recepción.</p></div>
-          <div class="edit-ic">✏️</div>
-          <div class="change-time">09:30</div>
-        </div>
-        <div class="day-label on-yellow">Ayer</div>
-        <div class="change-item on-white">
-          <div><b>🚗 Kia Sportage</b><p>Precio actualizado.</p></div>
-          <div class="edit-ic">✏️</div>
-          <div class="change-time">17:25</div>
-        </div>
-        <div class="change-item on-white">
-          <div><b>📞 Lead Web</b><p>Actualización del guión de contacto.</p></div>
-          <div class="edit-ic">✏️</div>
-          <div class="change-time">15:10</div>
-        </div>
-
-        <div class="new-alert-form on-yellow-form">
-          <div class="form-row"><input placeholder="Título (ej: Precio Tracker)"></div>
-          <div class="form-row"><input placeholder="Qué cambió"></div>
-          <div class="form-row two">
-            <select><option>Tipo: Precio</option><option>Proceso</option><option>Información</option><option>Horario</option></select>
-            <select><option>¿Notificar al Contact Center?</option><option>Sí</option><option>No</option></select>
-          </div>
-          <button class="save-alert-btn on-yellow-btn" type="button">Publicar cambio</button>
-        </div>
+        <div id="homeCambios"><div class="cr-home-vacio oscuro">Cargando…</div></div>
       </div>
 
       <!-- PROMOCIONES DESTACADAS -->
-      <div class="card promos" id="promosCard">
+      <div class="card promos">
         <div class="card-head">
           <div class="t" style="color:#fff"><span class="sq" style="background:rgba(255,255,255,.28)">📣</span>PROMOCIONES DESTACADAS</div>
           <div style="display:flex;align-items:center;gap:10px;">
-            <label class="view-toggle" style="color:rgba(8,40,22,.75)">
-              <input type="checkbox" onchange="toggleCoord('promosCard', this)">
-              <span>Vista coordinador</span>
-            </label>
             <a href="#" style="color:#fff">Ver todas</a>
           </div>
         </div>
-
-        <button class="add-alert-btn" type="button">＋ Nueva promoción</button>
 
         <div class="promo-item on-white">
           <img class="promo-thumb" src="assets/img/promo-sonic-thumb.jpg" alt="Chevrolet Sonic"
@@ -149,7 +67,6 @@
             <p>Seguro total gratis por 1 año · Desde USD 26.990</p>
             <span class="pill">Vigente</span>
           </div>
-          <div class="edit-ic">✏️</div>
         </div>
 
         <div class="promo-item on-white">
@@ -161,19 +78,6 @@
             <p>Entrega USD 7.610 + 72 cuotas desde $7.990/mes</p>
             <span class="pill">Vigente</span>
           </div>
-          <div class="edit-ic">✏️</div>
-        </div>
-
-        <div class="new-alert-form on-green-form">
-          <div class="form-row two">
-            <input placeholder="Marca (ej: Chevrolet)">
-            <input placeholder="Modelo (ej: Sonic)">
-          </div>
-          <div class="form-row"><input placeholder="Breve descripción de la promo"></div>
-          <div class="form-row">
-            <label class="upload-btn">📷 Subir imagen de la promo<input type="file" accept="image/*"></label>
-          </div>
-          <button class="save-alert-btn on-green-btn" type="button">Publicar promoción</button>
         </div>
       </div>
     </div>
@@ -256,5 +160,6 @@
 </div>
 
 <script src="assets/js/hub.js"></script>
+<script src="assets/js/contenidos.js"></script>
 </body>
 </html>
