@@ -11,47 +11,15 @@
    ========================================================= */
 
 const DIAS_VIGENCIA_DEFECTO = 7;
-const CLAVE_SESION = 'cxhub-admin';
 
 let datosCR = null;        // último set de datos recibido
-let claveAdmin = '';       // vacío = modo equipo
 let filtroCR = '';         // '' = todos · tipo de cambio · 'importante'
 let textoCR = '';
 let formContenido = 'cambio';
 let editandoId = '';
 
 
-/* ========== Modo admin ========== */
-
-function tomarClaveDeURL(){
-  const params = new URLSearchParams(location.search);
-  // También acepta "?admin?=CLAVE" (error de tipeo común)
-  const enURL = params.get('admin') || params.get('admin?');
-  if (enURL){
-    try { sessionStorage.setItem(CLAVE_SESION, enURL); } catch(e){}
-    // Se saca la clave de la barra de direcciones y del historial
-    params.delete('admin');
-    params.delete('admin?');
-    const q = params.toString();
-    history.replaceState(null, '', location.pathname + (q ? '?' + q : '') + location.hash);
-    return enURL;
-  }
-  try { return sessionStorage.getItem(CLAVE_SESION) || ''; } catch(e){ return ''; }
-}
-
-function salirAdmin(){
-  try { sessionStorage.removeItem(CLAVE_SESION); } catch(e){}
-  location.reload();
-}
-
-async function llamarAdmin(action, datos){
-  const r = await fetch(HUB.api, {
-    method: 'POST',
-    headers: { 'Content-Type': 'text/plain;charset=utf-8' },   // sin preflight de CORS, igual que el Dashboard
-    body: JSON.stringify({ action: action, clave: claveAdmin, datos: datos || {} })
-  });
-  return r.json();
-}
+/* ========== Modo admin (tomarClaveDeURL, llamarAdmin y salirAdmin están en hub.js) ========== */
 
 async function iniciarAdmin(clave){
   claveAdmin = clave;

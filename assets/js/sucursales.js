@@ -284,6 +284,7 @@ function renderSucursales(filtro){
 
       <div class="su-pie">
         ${taller}
+        <a class="su-taller si" href="internos.html?sucursal=${encodeURIComponent(s.nombre)}">📞 Ver internos de esta sucursal →</a>
         <button class="su-ficha" type="button" onclick="copiarFicha(this, ${i})">📋 Copiar ficha para WhatsApp</button>
       </div>
     </div>`;

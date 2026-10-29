@@ -25,11 +25,7 @@ const CACHE_LOCAL = 'cxhub-contenidos';
 
 /* ========== Utilidades ========== */
 
-function escaparHTML(t){
-  return String(t == null ? '' : t)
-    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-}
+/* escaparHTML está en hub.js */
 
 /* Fecha de hoy del navegador, AAAA-MM-DD */
 function hoyLocal(){

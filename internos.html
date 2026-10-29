@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Internos — Contact Center Hub</title>
+<link rel="stylesheet" href="assets/css/sidebar.css">
+<link rel="stylesheet" href="assets/css/hub.css">
+</head>
+<body>
+<div class="app">
+
+  <div id="sidebar"></div>
+
+  <div class="main">
+
+    <div class="topbar">
+      <div class="greeting">
+        <h1>📞 Internos</h1>
+        <p>Internos, celulares y días de cada persona, por sucursal y área</p>
+      </div>
+      <a href="index.html" style="font-size:12px;color:var(--blue);font-weight:600;">← Volver al inicio</a>
+    </div>
+
+    <!-- Solo en modo admin (se activa con ?admin=CLAVE) -->
+    <div class="cr-admin-banner in-solo-admin">
+      <span>🔐 <b>Modo administrador.</b> Editá la sucursal y tocá “Guardar cambios”. Lo ve todo el equipo.</span>
+      <button type="button" onclick="salirAdmin()">Salir del modo admin</button>
+    </div>
+
+    <div id="inAviso" hidden></div>
+
+    <div class="card">
+      <div class="in-tools in-solo-equipo">
+        <input class="cr-buscar" id="inBuscar" type="search" placeholder="🔎 Buscar en todas las sucursales: nombre, área, interno..." oninput="buscarIN(this.value)">
+      </div>
+      <div class="in-chips" id="inChips"></div>
+      <div class="in-leyenda in-solo-equipo">
+        <span><i style="background:var(--green)"></i>Trabaja</span>
+        <span><i style="background:var(--blue)"></i>En Car One</span>
+        <span><i style="background:#fff;box-shadow:0 0 0 2px var(--navy)"></i>Hoy</span>
+        <span>🟢 celular para dar al cliente · 🟡 solo uso interno · 🔴 no derivar</span>
+      </div>
+      <div id="inLista"><div class="in-vacio">Cargando…</div></div>
+    </div>
+
+    <div data-hub-footer></div>
+
+  </div>
+</div>
+
+<script src="assets/js/hub.js"></script>
+<script src="assets/js/internos.js"></script>
+</body>
+</html>

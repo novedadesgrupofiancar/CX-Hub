@@ -12,11 +12,11 @@
 
 const HUB = {
 
-  version: '1.8.1',
+  version: '1.9.0',
   actualizado: '29/10/2026',
 
   /* Backend del Hub (Google Apps Script "CX-Hub Backend" en la cuenta de novedades).
-     Lo usan Escalamientos (reclamos) y Cambios recientes / Importante hoy.
+     Lo usan Escalamientos (reclamos), Cambios recientes / Importante hoy e Internos.
      Si algún día se publica otra implementación, se cambia solo acá. */
   api: 'https://script.google.com/macros/s/AKfycbwptnYqzGl6w0cBJY1Ocaj01A3bLxBFGsruGiU_jmU-wjTki6hghpPcMXutRtZ15Ip7/exec',
 
@@ -40,6 +40,7 @@ const HUB = {
     { icon: '🗄️',  label: 'CRM y Tipificaciones', href: null },
     { icon: '⚠️',  label: 'Escalamientos',       href: 'escalamientos.html' },
     { icon: '📍',  label: 'Sucursales',          href: 'sucursales.html' },
+    { icon: '📞',  label: 'Internos',            href: 'internos.html' },
     { icon: '🔁',  label: 'Cambios recientes',   href: 'cambios-recientes.html' }
   ],
 
@@ -137,6 +138,49 @@ function renderHerramientasHome() {
       : `<span class="btn-open" style="opacity:.45">Sin link</span>`;
     return `<div class="tool-item"><div class="tool-left"><span class="ic" style="background:${h.color || 'var(--blue)'}">${h.icon}</span>${h.label}</div>${abrir}</div>`;
   }).join('');
+}
+
+/* ---- Texto seguro para meter dentro del HTML ---- */
+function escaparHTML(t){
+  return String(t == null ? '' : t)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+/* ---- Modo admin (Cambios recientes, Internos) ----
+   Se entra con pagina.html?admin=CLAVE (la misma del Dashboard).
+   La clave se valida en el servidor; acá solo se guarda mientras
+   la pestaña está abierta y se saca de la barra de direcciones. */
+const CLAVE_SESION = 'cxhub-admin';
+let claveAdmin = '';       // vacío = modo equipo
+
+function tomarClaveDeURL(){
+  const params = new URLSearchParams(location.search);
+  // También acepta "?admin?=CLAVE" (error de tipeo común)
+  const enURL = params.get('admin') || params.get('admin?');
+  if (enURL){
+    try { sessionStorage.setItem(CLAVE_SESION, enURL); } catch(e){}
+    params.delete('admin');
+    params.delete('admin?');
+    const q = params.toString();
+    history.replaceState(null, '', location.pathname + (q ? '?' + q : '') + location.hash);
+    return enURL;
+  }
+  try { return sessionStorage.getItem(CLAVE_SESION) || ''; } catch(e){ return ''; }
+}
+
+function salirAdmin(){
+  try { sessionStorage.removeItem(CLAVE_SESION); } catch(e){}
+  location.reload();
+}
+
+async function llamarAdmin(action, datos){
+  const r = await fetch(HUB.api, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },   // sin preflight de CORS, igual que el Dashboard
+    body: JSON.stringify({ action: action, clave: claveAdmin, datos: datos || {} })
+  });
+  return r.json();
 }
 
 /* ---- Ícono de la pestaña del navegador ----
