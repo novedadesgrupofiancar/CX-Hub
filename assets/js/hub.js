@@ -12,7 +12,7 @@
 
 const HUB = {
 
-  version: '1.8.0',
+  version: '1.8.1',
   actualizado: '29/10/2026',
 
   /* Backend del Hub (Google Apps Script "CX-Hub Backend" en la cuenta de novedades).

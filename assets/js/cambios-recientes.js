@@ -25,11 +25,13 @@ let editandoId = '';
 
 function tomarClaveDeURL(){
   const params = new URLSearchParams(location.search);
-  const enURL = params.get('admin');
+  // También acepta "?admin?=CLAVE" (error de tipeo común)
+  const enURL = params.get('admin') || params.get('admin?');
   if (enURL){
     try { sessionStorage.setItem(CLAVE_SESION, enURL); } catch(e){}
     // Se saca la clave de la barra de direcciones y del historial
     params.delete('admin');
+    params.delete('admin?');
     const q = params.toString();
     history.replaceState(null, '', location.pathname + (q ? '?' + q : '') + location.hash);
     return enURL;
