@@ -91,7 +91,10 @@ function renderHomeImportante(datos){
   const cont = document.getElementById('homeImportante');
   if (!cont) return;
   if (!datos){ cont.innerHTML = '<div class="cr-home-vacio">No se pudo cargar. Probá recargar la página.</div>'; return; }
-  const lista = ordenarImportantes(datos.importantes.filter(esVigente)).slice(0, HOME_MAX_IMPORTANTE);
+  const vigentes = datos.importantes.filter(esVigente);
+  const campana = document.getElementById('homeCampana');
+  if (campana){ campana.textContent = vigentes.length; campana.hidden = !vigentes.length; }
+  const lista = ordenarImportantes(vigentes).slice(0, HOME_MAX_IMPORTANTE);
   if (!lista.length){ cont.innerHTML = '<div class="cr-home-vacio">Sin avisos importantes para hoy.</div>'; return; }
   cont.innerHTML = lista.map(o => {
     const p = PRIORIDAD[o.prioridad] || PRIORIDAD.Baja;

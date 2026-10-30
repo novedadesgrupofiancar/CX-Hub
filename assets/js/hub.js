@@ -12,8 +12,13 @@
 
 const HUB = {
 
-  version: '1.9.1',
-  actualizado: '29/10/2026',
+  version: '1.9.2',
+  actualizado: '30/10/2026',
+
+  /* Saludo de la home. Cambia solo según la hora: "¡Buen día, equipo!",
+     "¡Buenas tardes, equipo!", "¡Buenas noches, equipo!".
+     Para otra palabra, cambiá 'equipo' (ej: 'team'). */
+  saludo: 'equipo',
 
   /* Backend del Hub (Google Apps Script "CX-Hub Backend" en la cuenta de novedades).
      Lo usan Escalamientos (reclamos), Cambios recientes / Importante hoy e Internos.
@@ -140,6 +145,20 @@ function renderHerramientasHome() {
   }).join('');
 }
 
+/* ---- Saludo y fecha de la home (con el reloj de cada PC) ---- */
+function renderSaludo() {
+  const h1 = document.getElementById('homeSaludo');
+  if (!h1) return;
+  const ahora = new Date();
+  const hora = ahora.getHours();
+  const saludo = hora < 12 ? '¡Buen día' : hora < 19 ? '¡Buenas tardes' : '¡Buenas noches';
+  const icono  = hora < 12 ? '☀️' : hora < 19 ? '👋' : '🌙';
+  h1.textContent = `${saludo}, ${HUB.saludo}! ${icono}`;
+  const fecha = ahora.toLocaleDateString('es-UY', { weekday: 'long', day: 'numeric', month: 'long' });
+  const p = document.getElementById('homeFecha');
+  if (p) p.textContent = fecha.charAt(0).toUpperCase() + fecha.slice(1) + ' · ¿Qué necesitás encontrar hoy?';
+}
+
 /* ---- Texto seguro para meter dentro del HTML ---- */
 function escaparHTML(t){
   return String(t == null ? '' : t)
@@ -201,4 +220,5 @@ document.addEventListener('DOMContentLoaded', () => {
   renderSidebar();
   renderFooter();
   renderHerramientasHome();
+  renderSaludo();
 });

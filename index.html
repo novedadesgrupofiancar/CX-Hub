@@ -17,14 +17,16 @@
 
     <div class="topbar">
       <div class="greeting">
-        <h1>¡Bienvenida, María!</h1>
-        <p>¿Qué necesitás encontrar hoy?</p>
+        <!-- El saludo y la fecha se arman solos (hub.js, "saludo") -->
+        <h1 id="homeSaludo">¡Hola, equipo! 👋</h1>
+        <p id="homeFecha">¿Qué necesitás encontrar hoy?</p>
       </div>
       <div class="search">🔎 Buscar modelo, promoción, taller, financiación, procedimiento...</div>
       <div class="topright">
-        <div class="bell">🔔<span class="badge">3</span></div>
-        <div class="avatar">MC</div>
-        <div class="userinfo"><b>María Córdoba</b><span>Operador ⌄</span></div>
+        <!-- Campanita: cantidad de avisos "Importante hoy" vigentes (contenidos.js) -->
+        <a class="bell" href="cambios-recientes.html" title="Importante hoy">🔔<span class="badge" id="homeCampana" hidden></span></a>
+        <div class="avatar" style="background:var(--navy);font-size:17px;">🎧</div>
+        <div class="userinfo"><b>Contact Center</b><span>Grupo Fiancar</span></div>
       </div>
     </div>
 
