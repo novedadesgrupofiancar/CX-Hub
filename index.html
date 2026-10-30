@@ -21,7 +21,12 @@
         <h1 id="homeSaludo">¡Hola, equipo! 👋</h1>
         <p id="homeFecha">¿Qué necesitás encontrar hoy?</p>
       </div>
-      <div class="search">🔎 Buscar modelo, promoción, taller, financiación, procedimiento...</div>
+      <!-- Buscador: assets/js/buscar.js -->
+      <div class="search bu-wrap">
+        <span>🔎</span>
+        <input id="hubBuscar" type="search" autocomplete="off" placeholder="Buscar persona, interno, sucursal, modelo, guion...">
+        <div class="bu-res" id="buResultados" hidden></div>
+      </div>
       <div class="topright">
         <!-- Campanita: cantidad de avisos "Importante hoy" vigentes (contenidos.js) -->
         <a class="bell" href="cambios-recientes.html" title="Importante hoy">🔔<span class="badge" id="homeCampana" hidden></span></a>
@@ -163,5 +168,6 @@
 
 <script src="assets/js/hub.js"></script>
 <script src="assets/js/contenidos.js"></script>
+<script src="assets/js/buscar.js"></script>
 </body>
 </html>

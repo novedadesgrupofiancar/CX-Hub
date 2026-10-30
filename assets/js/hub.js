@@ -12,7 +12,7 @@
 
 const HUB = {
 
-  version: '1.9.2',
+  version: '1.10.0',
   actualizado: '30/10/2026',
 
   /* Saludo de la home. Cambia solo según la hora: "¡Buen día, equipo!",
@@ -33,7 +33,7 @@ const HUB = {
   nav: [
     { icon: '🏠',  label: 'Inicio',              href: 'index.html' },
     { icon: '📊',  label: 'Dashboard',           href: 'dashboard.html' },
-    { icon: '🔎',  label: 'Buscar',              href: null },
+    { icon: '🔎',  label: 'Buscar',              href: 'index.html#buscar' },
     { icon: '🚗',  label: 'Productos y Modelos', href: 'productos-modelos.html' },
     { icon: '🏷️',  label: 'Promociones',         href: null },
     { icon: '🔧',  label: 'Taller y Postventa',  href: 'taller-postventa.html' },
@@ -221,4 +221,16 @@ document.addEventListener('DOMContentLoaded', () => {
   renderFooter();
   renderHerramientasHome();
   renderSaludo();
+  setTimeout(aplicarBusquedaURL, 0);   // después de que la página dibuje lo suyo
 });
+
+/* ---- Llegar desde el buscador de la home ----
+   pagina.html?q=texto escribe "texto" en el buscador de esa sección
+   (el input marcado con data-hub-buscar). */
+function aplicarBusquedaURL() {
+  const q = new URLSearchParams(location.search).get('q');
+  const input = document.querySelector('[data-hub-buscar]');
+  if (!q || !input) return;
+  input.value = q;
+  input.dispatchEvent(new Event('input', { bubbles: true }));
+}
