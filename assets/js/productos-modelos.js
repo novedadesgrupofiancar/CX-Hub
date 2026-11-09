@@ -31,6 +31,20 @@ const PRECIOS = [
   { nombre: 'JAC Camiones',      web: 'jac.com.uy',                 url: 'https://jac.com.uy/' }
 ];
 
+/* Listas de precios: carpetas del Drive "Listas de precios", una por marca.
+   Los archivos se actualizan en el Drive: acá NO hay que tocar nada cuando
+   cambia una lista. Solo si se crea una carpeta nueva, se agrega su link. */
+const LISTAS_PRECIOS_CARPETA = 'https://drive.google.com/drive/folders/1Wf9eDdxtOam4vkBrZZNctFux5e89z0Py';
+const LISTAS_PRECIOS = [
+  { nombre: 'Chevrolet',          url: 'https://drive.google.com/drive/folders/1QE5v2rCF1NLRIqE-ufsy3EbROEL3HsDd' },
+  { nombre: 'Fiat',               url: 'https://drive.google.com/drive/folders/1uxw1KsqI26NiP31CuJ9ze_8QmWu9tNs3' },
+  { nombre: 'Geely',              url: 'https://drive.google.com/drive/folders/1HnBBwvK1AGYwb9FUffGK9F37121TYuGW' },
+  { nombre: 'Lynk & Co',          url: 'https://drive.google.com/drive/folders/1rxavAmiuHhrS4-_iQYgZGfR2M3jt8paz' },
+  { nombre: 'JAC Auto',           url: 'https://drive.google.com/drive/folders/1IxBuJ8-o59zp7vmZ6a7xjXFr9liKfkjL' },
+  { nombre: 'JAC Camiones',       url: 'https://drive.google.com/drive/folders/1MdJnxq-jhJRStAVTMStJlSUaDZVr--1q' },
+  { nombre: 'Para copiar y pegar', url: 'https://docs.google.com/document/d/1CbHXy6PplEkewZ8fjRPow-KwaykEJHov94xHdbO9Hv8/edit', doc: true }
+];
+
 /* Texto que se repite en Geely y Lynk & Co */
 const NOTA_ACTUALIZACION = '💻 <b>Actualización de software (Geely EX2, EX5 y Lynk &amp; Co):</b> se hace en el primer service. Si el cliente la hace aparte, tiene costo: <b>$U 2.850 + IVA</b>.';
 
@@ -159,6 +173,13 @@ function renderPrecios(){
   cont.innerHTML = PRECIOS.map(p => `
     <a class="ts-tarifa" target="_blank" rel="noopener" href="${p.url}">
       <b>${p.nombre}</b><span>${p.web} →</span></a>`).join('');
+
+  const listas = document.getElementById('pmListas');
+  if (listas) listas.innerHTML = LISTAS_PRECIOS.map(p => `
+    <a class="ts-tarifa pm-lista" target="_blank" rel="noopener" href="${p.url}">
+      <b>${p.doc ? '📝' : '📂'} ${escaparHTML(p.nombre)}</b><span>${p.doc ? 'Texto listo →' : 'Ver lista →'}</span></a>`).join('');
+  const todas = document.getElementById('pmListasTodas');
+  if (todas) todas.href = LISTAS_PRECIOS_CARPETA;
 }
 
 

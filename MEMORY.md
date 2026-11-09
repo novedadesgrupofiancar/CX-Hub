@@ -8,7 +8,7 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 
 ## Estado actual
 
-- **Versión publicada:** 1.10.0 (2026-10-30)
+- **Versión publicada:** 1.11.0 (2026-11-09)
 - **Secciones activas:** Inicio, Dashboard, Productos y Modelos, Taller y Postventa, Recalls activos, Guiones,
   Escalamientos, Sucursales, Internos, Cambios recientes, Buscar (buscador de la home).
 - **Secciones sin construir (gris en el menú):** Promociones, Agendamientos, FAQ, Procedimientos, CRM y Tipificaciones.
@@ -18,6 +18,9 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 
 ## Decisiones (y por qué)
 
+- **2026-11-09 — Listas de precios = links a las carpetas del Drive** (una por marca, dentro de "Precios y catálogo").
+  Las listas se actualizan en el Drive sin tocar el Hub; solo se edita `LISTAS_PRECIOS` si se crea una carpeta nueva.
+  También aparecen en el buscador de la home ("precios", "lista chevrolet").
 - **2026-10-30 — Buscador sin índice propio.** Lee los mismos archivos de datos de cada sección para que no haya
   nada aparte que mantener. Cada resultado abre la sección filtrada con `?q=`.
 - **2026-10-30 — Home sin usuario de maqueta.** Saludo según la hora ("¡Buen día/Buenas tardes/Buenas noches, equipo!")
@@ -44,6 +47,8 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 
 ## Pendientes
 
+- Listas de precios: confirmar que todo el equipo tiene acceso a las carpetas del Drive (son de la cuenta callcenter).
+  El doc "Precios para copiar y pegar" no se actualiza desde 2025-04.
 - Internos: falta el nombre de la recepcionista de Carrasco (figura "Pendiente") y el cargo de Ramiro Orte.
 - Internos: confirmar si Monica Rodriguez es gerente o vendedora de Lynk & Co (Sucursales dice gerente).
 - Car One no está en Sucursales y no tiene teléfono central.
@@ -59,6 +64,7 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 
 ## Historial de versiones
 
+- **1.11.0 (2026-11-09)** — Listas de precios por marca (Drive) en Productos y Modelos y en el buscador.
 - **1.10.0 (2026-10-30)** — Buscador de la home; "Buscar" del menú activo.
 - **1.9.2 (2026-10-30)** — Saludo según la hora, sin usuario de maqueta, campanita con Importante hoy.
 - **1.9.1 (2026-10-29)** — El modo admin de una sección no se pasa a las demás.

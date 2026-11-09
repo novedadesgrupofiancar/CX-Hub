@@ -17,7 +17,7 @@ const BU_MAX_POR_GRUPO = 5;
 const BU_ARCHIVOS = [
   { archivo: 'assets/js/sucursales.js',        listas: ['SUCURSALES'] },
   { archivo: 'assets/js/taller.js',            listas: ['TALLERES'] },
-  { archivo: 'assets/js/productos-modelos.js', listas: ['MARCAS_PM'] },
+  { archivo: 'assets/js/productos-modelos.js', listas: ['MARCAS_PM', 'LISTAS_PRECIOS'] },
   { archivo: 'assets/js/guiones-datos.js',     listas: ['SPEECHES_WPP'] }
 ];
 
@@ -86,6 +86,10 @@ function armarIndiceBU(d){
       });
     });
   });
+
+  (d.LISTAS_PRECIOS || []).forEach(l =>
+    lista.push(item('Modelos', '📄', 'Lista de precios ' + l.nombre, 'Drive · se abre en otra pestaña',
+      l.url, '', 'precio precios lista valor costo')));
 
   (d.SPEECHES_WPP || []).forEach(g =>
     lista.push(item('Guiones', '💬', g.titulo, 'Speech de WhatsApp · ' + (g.tab || ''),
@@ -172,7 +176,7 @@ async function alEscribirBU(texto){
   caja.innerHTML = grupos.map(g => `
     <div class="bu-grupo">${g.grupo}</div>
     ${g.items.map(x => `
-      <a class="bu-item ${n === 0 ? 'on' : ''}" data-n="${n++}" href="${escaparHTML(x.href)}">
+      <a class="bu-item ${n === 0 ? 'on' : ''}" data-n="${n++}" href="${escaparHTML(x.href)}"${/^https?:/.test(x.href) ? ' target="_blank" rel="noopener"' : ''}>
         <span class="bu-ic">${x.icono}</span>
         <span class="bu-txt"><b>${escaparHTML(x.titulo)}</b><span>${escaparHTML(x.sub)}</span></span>
         ${x.extra ? `<span class="bu-extra">${escaparHTML(x.extra)}</span>` : ''}
@@ -198,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
   input.addEventListener('keydown', e => {
     if (e.key === 'ArrowDown'){ e.preventDefault(); moverBU(1); }
     else if (e.key === 'ArrowUp'){ e.preventDefault(); moverBU(-1); }
-    else if (e.key === 'Enter' && resultadosBU[activoBU]){ location.href = resultadosBU[activoBU].href; }
+    else if (e.key === 'Enter' && resultadosBU[activoBU]){ const h = resultadosBU[activoBU].href; if (/^https?:/.test(h)) window.open(h, '_blank', 'noopener'); else location.href = h; }
     else if (e.key === 'Escape'){ caja.hidden = true; input.blur(); }
   });
   document.addEventListener('click', e => { if (!e.target.closest('.bu-wrap')) caja.hidden = true; });
