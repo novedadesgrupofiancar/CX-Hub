@@ -12,7 +12,7 @@
 
 const HUB = {
 
-  version: '1.12.0',
+  version: '1.13.0',
   actualizado: '09/11/2026',
 
   /* Saludo de la home. Cambia solo según la hora: "¡Buen día, equipo!",
@@ -41,7 +41,7 @@ const HUB = {
     { icon: '📅',  label: 'Agendamientos',       href: null },
     { icon: '💬',  label: 'Guiones',             href: 'guiones.html' },
     { icon: '❓',  label: 'FAQ',                 href: null },
-    { icon: '📄',  label: 'Procedimientos',      href: null },
+    { icon: '📄',  label: 'Procedimientos',      href: 'procedimientos.html' },
     { icon: '🗄️',  label: 'CRM y Tipificaciones', href: null },
     { icon: '⚠️',  label: 'Escalamientos',       href: 'escalamientos.html' },
     { icon: '📍',  label: 'Sucursales',          href: 'sucursales.html' },

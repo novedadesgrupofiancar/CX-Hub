@@ -86,13 +86,19 @@ function renderMapa(){
   if (!cont) return;
   const grupos = [...new Set(AREAS.map(a => a.grupo))];
   cont.innerHTML = grupos.map(g => `
-    <div class="es-mapa-grupo">
+    <div class="es-mapa-grupo" data-grupo="${escaparHTML(g)}">
       <div class="es-mapa-tit">${ICONOS_GRUPO[g] || '•'} ${escaparHTML(g)}</div>
       ${AREAS.filter(a => a.grupo === g).map(a => `
         <button type="button" class="es-mapa-item" data-area="${a.id}">
           <b>${escaparHTML(a.nombre)}</b><span>${escaparHTML(a.responsable)}</span>
         </button>`).join('')}
     </div>`).join('');
+  // Desde Procedimientos: escalamientos.html?grupo=Taller resalta ese grupo
+  const pedido = new URLSearchParams(location.search).get('grupo');
+  if (pedido){
+    const g = [...cont.querySelectorAll('.es-mapa-grupo')].find(x => x.dataset.grupo === pedido);
+    if (g){ g.classList.add('on'); setTimeout(() => g.scrollIntoView({ behavior: 'smooth', block: 'center' }), 50); }
+  }
   cont.addEventListener('click', e => {
     const b = e.target.closest('.es-mapa-item');
     if (!b) return;

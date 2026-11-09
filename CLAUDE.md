@@ -18,7 +18,7 @@ Estado, decisiones y pendientes del proyecto: **`MEMORY.md`** (ver la sección "
 - `sidebar.css` lo cargan todas las páginas (aislado bajo `#sidebar`). `hub.css` y `dashboard.css`
   **nunca juntos**: comparten nombres de clase (`.card`, `.topbar`, `.search`, `.badge`...) con estilos distintos.
 - CSS nuevo va **al final de `hub.css`**, en un bloque con encabezado y clases con prefijo de 2–3 letras
-  propio de la sección (`su-` sucursales, `es-` escalamientos, `pm-` productos, `cr-` cambios, `in-` internos, `bu-` buscador).
+  propio de la sección (`su-` sucursales, `es-` escalamientos, `pm-` productos, `cr-` cambios, `in-` internos, `bu-` buscador, `pr-` procedimientos).
 - Datos separados del render: cada sección tiene arriba su lista comentada (`SUCURSALES`, `TALLERES`,
   `MARCAS_PM`, `SPEECHES_WPP`...) con un aviso "de acá para abajo no hace falta tocar nada".
 - Sin imágenes en base64 (van en `assets/img/`).
@@ -38,15 +38,17 @@ Estado, decisiones y pendientes del proyecto: **`MEMORY.md`** (ver la sección "
 **Modo admin**: se entra con `pagina.html?admin=CLAVE` (la misma clave del Dashboard). La clave se valida
 en el servidor, se saca de la URL y se guarda en `sessionStorage` **por página** (`cxhub-admin:<archivo>`):
 entrar como admin en una sección no deja admin a las demás. Sin clave todo es solo lectura.
-El body recibe una clase (`cr-modo-admin`, `in-modo-admin`) que muestra/oculta `.xx-solo-admin` / `.xx-solo-equipo`.
+El body recibe una clase (`cr-modo-admin`, `in-modo-admin`, `pr-modo-admin`) que muestra/oculta `.xx-solo-admin` / `.xx-solo-equipo`.
 
 **Backend (Google Apps Script "CX-Hub Backend", cuenta novedades)** — una sola URL en `HUB.api`:
 - `GET ?action=contenidos` → Cambios recientes / Importante hoy (público, cacheado 5 min).
 - `GET ?action=internos` → Internos (público, cacheado 5 min).
+- `GET ?action=procedimientos` → fichas de Procedimientos (público, cacheado 5 min).
 - `POST` sin `action` → formulario de reclamos de Escalamientos (manda mails).
-- `POST` con `action` + `clave` → escritura admin (`verificarClave`, `listarAdmin`, `guardar`, `borrar`, `guardarInternos`).
+- `POST` con `action` + `clave` → escritura admin (`verificarClave`, `listarAdmin`, `guardar`, `borrar`, `guardarInternos`,
+  `guardarProcedimiento`, `borrarProcedimiento`).
 - Datos en la planilla "Reclamos CX-Hub": hojas `Reclamos`, `Cambios recientes`, `Importante hoy`, `Internos`,
-  `Internos - sucursales`, `Internos (historial)`. Borrado lógico en contenidos; en internos, cada guardado copia
+  `Internos - sucursales`, `Internos (historial)`, `Procedimientos`. Borrado lógico en contenidos y procedimientos; en internos, cada guardado copia
   la versión anterior al historial. La clave está en Propiedades del script (`CLAVE_ADMIN`), nunca en el código.
 - El código **no está en este repo**. Se trabaja con clasp (logueado en la cuenta novedades):
   `clasp clone 1dI7vdEhAbfcSWkDA86nUMCGpgrvh1K1Ju4R955FLKWEYxyGJBs0zNsHj` en una carpeta temporal,
@@ -54,12 +56,12 @@ El body recibe una clase (`cr-modo-admin`, `in-modo-admin`) que muestra/oculta `
   (mantiene la misma URL). Probar con `curl -sL "<HUB.api>?action=internos"`.
 - El Dashboard usa **otro** Apps Script propio (`API_URL` en `dashboard.js`).
 
-**Cache en el navegador**: `contenidos.js` e `internos.js` pintan primero la copia de `localStorage`
-(`cxhub-contenidos`, `cxhub-internos`) y después la reemplazan con la del servidor.
+**Cache en el navegador**: `contenidos.js`, `internos.js` y `procedimientos.js` pintan primero la copia de `localStorage`
+(`cxhub-contenidos`, `cxhub-internos`, `cxhub-procedimientos`) y después la reemplazan con la del servidor.
 
 **Buscador de la home (`buscar.js`)**: no tiene índice propio. Lee como texto los archivos de datos de cada
-sección (`BU_ARCHIVOS`) y los ejecuta con un `document` falso para sacar sus listas; suma internos y cambios
-desde el cache/servidor. Si un archivo de datos agrega código que toque el DOM al cargarse (fuera de
+sección (`BU_ARCHIVOS`) y los ejecuta con un `document` falso para sacar sus listas; suma internos, cambios
+y procedimientos desde el cache/servidor. Si un archivo de datos agrega código que toque el DOM al cargarse (fuera de
 `DOMContentLoaded`), ese origen deja de aparecer en la búsqueda. `sucursales.js` y `taller.js` declaran
 ambos `const MARCAS`: no se pueden cargar en la misma página con `<script>`.
 

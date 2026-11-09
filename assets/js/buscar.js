@@ -4,7 +4,7 @@
    Busca en lo que ya está cargado en el Hub, leyendo los mismos
    archivos de datos que usa cada sección:
      personas (Internos), sucursales, talleres, modelos, guiones,
-     cambios recientes / importante hoy y las secciones del menú.
+     cambios recientes / importante hoy, procedimientos y las secciones del menú.
 
    No hay una lista aparte para mantener: si se agrega algo en una
    sección, el buscador ya lo encuentra.
@@ -48,7 +48,7 @@ function cargarIndiceBU(){
     await Promise.all(BU_ARCHIVOS.map(a => leerArchivoBU(a).then(d => Object.assign(datos, d)).catch(() => {})));
     indiceBU = armarIndiceBU(datos);
     // Internos y cambios llegan del servidor: se suman cuando están
-    await Promise.all([sumarInternosBU(), sumarCambiosBU()]);
+    await Promise.all([sumarInternosBU(), sumarCambiosBU(), sumarProcedimientosBU()]);
     return indiceBU;
   })();
   return cargandoBU;
@@ -123,6 +123,20 @@ async function sumarCambiosBU(){
     indiceBU.push(item('Cambios', '🔁', o.titulo, (o.tipo || 'Cambio') + ' · ' + o.texto, 'cambios-recientes.html?q=' + encodeURIComponent(o.titulo))));
 }
 
+async function sumarProcedimientosBU(){
+  let fichas = null;
+  try { fichas = JSON.parse(localStorage.getItem('cxhub-procedimientos') || 'null'); } catch(e){}
+  if (!fichas){
+    try {
+      const res = await (await fetch(HUB.api + '?action=procedimientos&t=' + Date.now())).json();
+      if (res.ok){ fichas = res.datos.fichas; try { localStorage.setItem('cxhub-procedimientos', JSON.stringify(fichas)); } catch(e){} }
+    } catch(e){}
+  }
+  (fichas || []).forEach(f =>
+    indiceBU.push(item('Procedimientos', f.icono || '📄', f.titulo, f.resumen || 'Procedimiento',
+      'procedimientos.html?id=' + encodeURIComponent(f.id), '', [f.cuando, f.sistema, f.tipificacion].join(' '))));
+}
+
 function hoyBU(){
   const d = new Date();
   return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
@@ -131,7 +145,7 @@ function hoyBU(){
 
 /* ========== Búsqueda ========== */
 
-const BU_ORDEN = ['Personas', 'Sucursales', 'Talleres', 'Modelos', 'Guiones', 'Cambios', 'Secciones'];
+const BU_ORDEN = ['Procedimientos', 'Personas', 'Sucursales', 'Talleres', 'Modelos', 'Guiones', 'Cambios', 'Secciones'];
 
 function buscarBU(texto){
   const palabras = normalBU(texto).split(/\s+/).filter(Boolean);

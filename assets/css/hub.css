@@ -1039,3 +1039,65 @@ body.in-modo-admin .in-solo-equipo{display:none !important;}
 .es-mapa-item span{font-size:11.5px;color:var(--sub);}
 @media (max-width:1100px){ .es-mapa{grid-template-columns:repeat(3,1fr);} }
 @media (max-width:640px){ .es-mapa{grid-template-columns:1fr;} }
+
+/* =========================================================
+   PROCEDIMIENTOS (v1.13)
+   ========================================================= */
+.pr-solo-admin{display:none !important;}
+body.pr-modo-admin .pr-solo-admin{display:inline-flex !important;}
+body.pr-modo-admin .cr-admin-banner.pr-solo-admin{display:flex !important;}
+
+.pr-bloque{margin:18px 0 8px;font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--sub);display:flex;align-items:center;gap:8px;}
+.pr-bloque span{background:var(--line);border-radius:20px;padding:1px 8px;font-size:10px;color:var(--ink);}
+.pr-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;grid-auto-flow:row dense;}
+.pr-card{
+  background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 13px;
+  display:flex;gap:10px;align-items:flex-start;cursor:pointer;text-align:left;font-family:inherit;color:inherit;
+}
+.pr-card:hover{border-color:var(--blue);}
+.pr-card.on{border-color:var(--blue);box-shadow:0 0 0 2px var(--blue-light);}
+.pr-card .ic{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex:none;color:#fff;font-size:15px;}
+.pr-card b{display:block;font-size:13px;color:var(--ink);}
+.pr-card b + span{display:block;margin-top:2px;font-size:11.5px;color:var(--sub);line-height:1.35;}
+
+.pr-ficha{grid-column:1 / -1;border:2px solid var(--blue);margin:2px 0 6px;}
+.pr-ficha.pr-editando{border-color:var(--navy);}
+.pr-ficha-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;}
+.pr-ficha-head h2{margin:0;font-size:18px;}
+.pr-ficha-acc{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.pr-rev{font-size:11px;color:var(--sub);}
+.pr-cerrar{background:none;border:none;font-size:16px;color:var(--sub);cursor:pointer;padding:2px 6px;}
+.pr-btn{background:var(--blue-light);color:var(--blue);border:none;border-radius:8px;padding:6px 12px;font-size:12px;font-weight:700;font-family:inherit;cursor:pointer;}
+.pr-btn.guardar{background:var(--navy);color:#fff;}
+.pr-btn.borrar{background:var(--red-light);color:var(--red);}
+.pr-btn.borrar.seguro{background:var(--red);color:#fff;}
+.pr-btn:disabled{opacity:.6;cursor:wait;}
+
+.pr-filas{display:grid;grid-template-columns:150px minmax(0,1fr);margin-top:10px;}
+.pr-filas > div{padding:10px 0;border-top:1px solid var(--line);font-size:13px;line-height:1.55;}
+.pr-filas .k{font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--sub);padding-top:12px;}
+.pr-filas ol{margin:0;padding-left:18px;}
+.pr-filas li{margin-bottom:3px;}
+.pr-link{display:inline-block;background:var(--blue-light);color:var(--blue);font-weight:700;font-size:12px;border-radius:7px;padding:4px 10px;margin:0 6px 4px 0;text-decoration:none;}
+.pr-link:hover{background:var(--blue);color:#fff;}
+.pr-err{background:var(--red-light);border-radius:8px;padding:8px 10px;display:flex;flex-direction:column;gap:3px;}
+.pr-tag{display:inline-block;background:#eef0f6;border-radius:6px;padding:2px 8px;font-size:12px;margin:0 4px 4px 0;}
+
+.pr-form{margin-top:12px;}
+.pr-form-fila{display:flex;gap:10px;flex-wrap:wrap;}
+.pr-form-fila label{min-width:120px;}
+.pr-form textarea{resize:vertical;line-height:1.5;}
+.pr-form-acc{display:flex;gap:8px;margin-top:6px;}
+
+.pr-docs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-bottom:16px;}
+
+@media (max-width:1100px){ .pr-grid{grid-template-columns:repeat(3,minmax(0,1fr));} .pr-docs{grid-template-columns:repeat(3,minmax(0,1fr));} }
+@media (max-width:760px){
+  .pr-grid,.pr-docs{grid-template-columns:1fr 1fr;}
+  .pr-filas{grid-template-columns:1fr;}
+  .pr-filas .k{padding-bottom:0;}
+  .pr-filas .v{border-top:none;padding-top:4px;}
+}
+@media (max-width:480px){ .pr-grid,.pr-docs{grid-template-columns:1fr;} }
+.es-mapa-grupo.on{background:var(--blue-light);border-radius:12px;padding:8px;margin:-8px;box-shadow:0 0 0 2px var(--blue);}
+a.resolve{text-decoration:none;color:inherit;}

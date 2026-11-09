@@ -8,11 +8,11 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 
 ## Estado actual
 
-- **Versión publicada:** 1.12.0 (2026-11-09)
+- **Versión publicada:** 1.13.0 (2026-11-09)
 - **Secciones activas:** Inicio, Dashboard, Productos y Modelos, Taller y Postventa, Recalls activos, Guiones,
-  Escalamientos, Sucursales, Internos, Cambios recientes, Buscar (buscador de la home).
-- **Secciones sin construir (gris en el menú):** Promociones, Agendamientos, FAQ, Procedimientos, CRM y Tipificaciones.
-- **Backend:** Apps Script único "CX-Hub Backend" (reclamos + contenidos + internos), deployment @5.
+  Escalamientos, Sucursales, Internos, Procedimientos, Cambios recientes, Buscar (buscador de la home).
+- **Secciones sin construir (gris en el menú):** Promociones, Agendamientos, FAQ, CRM y Tipificaciones.
+- **Backend:** Apps Script único "CX-Hub Backend" (reclamos + contenidos + internos + procedimientos), deployment @8.
 
 ---
 
@@ -21,7 +21,8 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 - **2026-11-09 — Procedimientos: fichas en 4 bloques** (Atención · Según lo que pide el cliente · Tareas salientes · Equipo).
   Ficha fija: cuándo aplica, pasos, sistema, escalar a, qué decir, tipificación, errores, fecha de revisión.
   No repite contenido: linkea a Guiones (qué decir), Escalamientos (a quién) e Internos. Editable por el admin desde la página.
-  Estructura aprobada; falta el OK del boceto visual (`bocetos/procedimientos.html`, local).
+  Boceto aprobado y publicado en v1.13.0. Las fichas viven en la hoja "Procedimientos" (no en el repo).
+  Las 8 tarjetas "¿Necesitás resolver?" de la home abren su ficha (buscan por título exacto: no renombrar sin cambiar el link).
 - **2026-11-09 — Los saludos oficiales son los de Guiones** (llamada: "Grupo Fiancar, buenos días/tardes, mi nombre es…,
   ¿en qué le puedo ayudar?"; WhatsApp: "Buenos días/tardes! Mi nombre es… de Grupo Fiancar"). Trato de usted.
   Los documentos del Drive que digan otra cosa quedan desactualizados.
@@ -56,7 +57,9 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 
 ## Pendientes
 
-- Procedimientos: OK del boceto, después programar la página y redactar las fichas (las que no están escritas las redacta Claude y el usuario corrige).
+- Procedimientos: el usuario tiene que revisar el borrador de las 29 fichas. Datos "a confirmar": horario de redes, campo de baja en el CRM,
+  "RECALL" en la descripción del turno, frecuencia de NPS/reportes, speech de encuestas para notas 0–9. Tipificaciones vacías (esperan CRM y Tipificaciones).
+- Procedimientos: editar en modo admin no se probó con la clave real.
 - Rehacer los "Manuales" del Drive de Procedimientos (el usuario lo quiere ver más adelante).
 - Listas de precios: confirmar que todo el equipo tiene acceso a las carpetas del Drive (son de la cuenta callcenter).
   El doc "Precios para copiar y pegar" no se actualiza desde 2025-04.
@@ -74,6 +77,7 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 
 ## Historial de versiones
 
+- **1.13.0 (2026-11-09)** — Sección Procedimientos (29 fichas editables por el admin), tarjetas "¿Necesitás resolver?" activas, procedimientos en el buscador.
 - **1.12.0 (2026-11-09)** — Escalamientos: tabla "¿A quién se escala?" (tocar un área la carga en el formulario).
 - **1.11.0 (2026-11-09)** — Listas de precios por marca (Drive) en Productos y Modelos y en el buscador.
 - **1.10.0 (2026-10-30)** — Buscador de la home; "Buscar" del menú activo.

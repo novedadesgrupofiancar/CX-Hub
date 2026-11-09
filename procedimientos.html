@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Procedimientos — Contact Center Hub</title>
+<link rel="stylesheet" href="assets/css/sidebar.css">
+<link rel="stylesheet" href="assets/css/hub.css">
+</head>
+<body>
+<div class="app">
+
+  <div id="sidebar"></div>
+
+  <div class="main">
+
+    <div class="topbar">
+      <div class="greeting">
+        <h1>📄 Procedimientos</h1>
+        <p>Cómo se resuelve cada caso, paso a paso · qué decir está en Guiones, a quién escalar en Escalamientos</p>
+      </div>
+      <a href="index.html" style="font-size:12px;color:var(--blue);font-weight:600;">← Volver al inicio</a>
+    </div>
+
+    <!-- Solo en modo admin (se activa con ?admin=CLAVE) -->
+    <div class="cr-admin-banner pr-solo-admin">
+      <span>🔐 <b>Modo administrador.</b> Abrí una ficha y tocá “Editar”. Lo que guardes lo ve todo el equipo.</span>
+      <span style="display:flex;gap:8px;">
+        <button type="button" onclick="nuevaFichaPR()">＋ Nuevo procedimiento</button>
+        <button type="button" onclick="salirAdmin()">Salir del modo admin</button>
+      </span>
+    </div>
+
+    <div id="prAviso" hidden></div>
+
+    <!-- Filtros + buscador (los bloques se arman desde assets/js/procedimientos.js) -->
+    <div class="pm-tools">
+      <div id="prFiltros" style="display:flex;gap:8px;flex-wrap:wrap;"></div>
+      <div class="pm-buscar">
+        <span>🔎</span>
+        <input id="prBuscar" data-hub-buscar type="search" autocomplete="off"
+               placeholder="Buscar: baja, reclamo, título, agenda..." oninput="buscarPR(this.value)">
+      </div>
+    </div>
+
+    <div id="prLista"><div class="in-vacio">Cargando…</div></div>
+
+    <!-- Documentos largos que siguen en el Drive -->
+    <div class="pr-bloque">📚 Documentos de referencia (Drive)</div>
+    <div class="pr-docs" id="prDocs"></div>
+
+    <div data-hub-footer></div>
+
+  </div>
+</div>
+
+<script src="assets/js/hub.js"></script>
+<script src="assets/js/procedimientos.js"></script>
+</body>
+</html>
