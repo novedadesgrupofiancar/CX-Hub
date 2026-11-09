@@ -8,7 +8,7 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 
 ## Estado actual
 
-- **Versión publicada:** 1.11.0 (2026-11-09)
+- **Versión publicada:** 1.12.0 (2026-11-09)
 - **Secciones activas:** Inicio, Dashboard, Productos y Modelos, Taller y Postventa, Recalls activos, Guiones,
   Escalamientos, Sucursales, Internos, Cambios recientes, Buscar (buscador de la home).
 - **Secciones sin construir (gris en el menú):** Promociones, Agendamientos, FAQ, Procedimientos, CRM y Tipificaciones.
@@ -18,6 +18,15 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 
 ## Decisiones (y por qué)
 
+- **2026-11-09 — Procedimientos: fichas en 4 bloques** (Atención · Según lo que pide el cliente · Tareas salientes · Equipo).
+  Ficha fija: cuándo aplica, pasos, sistema, escalar a, qué decir, tipificación, errores, fecha de revisión.
+  No repite contenido: linkea a Guiones (qué decir), Escalamientos (a quién) e Internos. Editable por el admin desde la página.
+  Estructura aprobada; falta el OK del boceto visual (`bocetos/procedimientos.html`, local).
+- **2026-11-09 — Los saludos oficiales son los de Guiones** (llamada: "Grupo Fiancar, buenos días/tardes, mi nombre es…,
+  ¿en qué le puedo ayudar?"; WhatsApp: "Buenos días/tardes! Mi nombre es… de Grupo Fiancar"). Trato de usted.
+  Los documentos del Drive que digan otra cosa quedan desactualizados.
+- **2026-11-09 — La "Matriz de escalamiento" del Drive se descarta.** El "¿A quién se escala?" sale de la lista
+  `AREAS` de Escalamientos (la misma del formulario), así hay una sola lista que mantener.
 - **2026-11-09 — Listas de precios = links a las carpetas del Drive** (una por marca, dentro de "Precios y catálogo").
   Las listas se actualizan en el Drive sin tocar el Hub; solo se edita `LISTAS_PRECIOS` si se crea una carpeta nueva.
   También aparecen en el buscador de la home ("precios", "lista chevrolet").
@@ -47,6 +56,8 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 
 ## Pendientes
 
+- Procedimientos: OK del boceto, después programar la página y redactar las fichas (las que no están escritas las redacta Claude y el usuario corrige).
+- Rehacer los "Manuales" del Drive de Procedimientos (el usuario lo quiere ver más adelante).
 - Listas de precios: confirmar que todo el equipo tiene acceso a las carpetas del Drive (son de la cuenta callcenter).
   El doc "Precios para copiar y pegar" no se actualiza desde 2025-04.
 - Internos: falta el nombre de la recepcionista de Carrasco (figura "Pendiente") y el cargo de Ramiro Orte.
@@ -57,13 +68,13 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
   También son maqueta "Más consultado esta semana" y "¿Necesitás resolver?".
 - Taller: la regla 1 (Geely EX5/EX2 y Lynk & Co) tiene un texto contradictorio publicado.
 - Taller: separar JAC Auto y JAC Camiones en el filtro (Rondeau no atiende camiones).
-- Escalamientos: falta la tabla "qué se escala a quién" arriba del formulario.
 - README.md desactualizado (solo lista Inicio, Dashboard y Recalls).
 
 ---
 
 ## Historial de versiones
 
+- **1.12.0 (2026-11-09)** — Escalamientos: tabla "¿A quién se escala?" (tocar un área la carga en el formulario).
 - **1.11.0 (2026-11-09)** — Listas de precios por marca (Drive) en Productos y Modelos y en el buscador.
 - **1.10.0 (2026-10-30)** — Buscador de la home; "Buscar" del menú activo.
 - **1.9.2 (2026-10-30)** — Saludo según la hora, sin usuario de maqueta, campanita con Importante hoy.

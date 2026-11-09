@@ -78,6 +78,32 @@ function renderListas(){
       `</optgroup>`).join('');
 }
 
+/* Tabla "¿A quién se escala?": misma lista AREAS, agrupada */
+const ICONOS_GRUPO = { 'Ventas': '🚗', 'Taller': '🔧', 'Postventa': '🛡️', 'Gestoría': '📄', 'Otros': '🎧' };
+
+function renderMapa(){
+  const cont = document.getElementById('esMapa');
+  if (!cont) return;
+  const grupos = [...new Set(AREAS.map(a => a.grupo))];
+  cont.innerHTML = grupos.map(g => `
+    <div class="es-mapa-grupo">
+      <div class="es-mapa-tit">${ICONOS_GRUPO[g] || '•'} ${escaparHTML(g)}</div>
+      ${AREAS.filter(a => a.grupo === g).map(a => `
+        <button type="button" class="es-mapa-item" data-area="${a.id}">
+          <b>${escaparHTML(a.nombre)}</b><span>${escaparHTML(a.responsable)}</span>
+        </button>`).join('')}
+    </div>`).join('');
+  cont.addEventListener('click', e => {
+    const b = e.target.closest('.es-mapa-item');
+    if (!b) return;
+    const sel = document.getElementById('esArea');
+    sel.value = b.dataset.area;
+    mostrarDestino();
+    document.getElementById('esForm').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    sel.focus({ preventScroll: true });
+  });
+}
+
 function mostrarDestino(){
   const area = AREAS.find(a => a.id === document.getElementById('esArea').value);
   const caja = document.getElementById('esDestino');
@@ -178,6 +204,7 @@ function copiarNumero(btn, numero){
 
 document.addEventListener('DOMContentLoaded', () => {
   renderListas();
+  renderMapa();
   const form = document.getElementById('esForm');
   form.addEventListener('submit', enviarReclamo);
   document.getElementById('esArea').addEventListener('change', mostrarDestino);
