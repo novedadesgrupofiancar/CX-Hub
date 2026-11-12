@@ -12,7 +12,7 @@
 
 const HUB = {
 
-  version: '1.14.2',
+  version: '1.15.0',
   actualizado: '12/11/2026',
 
   /* Saludo de la home. Cambia solo según la hora: "¡Buen día, equipo!",
@@ -37,7 +37,7 @@ const HUB = {
     { icon: '🚗',  label: 'Productos y Modelos', href: 'productos-modelos.html' },
     { icon: '🏷️',  label: 'Promociones',         href: null },
     { icon: '🔧',  label: 'Taller y Postventa',  href: 'taller-postventa.html' },
-    { icon: '🛠️',  label: 'Recalls activos',     href: 'recalls.html', badge: '1' },
+    { icon: '🛠️',  label: 'Recalls activos',     href: 'recalls.html', badge: '2' },
     { icon: '📅',  label: 'Agendamientos',       href: null },
     { icon: '💬',  label: 'Guiones',             href: 'guiones.html' },
     { icon: '❓',  label: 'FAQ',                 href: null },
