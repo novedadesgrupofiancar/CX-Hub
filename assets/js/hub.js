@@ -12,7 +12,7 @@
 
 const HUB = {
 
-  version: '1.14.1',
+  version: '1.14.2',
   actualizado: '12/11/2026',
 
   /* Saludo de la home. Cambia solo según la hora: "¡Buen día, equipo!",
@@ -218,7 +218,8 @@ function abrirLoginAdmin(){
   m.addEventListener('keydown', e => { if (e.key === 'Escape') cerrar(); });
   m.querySelector('form').addEventListener('submit', async e => {
     e.preventDefault();
-    const clave = m.querySelector('#adminClave').value.trim();
+    // Se sacan espacios y caracteres invisibles (pasa al pegar desde un chat o un documento)
+    const clave = m.querySelector('#adminClave').value.replace(/[\s\u00A0\u200B-\u200D\u2060\uFEFF]/g, '');
     const err = m.querySelector('#adminError');
     if (!clave){ err.textContent = 'Escribí la contraseña.'; return; }
     const btn = m.querySelector('#adminEntrar');
@@ -228,7 +229,7 @@ function abrirLoginAdmin(){
     if (!res.ok){
       claveAdmin = '';
       btn.disabled = false; btn.textContent = 'Entrar';
-      err.textContent = res.codigo === 'CLAVE' ? 'Contraseña incorrecta.' : ('No se pudo verificar: ' + (res.error || 'error'));
+      err.textContent = res.codigo === 'CLAVE' ? 'Contraseña incorrecta (se leyeron ' + clave.length + ' caracteres).' : ('No se pudo verificar: ' + (res.error || 'error'));
       return;
     }
     try { sessionStorage.setItem(CLAVE_SESION, clave); } catch(e){}
