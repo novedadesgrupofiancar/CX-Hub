@@ -8,7 +8,7 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 
 ## Estado actual
 
-- **Versión publicada:** 1.14.0 (2026-11-12)
+- **Versión publicada:** 1.14.1 (2026-11-12)
 - **Secciones activas:** Inicio, Dashboard, Productos y Modelos, Taller y Postventa, Recalls activos, Guiones,
   Escalamientos, Sucursales, Internos, Procedimientos, Cambios recientes, Buscar (buscador de la home).
 - **Secciones sin construir (gris en el menú):** Promociones, Agendamientos, FAQ, CRM y Tipificaciones.
@@ -87,6 +87,7 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 
 ## Historial de versiones
 
+- **1.14.1 (2026-11-12)** — Ingresar como admin: botón para ver la clave y sin autocompletado del navegador.
 - **1.14.0 (2026-11-12)** — Botón "Ingresar como admin" en el menú, una sola clave para todo el Hub.
 - **1.13.0 (2026-11-09)** — Sección Procedimientos (29 fichas editables por el admin), tarjetas "¿Necesitás resolver?" activas, procedimientos en el buscador.
 - **1.12.0 (2026-11-09)** — Escalamientos: tabla "¿A quién se escala?" (tocar un área la carga en el formulario).

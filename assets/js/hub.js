@@ -12,7 +12,7 @@
 
 const HUB = {
 
-  version: '1.14.0',
+  version: '1.14.1',
   actualizado: '12/11/2026',
 
   /* Saludo de la home. Cambia solo según la hora: "¡Buen día, equipo!",
@@ -199,7 +199,7 @@ function abrirLoginAdmin(){
     <form class="admin-caja" autocomplete="off">
       <b>🔐 Ingresar como admin</b>
       <p>Con la clave podés editar en todas las secciones del Hub.</p>
-      <input type="password" id="adminClave" placeholder="Contraseña" autocomplete="current-password">
+      <div class="admin-campo"><input type="password" id="adminClave" placeholder="Contraseña" autocomplete="new-password" autocapitalize="off" spellcheck="false"><button type="button" class="admin-ver" id="adminVer" title="Mostrar / ocultar">👁</button></div>
       <div class="admin-error" id="adminError"></div>
       <div class="admin-acc">
         <button type="submit" id="adminEntrar">Entrar</button>
@@ -210,6 +210,11 @@ function abrirLoginAdmin(){
   const cerrar = () => m.remove();
   m.addEventListener('click', e => { if (e.target === m) cerrar(); });
   m.querySelector('#adminCancelar').addEventListener('click', cerrar);
+  m.querySelector('#adminVer').addEventListener('click', () => {
+    const i = m.querySelector('#adminClave');
+    i.type = i.type === 'password' ? 'text' : 'password';
+    i.focus();
+  });
   m.addEventListener('keydown', e => { if (e.key === 'Escape') cerrar(); });
   m.querySelector('form').addEventListener('submit', async e => {
     e.preventDefault();

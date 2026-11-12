@@ -112,3 +112,7 @@
 }
 #sidebar .admin-acc button.sec{background:#eef0f6;color:#1d2433;}
 #sidebar .admin-acc button:disabled{opacity:.6;cursor:wait;}
+#sidebar .admin-campo{position:relative;display:flex;}
+#sidebar .admin-campo input{flex:1;padding-right:42px;}
+#sidebar .admin-ver{position:absolute;right:6px;top:50%;transform:translateY(-50%);background:none;border:none;font-size:16px;cursor:pointer;opacity:.6;padding:4px;}
+#sidebar .admin-ver:hover{opacity:1;}
