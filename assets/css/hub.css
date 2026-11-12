@@ -1101,3 +1101,7 @@ body.pr-modo-admin .cr-admin-banner.pr-solo-admin{display:flex !important;}
 @media (max-width:480px){ .pr-grid,.pr-docs{grid-template-columns:1fr;} }
 .es-mapa-grupo.on{background:var(--blue-light);border-radius:12px;padding:8px;margin:-8px;box-shadow:0 0 0 2px var(--blue);}
 a.resolve{text-decoration:none;color:inherit;}
+
+/* Recalls: tarjeta que abre la gestión en el Drive (v1.15.1) */
+a.recall-click{text-decoration:none;color:inherit;cursor:pointer;}
+a.recall-click:hover{box-shadow:0 0 0 2px #fff, 0 4px 14px rgba(0,0,0,.18);}
