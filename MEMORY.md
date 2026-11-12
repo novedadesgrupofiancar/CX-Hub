@@ -8,16 +8,23 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 
 ## Estado actual
 
-- **Versión publicada:** 1.13.0 (2026-11-09)
+- **Versión publicada:** 1.14.0 (2026-11-12)
 - **Secciones activas:** Inicio, Dashboard, Productos y Modelos, Taller y Postventa, Recalls activos, Guiones,
   Escalamientos, Sucursales, Internos, Procedimientos, Cambios recientes, Buscar (buscador de la home).
 - **Secciones sin construir (gris en el menú):** Promociones, Agendamientos, FAQ, CRM y Tipificaciones.
-- **Backend:** Apps Script único "CX-Hub Backend" (reclamos + contenidos + internos + procedimientos), deployment @8.
+- **Backend:** Apps Script único "CX-Hub Backend" (reclamos + contenidos + internos + procedimientos), deployment @10.
 
 ---
 
 ## Decisiones (y por qué)
 
+- **2026-11-12 — Admin con botón "Ingresar como admin" y una sola clave para todo** (pedido del usuario).
+  Reemplaza el `?admin=` en la URL (la clave quedaba en la barra y en capturas) y el modo admin por página de v1.9.1:
+  ahora una entrada vale para todas las secciones, y el botón del menú siempre muestra si se está en modo admin.
+  La clave vive en Propiedades del script del backend; copia local en `CX_HUB/CLAVE.txt` (nunca se sube).
+- **2026-11-12 — Dashboard: leer los reportes de 3CX desde el Gmail de novedades.** 3CX manda 5 reportes diarios
+  (rango "Este mes", CSV adjunto) a novedades ~7:00. El Apps Script del Dashboard (cuenta novedades) los va a leer
+  con un botón "Leer reportes" (solo admin). Pendiente: paso 2 (script del Dashboard valida con la clave del Hub + Gmail).
 - **2026-11-09 — Procedimientos: fichas en 4 bloques** (Atención · Según lo que pide el cliente · Tareas salientes · Equipo).
   Ficha fija: cuándo aplica, pasos, sistema, escalar a, qué decir, tipificación, errores, fecha de revisión.
   No repite contenido: linkea a Guiones (qué decir), Escalamientos (a quién) e Internos. Editable por el admin desde la página.
@@ -36,7 +43,7 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 - **2026-10-30 — Home sin usuario de maqueta.** Saludo según la hora ("¡Buen día/Buenas tardes/Buenas noches, equipo!")
   y bloque "Contact Center · Grupo Fiancar". No hay login, así que no se identifica a nadie. La campanita cuenta
   los avisos "Importante hoy" vigentes.
-- **2026-10-29 — Modo admin por página.** Entrar con la clave en una sección no deja admin a las demás
+- **2026-10-29 — Modo admin por página** (reemplazado el 2026-11-12, ver arriba). Entrar con la clave en una sección no deja admin a las demás
   (antes se compartía por pestaña y el usuario lo reportó como bug).
 - **2026-10-29 — Internos: ver es público, editar solo con clave.** El usuario lo eligió así aunque haya
   celulares personales marcados "solo uso interno". Los datos viven en la planilla (no en el repo) y cada
@@ -57,6 +64,9 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 
 ## Pendientes
 
+- Dashboard paso 2: el Apps Script del Dashboard todavía valida con su clave vieja escrita en el código. Cambiarlo para que
+  valide contra el backend del Hub + leer Gmail (el usuario autoriza una vez). Hasta entonces, publicar el Dashboard
+  necesita `dashboard.html?admin=<clave vieja>`. Después: botón "Leer reportes".
 - Procedimientos: el usuario tiene que revisar el borrador de las 29 fichas. Datos "a confirmar": horario de redes, campo de baja en el CRM,
   "RECALL" en la descripción del turno, frecuencia de NPS/reportes, speech de encuestas para notas 0–9. Tipificaciones vacías (esperan CRM y Tipificaciones).
 - Procedimientos: editar en modo admin no se probó con la clave real.
@@ -77,6 +87,7 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 
 ## Historial de versiones
 
+- **1.14.0 (2026-11-12)** — Botón "Ingresar como admin" en el menú, una sola clave para todo el Hub.
 - **1.13.0 (2026-11-09)** — Sección Procedimientos (29 fichas editables por el admin), tarjetas "¿Necesitás resolver?" activas, procedimientos en el buscador.
 - **1.12.0 (2026-11-09)** — Escalamientos: tabla "¿A quién se escala?" (tocar un área la carga en el formulario).
 - **1.11.0 (2026-11-09)** — Listas de precios por marca (Drive) en Productos y Modelos y en el buscador.

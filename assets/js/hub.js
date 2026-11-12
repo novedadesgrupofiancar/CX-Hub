@@ -12,8 +12,8 @@
 
 const HUB = {
 
-  version: '1.13.0',
-  actualizado: '09/11/2026',
+  version: '1.14.0',
+  actualizado: '12/11/2026',
 
   /* Saludo de la home. Cambia solo según la hora: "¡Buen día, equipo!",
      "¡Buenas tardes, equipo!", "¡Buenas noches, equipo!".
@@ -108,6 +108,9 @@ function renderSidebar() {
       ${HUB.herramientas.map(i => itemNav(i, actual)).join('')}
     </ul>
     <div class="report-btn">💬 Reportar información</div>
+    ${claveAdmin
+      ? `<button type="button" class="admin-btn on" onclick="salirAdmin()" title="Salir del modo admin">🔓 Admin · Salir</button>`
+      : `<button type="button" class="admin-btn" onclick="abrirLoginAdmin()">🔐 Ingresar como admin</button>`}
   `;
 }
 
@@ -166,33 +169,67 @@ function escaparHTML(t){
     .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 }
 
-/* ---- Modo admin (Cambios recientes, Internos) ----
-   Se entra con pagina.html?admin=CLAVE (la misma del Dashboard).
-   La clave se valida en el servidor; acá solo se guarda mientras
-   la pestaña está abierta y se saca de la barra de direcciones.
-   Cada sección guarda la suya: entrar como admin en una NO deja
-   en modo admin a las demás. */
-const CLAVE_SESION = 'cxhub-admin:' + (location.pathname.split('/').pop() || 'index.html');
+/* ---- Modo admin ----
+   Se entra con el botón "Ingresar como admin" del menú lateral (en todas
+   las páginas). La clave se valida en el servidor y queda guardada solo
+   mientras la pestaña está abierta. UNA sola entrada vale para todo el
+   Hub: Cambios recientes, Importante hoy, Internos, Procedimientos y
+   Dashboard. La clave NO está en el código (Propiedades del script). */
+const CLAVE_SESION = 'cxhub-admin';
 let claveAdmin = '';       // vacío = modo equipo
+try { claveAdmin = sessionStorage.getItem(CLAVE_SESION) || ''; } catch(e){}
 
+/* Lo usan las secciones al arrancar: devuelve la clave si se ingresó como admin */
 function tomarClaveDeURL(){
-  const params = new URLSearchParams(location.search);
-  // También acepta "?admin?=CLAVE" (error de tipeo común)
-  const enURL = params.get('admin') || params.get('admin?');
-  if (enURL){
-    try { sessionStorage.setItem(CLAVE_SESION, enURL); } catch(e){}
-    params.delete('admin');
-    params.delete('admin?');
-    const q = params.toString();
-    history.replaceState(null, '', location.pathname + (q ? '?' + q : '') + location.hash);
-    return enURL;
-  }
-  try { return sessionStorage.getItem(CLAVE_SESION) || ''; } catch(e){ return ''; }
+  return claveAdmin;
 }
 
 function salirAdmin(){
   try { sessionStorage.removeItem(CLAVE_SESION); } catch(e){}
   location.reload();
+}
+
+function abrirLoginAdmin(){
+  const cont = document.getElementById('sidebar');
+  if (!cont || document.getElementById('adminModal')) return;
+  const m = document.createElement('div');
+  m.id = 'adminModal';
+  m.className = 'admin-modal';
+  m.innerHTML = `
+    <form class="admin-caja" autocomplete="off">
+      <b>🔐 Ingresar como admin</b>
+      <p>Con la clave podés editar en todas las secciones del Hub.</p>
+      <input type="password" id="adminClave" placeholder="Contraseña" autocomplete="current-password">
+      <div class="admin-error" id="adminError"></div>
+      <div class="admin-acc">
+        <button type="submit" id="adminEntrar">Entrar</button>
+        <button type="button" class="sec" id="adminCancelar">Cancelar</button>
+      </div>
+    </form>`;
+  cont.appendChild(m);
+  const cerrar = () => m.remove();
+  m.addEventListener('click', e => { if (e.target === m) cerrar(); });
+  m.querySelector('#adminCancelar').addEventListener('click', cerrar);
+  m.addEventListener('keydown', e => { if (e.key === 'Escape') cerrar(); });
+  m.querySelector('form').addEventListener('submit', async e => {
+    e.preventDefault();
+    const clave = m.querySelector('#adminClave').value.trim();
+    const err = m.querySelector('#adminError');
+    if (!clave){ err.textContent = 'Escribí la contraseña.'; return; }
+    const btn = m.querySelector('#adminEntrar');
+    btn.disabled = true; btn.textContent = 'Verificando…'; err.textContent = '';
+    claveAdmin = clave;
+    const res = await llamarAdmin('verificarClave').catch(() => ({ ok: false, error: 'Sin conexión' }));
+    if (!res.ok){
+      claveAdmin = '';
+      btn.disabled = false; btn.textContent = 'Entrar';
+      err.textContent = res.codigo === 'CLAVE' ? 'Contraseña incorrecta.' : ('No se pudo verificar: ' + (res.error || 'error'));
+      return;
+    }
+    try { sessionStorage.setItem(CLAVE_SESION, clave); } catch(e){}
+    location.reload();
+  });
+  setTimeout(() => m.querySelector('#adminClave').focus(), 0);
 }
 
 async function llamarAdmin(action, datos){
@@ -221,8 +258,18 @@ document.addEventListener('DOMContentLoaded', () => {
   renderFooter();
   renderHerramientasHome();
   renderSaludo();
+  quitarAdminDeURL();
   setTimeout(aplicarBusquedaURL, 0);   // después de que la página dibuje lo suyo
 });
+
+/* La clave ya no va en la dirección: si alguien entra con ?admin=..., se borra de la barra */
+function quitarAdminDeURL(){
+  const p = new URLSearchParams(location.search);
+  if (!p.has('admin') && !p.has('admin?')) return;
+  p.delete('admin'); p.delete('admin?');
+  const q = p.toString();
+  history.replaceState(null, '', location.pathname + (q ? '?' + q : '') + location.hash);
+}
 
 /* ---- Llegar desde el buscador de la home ----
    pagina.html?q=texto escribe "texto" en el buscador de esa sección

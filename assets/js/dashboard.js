@@ -58,7 +58,8 @@ function loadStorage(){
 
 // ===================== SINCRONIZACIÓN (Google Apps Script) =====================
 const API_URL = 'https://script.google.com/macros/s/AKfycbyUo2pp_9tUR-MmKwWtNykT-sgx0HOuKKj2P_bVu2o1zLWZKypERQfvipXZK2QlIeRO/exec';
-const ADMIN_KEY = new URLSearchParams(location.search).get('admin') || '';
+// Misma sesión de admin que todo el Hub (botón "Ingresar como admin" del menú, ver hub.js)
+const ADMIN_KEY = claveAdmin || new URLSearchParams(location.search).get('admin') || '';
 const IS_ADMIN = ADMIN_KEY !== '';
 
 function setSync(t){ const e=document.getElementById('syncTag'); if(e) e.textContent=t; }

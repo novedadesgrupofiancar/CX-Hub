@@ -82,3 +82,33 @@
   #sidebar .nav li a,#sidebar .nav li.nav-pendiente{padding:7px 9px;font-size:12.5px;}
   #sidebar .report-btn{margin-top:14px;}
 }
+
+/* ---- Botón y ventana "Ingresar como admin" (hub.js) ---- */
+#sidebar .admin-btn{
+  margin-top:8px;background:transparent;border:1px dashed #3a4a7a;color:#9fb0e0;
+  border-radius:8px;padding:8px;font-size:12px;cursor:pointer;font-family:inherit;width:100%;
+}
+#sidebar .admin-btn:hover{color:#fff;border-color:#6b7fc0;}
+#sidebar .admin-btn.on{border-style:solid;border-color:#2f6fed;background:#2f6fed;color:#fff;font-weight:700;}
+#sidebar .admin-modal{
+  position:fixed;inset:0;background:rgba(10,18,40,.55);z-index:1000;
+  display:flex;align-items:center;justify-content:center;padding:16px;
+}
+#sidebar .admin-caja{
+  background:#fff;color:#1d2433;border-radius:14px;padding:22px;width:100%;max-width:340px;
+  box-shadow:0 20px 50px rgba(0,0,0,.3);display:flex;flex-direction:column;gap:10px;
+}
+#sidebar .admin-caja b{font-size:16px;}
+#sidebar .admin-caja p{margin:0;font-size:12.5px;color:#64748b;}
+#sidebar .admin-caja input{
+  border:1px solid #d5dbe8;border-radius:9px;padding:10px 12px;font-size:14px;font-family:inherit;outline:none;
+}
+#sidebar .admin-caja input:focus{border-color:#2f6fed;box-shadow:0 0 0 3px #e3ecfd;}
+#sidebar .admin-error{min-height:16px;font-size:12px;color:#d93025;font-weight:600;}
+#sidebar .admin-acc{display:flex;gap:8px;}
+#sidebar .admin-acc button{
+  flex:1;border:none;border-radius:9px;padding:10px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;
+  background:#0f1b3d;color:#fff;
+}
+#sidebar .admin-acc button.sec{background:#eef0f6;color:#1d2433;}
+#sidebar .admin-acc button:disabled{opacity:.6;cursor:wait;}

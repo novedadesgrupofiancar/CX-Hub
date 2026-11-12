@@ -35,10 +35,13 @@ Estado, decisiones y pendientes del proyecto: **`MEMORY.md`** (ver la sección "
   y `aplicarBusquedaURL`: `pagina.html?q=texto` escribe el texto en el input marcado con `data-hub-buscar`
   de esa página y dispara su filtro. El buscador de la home depende de esto para los links a cada sección.
 
-**Modo admin**: se entra con `pagina.html?admin=CLAVE` (la misma clave del Dashboard). La clave se valida
-en el servidor, se saca de la URL y se guarda en `sessionStorage` **por página** (`cxhub-admin:<archivo>`):
-entrar como admin en una sección no deja admin a las demás. Sin clave todo es solo lectura.
-El body recibe una clase (`cr-modo-admin`, `in-modo-admin`, `pr-modo-admin`) que muestra/oculta `.xx-solo-admin` / `.xx-solo-equipo`.
+**Modo admin**: botón **"Ingresar como admin"** abajo del menú lateral (lo arma `renderSidebar` en hub.js, en
+todas las páginas, incluido el Dashboard). Pide la contraseña, la valida en el servidor (`verificarClave`) y la guarda
+en `sessionStorage` (`cxhub-admin`): **una sola entrada vale para todo el Hub** mientras la pestaña esté abierta.
+El botón pasa a "🔓 Admin · Salir". Ya no se usa `?admin=` en la URL (si viene, `quitarAdminDeURL` lo borra).
+Las secciones leen la clave con `tomarClaveDeURL()` (nombre histórico) y el body recibe una clase
+(`cr-modo-admin`, `in-modo-admin`, `pr-modo-admin`) que muestra/oculta `.xx-solo-admin` / `.xx-solo-equipo`.
+Sin clave todo es solo lectura.
 
 **Backend (Google Apps Script "CX-Hub Backend", cuenta novedades)** — una sola URL en `HUB.api`:
 - `GET ?action=contenidos` → Cambios recientes / Importante hoy (público, cacheado 5 min).
