@@ -12,7 +12,7 @@
 
 const HUB = {
 
-  version: '1.17.0',
+  version: '1.18.0',
   actualizado: '13/11/2026',
 
   /* Saludo de la home. Cambia solo según la hora: "¡Buen día, equipo!",
@@ -37,7 +37,7 @@ const HUB = {
     { icon: '🚗',  label: 'Productos y Modelos', href: 'productos-modelos.html' },
     { icon: '🏷️',  label: 'Promociones',         href: null },
     { icon: '🔧',  label: 'Taller y Postventa',  href: 'taller-postventa.html' },
-    { icon: '🛠️',  label: 'Recalls activos',     href: 'recalls.html', badge: '2' },
+    { icon: '🛠️',  label: 'Recalls activos',     href: 'recalls.html', badgeRecalls: true },   // número = recalls activos (solo)
     { icon: '📅',  label: 'Agendamientos',       href: null },
     { icon: '💬',  label: 'Guiones',             href: 'guiones.html' },
     { icon: '❓',  label: 'FAQ',                 href: null },
@@ -76,7 +76,9 @@ function archivoActual() {
 function itemNav(item, actual) {
   const activo = item.href && item.href.toLowerCase() === actual.toLowerCase();
   const badge  = item.badge ? `<span class="nav-badge">${item.badge}</span>` : '';
-  const inner  = `<span class="ico">${item.icon}</span>${item.label}${badge}`;
+  const nRec   = item.badgeRecalls ? cantidadRecalls() : 0;
+  const badgeR = item.badgeRecalls ? `<span class="nav-badge" data-badge-recalls ${nRec ? '' : 'hidden'}>${nRec}</span>` : '';
+  const inner  = `<span class="ico">${item.icon}</span>${item.label}${badge}${badgeR}`;
 
   if (!item.href) {
     return `<li class="nav-pendiente" title="Sección en construcción">${inner}</li>`;
@@ -258,6 +260,29 @@ async function llamarAdmin(action, datos){
   document.head.appendChild(l);
 })();
 
+/* ---- Número de recalls activos en el menú ----
+   Sale de la copia que guarda recalls.js; si tiene más de 10 minutos se pide de nuevo al servidor. */
+function cantidadRecalls(){
+  try { return (JSON.parse(localStorage.getItem('cxhub-recalls') || '[]') || []).length; } catch(e){ return 0; }
+}
+function actualizarBadgeRecalls(){
+  const n = cantidadRecalls();
+  document.querySelectorAll('[data-badge-recalls]').forEach(b => { b.textContent = n; b.hidden = !n; });
+}
+async function refrescarBadgeRecalls(){
+  if (archivoActual() === 'recalls.html') return;          // esa página ya los carga
+  let t = 0;
+  try { t = +localStorage.getItem('cxhub-recalls-t') || 0; } catch(e){}
+  if (Date.now() - t < 10 * 60 * 1000) return;
+  try {
+    const res = await (await fetch(HUB.api + '?action=recalls&t=' + Date.now())).json();
+    if (!res.ok) return;
+    localStorage.setItem('cxhub-recalls', JSON.stringify(res.datos.recalls || []));
+    localStorage.setItem('cxhub-recalls-t', String(Date.now()));
+    actualizarBadgeRecalls();
+  } catch(e){}
+}
+
 /* ---- Arranque ---- */
 document.addEventListener('DOMContentLoaded', () => {
   renderSidebar();
@@ -265,6 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderHerramientasHome();
   renderSaludo();
   quitarAdminDeURL();
+  refrescarBadgeRecalls();
   setTimeout(aplicarBusquedaURL, 0);   // después de que la página dibuje lo suyo
 });
 

@@ -24,31 +24,24 @@
       </div>
     </div>
 
+    <!-- Solo en modo admin (botón "Ingresar como admin" del menú lateral) -->
+    <div class="cr-admin-banner rc-solo-admin">
+      <span>🔐 <b>Modo administrador.</b> Tocá ✏️ en una tarjeta para editarla. Lo que guardes lo ve todo el equipo.</span>
+      <span style="display:flex;gap:8px;">
+        <button type="button" onclick="nuevoRC()">＋ Nuevo recall</button>
+        <button type="button" onclick="salirAdmin()">Salir del modo admin</button>
+      </span>
+    </div>
+
+    <div id="rcAviso" hidden></div>
+
+    <!-- Las tarjetas se guardan en la planilla del Hub (hoja "Recalls") y las arma assets/js/recalls.js.
+         Cada tarjeta abre la planilla de gestión de la campaña en el Drive. -->
     <div class="card recalls" id="recallsPageList" style="margin-bottom:16px;">
       <div class="card-head">
-        <div class="t" style="color:#fff"><span class="sq" style="background:rgba(255,255,255,.28)">🛠️</span>2 RECALLS ACTIVOS</div>
+        <div class="t" style="color:#fff"><span class="sq" style="background:rgba(255,255,255,.28)">🛠️</span><span id="rcTitulo">RECALLS ACTIVOS</span></div>
       </div>
-
-      <!-- Cada tarjeta abre la planilla de gestión de la campaña en el Drive -->
-      <div class="recall-grid">
-        <a class="promo-item on-white recall-item recall-click" href="https://docs.google.com/spreadsheets/d/1dw1KBwT3qt4siLK0PtC_j2zH6iDOzDUYsh-maCGsQkc/edit" target="_blank" rel="noopener">
-          <div class="promo-txt">
-            <div class="brandtag">CHEVROLET</div>
-            <b>Campaña de airbag</b>
-            <p>Reemplazo del inflador del airbag Takata · Celta y Cruze · Recall sin costo</p>
-            <span class="recall-link">Ver gestión en el Drive →</span>
-          </div>
-        </a>
-
-        <a class="promo-item on-white recall-item recall-click" href="https://docs.google.com/spreadsheets/d/1Y7Z0IGAJyWxQR7tUvloRsZ-rj1CMX8oY/edit" target="_blank" rel="noopener">
-          <div class="promo-txt">
-            <div class="brandtag">CHEVROLET</div>
-            <b>Campaña de Spark</b>
-            <p>Campaña de actualización · Spark EUV · Sin costo</p>
-            <span class="recall-link">Ver gestión en el Drive →</span>
-          </div>
-        </a>
-      </div>
+      <div class="recall-grid" id="rcLista"><div class="rc-vacio">Cargando…</div></div>
     </div>
 
     <div data-hub-footer></div>
@@ -61,5 +54,6 @@
 </div>
 
 <script src="assets/js/hub.js"></script>
+<script src="assets/js/recalls.js"></script>
 </body>
 </html>

@@ -18,7 +18,7 @@ Estado, decisiones y pendientes del proyecto: **`MEMORY.md`** (ver la sección "
 - `sidebar.css` lo cargan todas las páginas (aislado bajo `#sidebar`). `hub.css` y `dashboard.css`
   **nunca juntos**: comparten nombres de clase (`.card`, `.topbar`, `.search`, `.badge`...) con estilos distintos.
 - CSS nuevo va **al final de `hub.css`**, en un bloque con encabezado y clases con prefijo de 2–3 letras
-  propio de la sección (`su-` sucursales, `es-` escalamientos, `pm-` productos, `cr-` cambios, `in-` internos, `bu-` buscador, `pr-` procedimientos).
+  propio de la sección (`su-` sucursales, `es-` escalamientos, `pm-` productos, `cr-` cambios, `in-` internos, `bu-` buscador, `pr-` procedimientos, `rc-` recalls).
 - Datos separados del render: cada sección tiene arriba su lista comentada (`SUCURSALES`, `TALLERES`,
   `MARCAS_PM`, `SPEECHES_WPP`...) con un aviso "de acá para abajo no hace falta tocar nada".
 - Sin imágenes en base64 (van en `assets/img/`).
@@ -40,18 +40,19 @@ todas las páginas, incluido el Dashboard). Pide la contraseña, la valida en el
 en `sessionStorage` (`cxhub-admin`): **una sola entrada vale para todo el Hub** mientras la pestaña esté abierta.
 El botón pasa a "🔓 Admin · Salir". Ya no se usa `?admin=` en la URL (si viene, `quitarAdminDeURL` lo borra).
 Las secciones leen la clave con `tomarClaveDeURL()` (nombre histórico) y el body recibe una clase
-(`cr-modo-admin`, `in-modo-admin`, `pr-modo-admin`) que muestra/oculta `.xx-solo-admin` / `.xx-solo-equipo`.
+(`cr-modo-admin`, `in-modo-admin`, `pr-modo-admin`, `rc-modo-admin`) que muestra/oculta `.xx-solo-admin` / `.xx-solo-equipo`.
 Sin clave todo es solo lectura.
 
 **Backend (Google Apps Script "CX-Hub Backend", cuenta novedades)** — una sola URL en `HUB.api`:
 - `GET ?action=contenidos` → Cambios recientes / Importante hoy (público, cacheado 5 min).
 - `GET ?action=internos` → Internos (público, cacheado 5 min).
 - `GET ?action=procedimientos` → fichas de Procedimientos (público, cacheado 5 min).
+- `GET ?action=recalls` → tarjetas de Recalls activos (público, cacheado 5 min).
 - `POST` sin `action` → formulario de reclamos de Escalamientos (manda mails).
 - `POST` con `action` + `clave` → escritura admin (`verificarClave`, `listarAdmin`, `guardar`, `borrar`, `guardarInternos`,
-  `guardarProcedimiento`, `borrarProcedimiento`).
+  `guardarProcedimiento`, `borrarProcedimiento`, `guardarRecall`, `borrarRecall`).
 - Datos en la planilla "Reclamos CX-Hub": hojas `Reclamos`, `Cambios recientes`, `Importante hoy`, `Internos`,
-  `Internos - sucursales`, `Internos (historial)`, `Procedimientos`. Borrado lógico en contenidos y procedimientos; en internos, cada guardado copia
+  `Internos - sucursales`, `Internos (historial)`, `Procedimientos`, `Recalls`. Borrado lógico en contenidos, procedimientos y recalls; en internos, cada guardado copia
   la versión anterior al historial. La clave está en Propiedades del script (`CLAVE_ADMIN`), nunca en el código.
 - El código **no está en este repo**. Se trabaja con clasp (logueado en la cuenta novedades):
   `clasp clone 1dI7vdEhAbfcSWkDA86nUMCGpgrvh1K1Ju4R955FLKWEYxyGJBs0zNsHj` en una carpeta temporal,
@@ -61,8 +62,9 @@ Sin clave todo es solo lectura.
   guarda el reporte en `cc_reporte.json` (Drive de novedades), valida la clave preguntándole al backend del Hub
   (`verificarClave`) y con `action: leerReportes` devuelve los CSV del último mail de 3CX (botón "📥 Leer reportes").
 
-**Cache en el navegador**: `contenidos.js`, `internos.js` y `procedimientos.js` pintan primero la copia de `localStorage`
-(`cxhub-contenidos`, `cxhub-internos`, `cxhub-procedimientos`) y después la reemplazan con la del servidor.
+**Cache en el navegador**: `contenidos.js`, `internos.js`, `procedimientos.js` y `recalls.js` pintan primero la copia de `localStorage`
+(`cxhub-contenidos`, `cxhub-internos`, `cxhub-procedimientos`, `cxhub-recalls`) y después la reemplazan con la del servidor.
+El número de Recalls del menú (`badgeRecalls` en `HUB.nav`) sale de `cxhub-recalls`; hub.js lo refresca cada 10 min.
 
 **Buscador de la home (`buscar.js`)**: no tiene índice propio. Lee como texto los archivos de datos de cada
 sección (`BU_ARCHIVOS`) y los ejecuta con un `document` falso para sacar sus listas; suma internos, cambios

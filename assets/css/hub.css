@@ -1111,3 +1111,18 @@ a.recall-click:hover{box-shadow:0 0 0 2px #fff, 0 4px 14px rgba(0,0,0,.18);}
    ========================================================= */
 .gu-linea{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
 .gu-linea span{font-weight:600;}
+
+/* =========================================================
+   RECALLS — editables por el admin (v1.18.0)
+   ========================================================= */
+.rc-solo-admin{display:none !important;}
+body.rc-modo-admin .rc-solo-admin{display:inline-flex !important;}
+body.rc-modo-admin .cr-admin-banner.rc-solo-admin{display:flex !important;}
+.card.recalls .recall-item{position:relative;}
+.rc-editar{position:absolute;top:8px;right:8px;background:var(--blue-light);border:none;border-radius:7px;padding:4px 7px;font-size:13px;cursor:pointer;}
+.rc-editar:hover{background:#dbe7ff;}
+.rc-vacio{background:rgba(255,255,255,.18);color:#fff;border-radius:10px;padding:14px;font-size:13px;font-weight:600;text-align:center;}
+.rc-form-titulo{display:block;margin-bottom:10px;font-size:14px;}
+.rc-acc{display:flex;gap:8px;flex-wrap:wrap;}
+body.rc-modo-admin .card.recalls .recall-item .promo-txt{padding-right:36px;}
+.rc-editando .cr-form{width:100%;} .rc-editando .cr-form input,.rc-editando .cr-form select{width:100%;box-sizing:border-box;}

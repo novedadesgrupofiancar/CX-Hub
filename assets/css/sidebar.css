@@ -116,3 +116,4 @@
 #sidebar .admin-campo input{flex:1;padding-right:42px;}
 #sidebar .admin-ver{position:absolute;right:6px;top:50%;transform:translateY(-50%);background:none;border:none;font-size:16px;cursor:pointer;opacity:.6;padding:4px;}
 #sidebar .admin-ver:hover{opacity:1;}
+#sidebar .nav-badge[hidden]{display:none;}
