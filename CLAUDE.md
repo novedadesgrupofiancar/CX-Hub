@@ -57,7 +57,9 @@ Sin clave todo es solo lectura.
   `clasp clone 1dI7vdEhAbfcSWkDA86nUMCGpgrvh1K1Ju4R955FLKWEYxyGJBs0zNsHj` en una carpeta temporal,
   `clasp push -f`, y `clasp deploy -i AKfycbwptnYqzGl6w0cBJY1Ocaj01A3bLxBFGsruGiU_jmU-wjTki6hghpPcMXutRtZ15Ip7 -d "..."`
   (mantiene la misma URL). Probar con `curl -sL "<HUB.api>?action=internos"`.
-- El Dashboard usa **otro** Apps Script propio (`API_URL` en `dashboard.js`).
+- El Dashboard usa **otro** Apps Script propio (`API_URL` en `dashboard.js`, scriptId `1RPOp9dk-AsvB3zmUd4QG4g-NYCA_CQih7yy3z-pEZs5aJ7-jMojR6Ljf`):
+  guarda el reporte en `cc_reporte.json` (Drive de novedades), valida la clave preguntándole al backend del Hub
+  (`verificarClave`) y con `action: leerReportes` devuelve los CSV del último mail de 3CX (botón "📥 Leer reportes").
 
 **Cache en el navegador**: `contenidos.js`, `internos.js` y `procedimientos.js` pintan primero la copia de `localStorage`
 (`cxhub-contenidos`, `cxhub-internos`, `cxhub-procedimientos`) y después la reemplazan con la del servidor.

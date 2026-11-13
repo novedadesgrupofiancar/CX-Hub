@@ -121,23 +121,50 @@ function handleCSV(event,type){
   const file = event.target.files[0]; if(!file) return;
   Papa.parse(file,{ header:true, skipEmptyLines:true, encoding:'UTF-8',
     transformHeader:h=>String(h).replace(/^\uFEFF/,'').trim(),
-    complete:(res)=>{
-      if(type==='salientes'){
-        // Se resume en el momento: al servidor solo viajan 8 filas, nunca el detalle
-        DATA.salientes_summary = resumirSalientes(res.data);
-      } else {
-        DATA[type]=res.data;
-      }
-      DATA.meta.loadedFiles[type]=file.name; saveStorage();
-      const map={agentes:1,cola:2,rendimiento:3,abandonadas:4,salientes:5};
-      document.getElementById('up_'+map[type]).classList.add('loaded');
-      document.getElementById('file_'+map[type]).textContent = file.name;
-      updateDMStatus();
-      if(type==='salientes') renderSalientes();
-      if(DATA.agentes && DATA.cola) renderAll();
-    },
+    complete:(res)=>cargarFilas(type,res.data,file.name),
     error:(err)=>alert('Error leyendo el CSV: '+err.message)
   });
+}
+// Lo usan la subida manual de CSV y el botón "Leer reportes"
+function cargarFilas(type,rows,nombre){
+  if(type==='salientes'){
+    // Se resume en el momento: al servidor solo viajan 8 filas, nunca el detalle
+    DATA.salientes_summary = resumirSalientes(rows);
+  } else {
+    DATA[type]=rows;
+  }
+  DATA.meta.loadedFiles[type]=nombre; saveStorage();
+  const map={agentes:1,cola:2,rendimiento:3,abandonadas:4,salientes:5};
+  document.getElementById('up_'+map[type]).classList.add('loaded');
+  document.getElementById('file_'+map[type]).textContent = nombre;
+  updateDMStatus();
+  if(type==='salientes') renderSalientes();
+  if(DATA.agentes && DATA.cola) renderAll();
+}
+
+// ===================== LEER REPORTES (mails de 3CX) =====================
+// Trae del Apps Script los 5 CSV del último mail de 3CX y los carga como si se hubieran subido a mano.
+// No publica: después hay que tocar "Publicar para el equipo".
+async function leerReportes(){
+  const btn=document.getElementById('btnLeer');
+  if(btn){ btn.disabled=true; btn.textContent='Leyendo mails…'; }
+  try{
+    const r = await fetch(API_URL,{ method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'},
+                                    body:JSON.stringify({ token:ADMIN_KEY, action:'leerReportes' }) });
+    const res = await r.json();
+    if(!res.ok){ alert('No se pudieron leer los reportes: '+(res.error||'error desconocido')); return; }
+    const tipos=['agentes','cola','rendimiento','abandonadas','salientes'];
+    const faltan=tipos.filter(t=>!res.datos[t]);
+    tipos.forEach(t=>{
+      const a=res.datos[t]; if(!a) return;
+      const p=Papa.parse(a.csv,{ header:true, skipEmptyLines:true, transformHeader:h=>String(h).replace(/^\uFEFF/,'').trim() });
+      cargarFilas(t,p.data,a.nombre);
+    });
+    const fecha = res.datos.agentes ? fmtFecha(res.datos.agentes.fecha) : '';
+    if(faltan.length===tipos.length){ alert('No encontré mails de 3CX con los reportes en los últimos 7 días.'); return; }
+    toast('Reportes cargados'+(fecha?' · mail del '+fecha:'')+(faltan.length?' · faltan: '+faltan.join(', '):'')+' · revisá y tocá Publicar');
+  }catch(e){ alert('No se pudieron leer los reportes: '+e.message); }
+  finally{ if(btn){ btn.disabled=false; btn.textContent='📥 Leer reportes'; } }
 }
 function updateDMStatus(){
   const c = Object.keys(DATA.meta.loadedFiles||{}).length;
@@ -219,7 +246,8 @@ function aggregate(){
 // ===================== SALIENTES =====================
 function extSaliente(r){
   let e = String(r['Caller ID']==null?'':r['Caller ID']).trim().replace(/\.0$/,'');
-  if(!e){ const m = String(r['Caller Display name']||'').match(/\((\d+)\)/); e = m?m[1]:''; }
+  // "Caller Display name" (export manual) o "From" (reporte por mail de 3CX): "Nombre (7994)"
+  if(!e){ const m = String(r['Caller Display name']||r.From||'').match(/\((\d+)\)/); e = m?m[1]:''; }
   return e;
 }
 function resumirSalientes(rows){
@@ -227,7 +255,7 @@ function resumirSalientes(rows){
   (rows||[]).forEach(r=>{
     const ext = extSaliente(r);
     if(!SALIENTES_AGENTES.includes(ext)) return;
-    if(!ag[ext]) ag[ext] = { ext:ext, name:(String(r['Caller Display name']||'').split('(')[0].trim()||ext),
+    if(!ag[ext]) ag[ext] = { ext:ext, name:(String(r['Caller Display name']||r.From||'').split('(')[0].trim()||ext),
       total:0, ans:0, un:0, talk:0 };
     const a = ag[ext];
     const contestada = String(r.Status||'').trim().toLowerCase()==='answered';
