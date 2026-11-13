@@ -8,7 +8,7 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 
 ## Estado actual
 
-- **Versión publicada:** 1.15.1 (2026-11-12)
+- **Versión publicada:** 1.15.2 (2026-11-13)
 - **Secciones activas:** Inicio, Dashboard, Productos y Modelos, Taller y Postventa, Recalls activos, Guiones,
   Escalamientos, Sucursales, Internos, Procedimientos, Cambios recientes, Buscar (buscador de la home).
 - **Secciones sin construir (gris en el menú):** Promociones, Agendamientos, FAQ, CRM y Tipificaciones.
@@ -18,6 +18,7 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 
 ## Decisiones (y por qué)
 
+- **2026-11-13 — Saludos de Guiones con "Chevrolet Montevideo"**: pedido del usuario. El speech de financiación sigue diciendo Grupo Fiancar (no es saludo).
 - **2026-11-12 — Admin con botón "Ingresar como admin" y una sola clave para todo** (pedido del usuario).
   Reemplaza el `?admin=` en la URL (la clave quedaba en la barra y en capturas) y el modo admin por página de v1.9.1:
   ahora una entrada vale para todas las secciones, y el botón del menú siempre muestra si se está en modo admin.
@@ -87,6 +88,7 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 
 ## Historial de versiones
 
+- **1.15.2 (2026-11-13)** — Guiones: todos los saludos dicen "Chevrolet Montevideo" (antes "Grupo Fiancar").
 - **1.15.1 (2026-11-12)** — Recalls: cada tarjeta abre su planilla de gestión en el Drive.
 - **1.15.0 (2026-11-12)** — Recalls: sale Fiat (airbags Takata); entran Chevrolet campaña de airbag y campaña de Spark (tarjetas simples, sin imagen).
 - **1.14.2 (2026-11-12)** — Ingresar como admin: ignora espacios/caracteres invisibles y el error dice cuántos caracteres leyó.

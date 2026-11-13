@@ -63,7 +63,7 @@ const SPEECHES_WPP = [
     variantes: [{
       nombre: 'Marcas y Chevrolet',
       bloques: [{
-        texto: `Buenos [días/tardes]! Mi nombre es [NOMBRE] de Grupo Fiancar.
+        texto: `Buenos [días/tardes]! Mi nombre es [NOMBRE] de Chevrolet Montevideo.
 ¿En qué le puedo ayudar?`
       }]
     }]
@@ -78,7 +78,7 @@ const SPEECHES_WPP = [
         bloques: [
           {
             etiqueta: 'Solicitud de datos',
-            texto: `Gracias por comunicarse con Grupo Fiancar, mi nombre es [NOMBRE] 😊
+            texto: `Gracias por comunicarse con Chevrolet Montevideo, mi nombre es [NOMBRE] 😊
 
 A continuación le informo las fechas disponibles en nuestros talleres:
 
@@ -132,7 +132,7 @@ Una vez que me envíe los datos, procedemos. Le asignaremos la primera hora disp
         bloques: [
           {
             etiqueta: 'Consulta inicial',
-            texto: `Gracias por comunicarse con Grupo Fiancar, mi nombre es [NOMBRE] 😊
+            texto: `Gracias por comunicarse con Chevrolet Montevideo, mi nombre es [NOMBRE] 😊
 
 ¿Qué sucursal prefiere?
 
@@ -179,7 +179,7 @@ Para poder derivar su consulta a un asesor comercial, necesito los siguientes da
       bloques: [
         {
           etiqueta: 'Modelo con una sola versión',
-          texto: `Buenos [días/tardes]! Mi nombre es [NOMBRE] de Grupo Fiancar.
+          texto: `Buenos [días/tardes]! Mi nombre es [NOMBRE] de Chevrolet Montevideo.
 
 El precio del *[MARCA] [MODELO]* es de USD [PRECIO].
 
@@ -187,7 +187,7 @@ Si desea recibir toda la información, indíquenos un contacto y nos comunicamos
         },
         {
           etiqueta: 'Modelo con más de una versión',
-          texto: `Buenos [días/tardes]! Mi nombre es [NOMBRE] de Grupo Fiancar.
+          texto: `Buenos [días/tardes]! Mi nombre es [NOMBRE] de Chevrolet Montevideo.
 
 El modelo *[MARCA] [MODELO]* está disponible en [X] versiones:
 
@@ -207,7 +207,7 @@ Si desea conocer las diferencias entre las versiones y recibir toda la informaci
     variantes: [{
       nombre: 'Marcas y Chevrolet',
       bloques: [{
-        texto: `Buenos [días/tardes]! Mi nombre es [NOMBRE] de Grupo Fiancar.
+        texto: `Buenos [días/tardes]! Mi nombre es [NOMBRE] de Chevrolet Montevideo.
 
 Le enviamos la ficha técnica del *[MARCA] [MODELO]* para que pueda ver el detalle 📄
 
@@ -247,7 +247,7 @@ Si desea recibir toda la información, indíquenos un contacto y nos comunicamos
     variantes: [{
       nombre: 'Marcas y Chevrolet',
       bloques: [{
-        texto: `Buenos [días/tardes]! Mi nombre es [NOMBRE] de Grupo Fiancar.
+        texto: `Buenos [días/tardes]! Mi nombre es [NOMBRE] de Chevrolet Montevideo.
 
 Si la persona que desea financiar el vehículo se encuentra en clearing, realizamos un *estudio crediticio integral* para evaluar la posibilidad de otorgar el crédito.
 
@@ -311,7 +311,7 @@ En ese caso quedaría descartada la financiación bancaria, ya que para el banco
     variantes: [{
       nombre: 'Solo Marcas',
       bloques: [{
-        texto: `Buenos [días/tardes]! Mi nombre es [NOMBRE] de Grupo Fiancar.
+        texto: `Buenos [días/tardes]! Mi nombre es [NOMBRE] de Chevrolet Montevideo.
 
 El modelo *EX2* de Geely se comercializa únicamente mediante preventa, por lo que no contamos con unidades para entrega inmediata.
 
@@ -333,7 +333,7 @@ También puede explorar el catálogo completo de vehículos disponibles (filtran
       bloques: [
         {
           etiqueta: 'Opción A — cierre simple',
-          texto: `Buenos [días/tardes]! Mi nombre es [NOMBRE] de Grupo Fiancar.
+          texto: `Buenos [días/tardes]! Mi nombre es [NOMBRE] de Chevrolet Montevideo.
 
 Por el momento no tenemos novedades sobre ese modelo. Lo invitamos a seguir nuestras redes sociales, donde publicamos constantemente nuestros lanzamientos 📲
 
@@ -341,7 +341,7 @@ Por el momento no tenemos novedades sobre ese modelo. Lo invitamos a seguir nues
         },
         {
           etiqueta: 'Opción B — el cliente pide que le avisemos',
-          texto: `Buenos [días/tardes]! Mi nombre es [NOMBRE] de Grupo Fiancar.
+          texto: `Buenos [días/tardes]! Mi nombre es [NOMBRE] de Chevrolet Montevideo.
 
 Por el momento no tenemos novedades sobre ese modelo. Lo invitamos a seguir nuestras redes sociales, donde publicamos constantemente nuestros lanzamientos 📲
 
@@ -360,7 +360,7 @@ Si lo desea, puede dejarnos su nombre y un contacto, y le avisamos ni bien tenga
       bloques: [
         {
           etiqueta: 'Primer contacto — relevamiento del caso',
-          texto: `Buenos [días/tardes]! Mi nombre es [NOMBRE] de Grupo Fiancar. Disculpe la demora en nuestra respuesta 🙏
+          texto: `Buenos [días/tardes]! Mi nombre es [NOMBRE] de Chevrolet Montevideo. Disculpe la demora en nuestra respuesta 🙏
 
 Para poder verificar su caso y ayudarlo, necesitamos que nos brinde algunos datos. Le comentamos que las entregas están demoradas, pero estamos trabajando para que puedan realizarse lo antes posible.
 
@@ -393,7 +393,7 @@ Ni bien esto suceda, nos comunicamos con usted para coordinar día y horario.`,
     variantes: [{
       nombre: 'Solo Marcas',
       bloques: [{
-        texto: `Buenos [días/tardes]! Mi nombre es [NOMBRE] de Grupo Fiancar.
+        texto: `Buenos [días/tardes]! Mi nombre es [NOMBRE] de Chevrolet Montevideo.
 
 Nuestros vehículos *[MARCA]* los puede encontrar en las siguientes sucursales:
 
@@ -422,7 +422,7 @@ const PASOS_LLAMADA = [
   {
     n: 1,
     titulo: 'Saludo',
-    bloques: [{ texto: `Grupo Fiancar, buenos días/tardes…` }],
+    bloques: [{ texto: `Chevrolet Montevideo, buenos días/tardes…` }],
     nota: 'Siempre el nombre de la empresa según la línea que entra, y el saludo acorde a la hora. Evitar arrancar con "hola" o "¿aló?".'
   },
   {
@@ -463,7 +463,7 @@ Se estará comunicando con usted [PLAZO]. Mientras tanto, no necesita realizar n
     bloques: [{
       texto: `¿Hay algo más en lo que le pueda ayudar?
 
-[Si no] Que tenga un excelente día/tarde. Gracias por llamar a Grupo Fiancar.`
+[Si no] Que tenga un excelente día/tarde. Gracias por llamar a Chevrolet Montevideo.`
     }],
     nota: 'Ofrecer ayuda adicional antes de despedirse y esperar a que el cliente corte primero. Sostener el trato de usted hasta el final de la llamada.'
   }
