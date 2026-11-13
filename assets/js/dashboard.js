@@ -20,7 +20,8 @@ const EXCLUIDOS = EXCLUIR_SIEMPRE.concat(EXCLUIR_ESTE_REPORTE);
 function excluido(agente){ return EXCLUIDOS.includes(getExt(agente)); }
 
 // OBJETIVOS — editables. Definen el color de los KPI y qué entra en cada panel.
-const OBJETIVOS = { atencion: 90, no_atendidas: 10, tmo_seg: 165 };
+// % de atención: verde desde "atencion", amarillo desde "atencion_amarillo", rojo por debajo.
+const OBJETIVOS = { atencion: 90, atencion_amarillo: 80, no_atendidas: 10, tmo_seg: 165 };
 
 const ICO = ['#4A7DF5','#22B573','#F5A623','#8B5CF6','#14B8C4','#EC4899','#F97316','#EF4444'];
 const tint = h => h + '1F';
@@ -109,8 +110,8 @@ function parseTimeToSec(t){
   return parseFloat(t)||0;
 }
 function parsePctStr(s){ if(typeof s==='number') return s; if(!s) return 0; return parseFloat(String(s).replace('%','').trim())||0; }
-function badgePct(p){ return p>=85?'g':p>=70?'a':'r'; }
-function colorPct(p){ return p>=85?'var(--green)':p>=70?'var(--amber)':'var(--red)'; }
+function badgePct(p){ return p>=OBJETIVOS.atencion?'g':p>=OBJETIVOS.atencion_amarillo?'a':'r'; }
+function colorPct(p){ return p>=OBJETIVOS.atencion?'var(--green)':p>=OBJETIVOS.atencion_amarillo?'var(--amber)':'var(--red)'; }
 function colorTmo(t){ return t<=OBJETIVOS.tmo_seg?'var(--green)':t<=OBJETIVOS.tmo_seg*1.2?'var(--amber)':'var(--red)'; }
 function shortName(f){ return String(f).replace(/^\d+\s+/,'').trim(); }
 function getExt(f){ const m=String(f).match(/^(\d+)/); return m?m[1]:''; }
@@ -325,7 +326,7 @@ function renderAll(){
 
 function renderKPIs(agg){
   const t = agg.totals;
-  const okAt = t.pct_attention >= OBJETIVOS.atencion;
+  const claseAt = t.pct_attention >= OBJETIVOS.atencion ? 'ok' : t.pct_attention >= OBJETIVOS.atencion_amarillo ? 'warn' : 'bad';
   const okNo = t.pct_abandoned <= OBJETIVOS.no_atendidas;
   const okTmo = t.tmo_sec <= OBJETIVOS.tmo_seg;
   document.getElementById('kpiGrid').innerHTML = `
@@ -336,7 +337,7 @@ function renderKPIs(agg){
     </div>
     <div class="card">
       <div class="kpi-label">% Atención</div>
-      <div class="kpi-value ${okAt?'ok':'bad'}">${nPct(t.pct_attention)}</div>
+      <div class="kpi-value ${claseAt}">${nPct(t.pct_attention)}</div>
       <div class="kpi-obj">Objetivo: ${nPct(OBJETIVOS.atencion,0)}</div>
     </div>
     <div class="card">

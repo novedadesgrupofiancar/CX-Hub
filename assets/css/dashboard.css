@@ -81,7 +81,7 @@ main{padding:16px 0 40px}
 /* ============ KPI ============ */
 .kpi-label{font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:var(--mute);font-weight:600}
 .kpi-value{font-size:32px;font-weight:700;color:var(--ink);margin-top:8px;line-height:1;font-variant-numeric:tabular-nums}
-.kpi-value.bad{color:var(--red)} .kpi-value.ok{color:var(--green)}
+.kpi-value.bad{color:var(--red)} .kpi-value.ok{color:var(--green)} .kpi-value.warn{color:var(--amber)}
 .kpi-obj{font-size:11px;color:var(--mute);margin-top:6px}
 .kpi-sub{font-size:13px;color:var(--mute);margin-top:6px}
 
