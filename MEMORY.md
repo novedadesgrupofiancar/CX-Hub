@@ -8,7 +8,7 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 
 ## Estado actual
 
-- **Versión publicada:** 1.16.1 (2026-11-13)
+- **Versión publicada:** 1.17.0 (2026-11-13)
 - **Secciones activas:** Inicio, Dashboard, Productos y Modelos, Taller y Postventa, Recalls activos, Guiones,
   Escalamientos, Sucursales, Internos, Procedimientos, Cambios recientes, Buscar (buscador de la home).
 - **Secciones sin construir (gris en el menú):** Promociones, Agendamientos, FAQ, CRM y Tipificaciones.
@@ -21,7 +21,10 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 
 - **2026-11-13 — Colores del % de atención (Dashboard)**: verde desde 90 % (objetivo), amarillo de 80 a 89 %, rojo debajo de 80 %.
   Pedido del usuario (antes el KPI salía rojo debajo de 90 y las tablas usaban 85/70). Editable en `OBJETIVOS` de dashboard.js.
-- **2026-11-13 — Saludos de Guiones con "Chevrolet Montevideo"**: pedido del usuario. El speech de financiación sigue diciendo Grupo Fiancar (no es saludo).
+- **2026-11-13 — Guiones: botones Marcas / Chevrolet** (para la auditoría de Chevrolet). Los speeches "Marcas y Chevrolet"
+  que nombran la empresa se escriben una vez con `[EMPRESA]` y la página arma los dos botones (Grupo Fiancar / Chevrolet
+  Montevideo); también en los pasos 1 y 5 de la llamada. La elección queda guardada en el navegador. Reemplaza el cambio
+  de v1.15.2 (todo a "Chevrolet Montevideo"), que además había tocado por error speeches "Solo Marcas".
 - **2026-11-13 — Dashboard: botón "📥 Leer reportes" (solo admin).** Trae los 5 CSV "mes acumulado" del último mail de
   3CX (Gmail de novedades, se reconocen por el nombre del adjunto), los carga como si se subieran a mano y después se
   toca "Publicar". No publica solo. El script del Dashboard ya no tiene clave propia: valida contra el backend del Hub.
@@ -93,6 +96,7 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 
 ## Historial de versiones
 
+- **1.17.0 (2026-11-13)** — Guiones: botones Marcas / Chevrolet con el nombre de la empresa en cada speech y en la llamada.
 - **1.16.1 (2026-11-13)** — Dashboard: % de atención entre 80 y 89 % en amarillo (KPI, tablas y barras).
 - **1.16.0 (2026-11-13)** — Dashboard: botón "Leer reportes" (mails de 3CX), clave única del Hub, salientes del reporte por mail.
 - **1.15.2 (2026-11-13)** — Guiones: todos los saludos dicen "Chevrolet Montevideo" (antes "Grupo Fiancar").

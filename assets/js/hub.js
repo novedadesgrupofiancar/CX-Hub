@@ -12,7 +12,7 @@
 
 const HUB = {
 
-  version: '1.16.1',
+  version: '1.17.0',
   actualizado: '13/11/2026',
 
   /* Saludo de la home. Cambia solo según la hora: "¡Buen día, equipo!",

@@ -10,6 +10,34 @@ let tabActiva      = 0;   // categoría de WhatsApp seleccionada
 let variantesElegidas = {}; // qué variante quedó elegida en cada categoría
 let busqueda       = '';
 
+/* Marcas o Chevrolet: elegida una vez, vale para todos los speeches (queda guardada en el navegador) */
+const CLAVE_MARCA = 'cxhub-guiones-marca';
+let marcaElegida = 'Marcas';
+try { if (EMPRESAS[localStorage.getItem(CLAVE_MARCA)]) marcaElegida = localStorage.getItem(CLAVE_MARCA); } catch(e){}
+
+function conEmpresa(texto, marca){ return texto.split('[EMPRESA]').join(EMPRESAS[marca]); }
+function tieneEmpresa(bloques){ return bloques.some(b => b.texto.indexOf('[EMPRESA]') >= 0); }
+
+/* Cada variante "Marcas y Chevrolet" que nombra [EMPRESA] se convierte en dos: Marcas y Chevrolet */
+function armarVariantesEmpresa(){
+  SPEECHES_WPP.forEach(s => {
+    s.variantes = s.variantes.flatMap(v => {
+      if (v.nombre !== 'Marcas y Chevrolet' || !tieneEmpresa(v.bloques)) return [v];
+      return Object.keys(EMPRESAS).map(m => Object.assign({}, v, {
+        nombre: m,
+        bloques: v.bloques.map(b => Object.assign({}, b, { texto: conEmpresa(b.texto, m) }))
+      }));
+    });
+  });
+}
+
+function elegirMarca(m){
+  marcaElegida = m;
+  try { localStorage.setItem(CLAVE_MARCA, m); } catch(e){}
+  renderWpp();
+  renderLlamada();
+}
+
 
 /* --- Los *asteriscos* de WhatsApp se ven en negrita --- */
 function escapar(t){
@@ -73,6 +101,8 @@ function elegirTab(i){
 }
 
 function elegirVariante(iTab, iVar){
+  const nombre = SPEECHES_WPP[iTab].variantes[iVar].nombre;
+  if (EMPRESAS[nombre]){ delete variantesElegidas[iTab]; elegirMarca(nombre); return; }
   variantesElegidas[iTab] = iVar;
   renderWpp();
 }
@@ -85,7 +115,8 @@ function renderWpp(){
   if (!cont) return;
 
   const s    = SPEECHES_WPP[tabActiva];
-  const iVar = variantesElegidas[tabActiva] || 0;
+  const iMarca = s.variantes.findIndex(x => x.nombre === marcaElegida);
+  const iVar = variantesElegidas[tabActiva] != null ? variantesElegidas[tabActiva] : Math.max(iMarca, 0);
   const v    = s.variantes[iVar];
 
   // Sub-botones solo si hay más de una variante
@@ -143,7 +174,8 @@ function buscar(valor){
   });
 
   PASOS_LLAMADA.forEach(p => {
-    p.bloques.forEach(b => {
+    p.bloques.forEach(b0 => {
+      const b = Object.assign({}, b0, { texto: conEmpresa(b0.texto, marcaElegida) });
       const enTexto = b.texto.toLowerCase().includes(t);
       const enNota  = ((b.nota||'') + ' ' + (p.nota||'')).toLowerCase().includes(t);
       const enTitulo = (p.titulo + ' ' + (b.etiqueta||'')).toLowerCase().includes(t);
@@ -181,6 +213,10 @@ function renderLlamada(){
   const cont = document.getElementById('guLlamada');
   if (!cont) return;
 
+  const botones = document.getElementById('guLlamadaMarca');
+  if (botones) botones.innerHTML = Object.keys(EMPRESAS).map(m =>
+    `<button class="gu-subtab ${m === marcaElegida ? 'on' : ''}" onclick="elegirMarca('${m}')">${m}</button>`).join('');
+
   cont.innerHTML = PASOS_LLAMADA.map(p => `
     <div class="card gu-paso">
       <div class="gu-paso-head">
@@ -190,7 +226,7 @@ function renderLlamada(){
           ${p.bajada ? `<div class="gu-paso-bajada">${p.bajada}</div>` : ''}
         </div>
       </div>
-      ${p.bloques.map(b => tarjetaBloque(b, '')).join('')}
+      ${p.bloques.map(b => tarjetaBloque(Object.assign({}, b, { texto: conEmpresa(b.texto, marcaElegida) }), '')).join('')}
       ${p.nota ? `<div class="gu-nota"><b>Tener en cuenta:</b> ${p.nota}</div>` : ''}
     </div>`).join('');
 }
@@ -213,6 +249,7 @@ function copiarSpeech(btn){
 document.addEventListener('DOMContentLoaded', () => {
   const regla = document.getElementById('guRegla');
   if (regla) regla.textContent = REGLA_GENERAL;
+  armarVariantesEmpresa();
   renderTabs();
   renderWpp();
   renderLlamada();

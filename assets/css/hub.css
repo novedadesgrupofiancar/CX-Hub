@@ -1105,3 +1105,9 @@ a.resolve{text-decoration:none;color:inherit;}
 /* Recalls: tarjeta que abre la gestión en el Drive (v1.15.1) */
 a.recall-click{text-decoration:none;color:inherit;cursor:pointer;}
 a.recall-click:hover{box-shadow:0 0 0 2px #fff, 0 4px 14px rgba(0,0,0,.18);}
+
+/* =========================================================
+   GUIONES — botones Marcas / Chevrolet en el speech de llamada (v1.17.0)
+   ========================================================= */
+.gu-linea{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.gu-linea span{font-weight:600;}
