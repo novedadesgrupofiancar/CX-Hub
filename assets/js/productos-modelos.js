@@ -68,7 +68,7 @@ const MARCAS_PM = [
     marca: 'Fiat',
     color: '#e6483d',
     importador: 'Sevel',
-    garantia: '3 años o 150.000 km',
+    garantia: '3 años o 100.000 km',
     tolerancia: 1000,
     notas: [],
     planes: [

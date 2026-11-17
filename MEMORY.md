@@ -8,7 +8,7 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 
 ## Estado actual
 
-- **Versión publicada:** 1.18.0 (2026-11-13)
+- **Versión publicada:** 1.18.1 (2026-11-17)
 - **Secciones activas:** Inicio, Dashboard, Productos y Modelos, Taller y Postventa, Recalls activos, Guiones,
   Escalamientos, Sucursales, Internos, Procedimientos, Cambios recientes, Buscar (buscador de la home).
 - **Secciones sin construir (gris en el menú):** Promociones, Agendamientos, FAQ, CRM y Tipificaciones.
@@ -99,6 +99,7 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 
 ## Historial de versiones
 
+- **1.18.1 (2026-11-17)** — Productos y modelos: garantía de Fiat corregida a 3 años o 100.000 km.
 - **1.18.0 (2026-11-13)** — Recalls editables desde la página (admin), guardados en la planilla; número del menú automático.
 - **1.17.0 (2026-11-13)** — Guiones: botones Marcas / Chevrolet con el nombre de la empresa en cada speech y en la llamada.
 - **1.16.1 (2026-11-13)** — Dashboard: % de atención entre 80 y 89 % en amarillo (KPI, tablas y barras).
