@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portal de solicitudes — Contact Center Hub</title>
+<link rel="stylesheet" href="assets/css/sidebar.css">
+<link rel="stylesheet" href="assets/css/hub.css">
+</head>
+<body>
+<div class="app">
+
+  <div id="sidebar"></div>
+
+  <div class="main">
+
+    <div class="topbar">
+      <div class="greeting">
+        <h1>📨 Portal de solicitudes</h1>
+        <p>Cargá y seguí tus solicitudes sin salir del Hub</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;">
+        <a href="index.html" style="font-size:12px;color:var(--blue);font-weight:600;">← Volver al inicio</a>
+      </div>
+    </div>
+
+    <div class="card ps-card">
+      <div class="ps-head">
+        <div class="card-head" style="margin:0"><div class="t">PORTAL DE SOLICITUDES</div></div>
+        <a class="ps-abrir" id="psAbrir" target="_blank" rel="noopener">Abrir en pestaña nueva ↗</a>
+      </div>
+      <iframe class="ps-marco" id="psMarco" title="Portal de solicitudes" allow="clipboard-write"></iframe>
+    </div>
+
+    <div data-hub-footer></div>
+
+  </div>
+</div>
+
+<div class="lightbox-overlay" id="lightboxOverlay" onclick="closeLightbox()">
+  <img id="lightboxImg" src="" alt="Vista ampliada">
+</div>
+
+<script src="assets/js/hub.js"></script>
+<script>
+  /* Link del portal (app de Google). Si cambia, se reemplaza solo acá. */
+  const PORTAL_URL = 'https://script.google.com/macros/s/AKfycbyI85w9a7DT9MttZzw3Yk9AFbrGgZs728pKAxG1BGU0iDJrji4S73_bQSb4F53Q5TtV/exec';
+
+  /* ---------- De acá para abajo no hace falta tocar nada ---------- */
+  document.getElementById('psAbrir').href = PORTAL_URL;
+  document.getElementById('psMarco').src  = PORTAL_URL;
+</script>
+</body>
+</html>

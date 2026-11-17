@@ -1126,3 +1126,12 @@ body.rc-modo-admin .cr-admin-banner.rc-solo-admin{display:flex !important;}
 .rc-acc{display:flex;gap:8px;flex-wrap:wrap;}
 body.rc-modo-admin .card.recalls .recall-item .promo-txt{padding-right:36px;}
 .rc-editando .cr-form{width:100%;} .rc-editando .cr-form input,.rc-editando .cr-form select{width:100%;box-sizing:border-box;}
+
+/* =========================================================
+   PORTAL DE SOLICITUDES — app de Google embebida (v1.19.0)
+   ========================================================= */
+.ps-card{padding:14px;}
+.ps-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px;}
+.ps-abrir{font-size:12px;font-weight:700;color:var(--blue);background:var(--blue-light);border-radius:8px;padding:7px 12px;text-decoration:none;}
+.ps-abrir:hover{background:#dbe7ff;}
+.ps-marco{display:block;width:100%;height:calc(100vh - 230px);min-height:560px;border:1px solid var(--line);border-radius:10px;background:#fff;}

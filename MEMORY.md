@@ -8,7 +8,7 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 
 ## Estado actual
 
-- **Versión publicada:** 1.18.1 (2026-11-17)
+- **Versión publicada:** 1.19.0 (2026-11-17)
 - **Secciones activas:** Inicio, Dashboard, Productos y Modelos, Taller y Postventa, Recalls activos, Guiones,
   Escalamientos, Sucursales, Internos, Procedimientos, Cambios recientes, Buscar (buscador de la home).
 - **Secciones sin construir (gris en el menú):** Promociones, Agendamientos, FAQ, CRM y Tipificaciones.
@@ -19,6 +19,7 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 
 ## Decisiones (y por qué)
 
+- **2026-11-17 — Portal de solicitudes.** Sección nueva que muestra embebida la app de Google del portal (el link está arriba en portal-solicitudes.html). Se embebe bien; botón "Abrir en pestaña nueva" por las dudas.
 - **2026-11-13 — Recalls editables por el admin.** Tarjetas en la hoja "Recalls" (marca, título, descripción, link de gestión
   del Drive). El admin agrega/edita/borra desde recalls.html (✏️ y "＋ Nuevo recall"); borrado lógico. El número del menú
   se calcula solo. Las 2 tarjetas de Chevrolet (airbag y Spark) se cargaron solas al crear la hoja.
@@ -99,6 +100,7 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 
 ## Historial de versiones
 
+- **1.19.0 (2026-11-17)** — Sección nueva "Portal de solicitudes": la app de Google del portal embebida en el Hub, con botón para abrirla en pestaña nueva.
 - **1.18.1 (2026-11-17)** — Productos y modelos: garantía de Fiat corregida a 3 años o 100.000 km.
 - **1.18.0 (2026-11-13)** — Recalls editables desde la página (admin), guardados en la planilla; número del menú automático.
 - **1.17.0 (2026-11-13)** — Guiones: botones Marcas / Chevrolet con el nombre de la empresa en cada speech y en la llamada.

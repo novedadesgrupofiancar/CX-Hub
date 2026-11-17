@@ -18,7 +18,7 @@ Estado, decisiones y pendientes del proyecto: **`MEMORY.md`** (ver la sección "
 - `sidebar.css` lo cargan todas las páginas (aislado bajo `#sidebar`). `hub.css` y `dashboard.css`
   **nunca juntos**: comparten nombres de clase (`.card`, `.topbar`, `.search`, `.badge`...) con estilos distintos.
 - CSS nuevo va **al final de `hub.css`**, en un bloque con encabezado y clases con prefijo de 2–3 letras
-  propio de la sección (`su-` sucursales, `es-` escalamientos, `pm-` productos, `cr-` cambios, `in-` internos, `bu-` buscador, `pr-` procedimientos, `rc-` recalls).
+  propio de la sección (`su-` sucursales, `es-` escalamientos, `pm-` productos, `cr-` cambios, `in-` internos, `bu-` buscador, `pr-` procedimientos, `rc-` recalls, `ps-` portal de solicitudes).
 - Datos separados del render: cada sección tiene arriba su lista comentada (`SUCURSALES`, `TALLERES`,
   `MARCAS_PM`, `SPEECHES_WPP`...) con un aviso "de acá para abajo no hace falta tocar nada".
 - Sin imágenes en base64 (van en `assets/img/`).
