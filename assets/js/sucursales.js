@@ -46,7 +46,7 @@ const SUCURSALES = [
     telefono: '2924 7575',
     whatsapp: '093 407 568',
     mail: 'info@grupofiancar.com',
-    gerente: 'Monica Rodriguez',
+    gerente: 'Dario Amigo',
     mapa: '',
     taller: false
   },
@@ -81,6 +81,22 @@ const SUCURSALES = [
     gerente: 'Eduardo Amigo',
     mapa: 'https://maps.app.goo.gl/5fjE4YvcQiJaAqfE7',
     taller: true
+  },
+  {
+    nombre: 'Car One',
+    color: '#d9a400',
+    direccion: 'Ruta Interbalnearia',
+    referencia: '',   // No tiene teléfono propio: los vendedores están en Internos (pestaña Car One)
+    zona: 'Canelones',
+    horarios: { lunesAViernes: ['10:00','20:00'], sabado: ['10:00','20:00'], domingo: ['10:00','20:00'] },
+    marcas: ['Chevrolet'],
+    usados: false,
+    telefono: '',
+    whatsapp: '',
+    mail: '',
+    gerente: 'Eduardo Amigo',
+    mapa: '',
+    taller: false
   },
   {
     nombre: 'Shopping de Autos',

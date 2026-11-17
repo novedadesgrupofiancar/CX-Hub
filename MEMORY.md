@@ -8,7 +8,7 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 
 ## Estado actual
 
-- **Versión publicada:** 1.19.0 (2026-11-17)
+- **Versión publicada:** 1.19.1 (2026-11-17)
 - **Secciones activas:** Inicio, Dashboard, Productos y Modelos, Taller y Postventa, Recalls activos, Guiones,
   Escalamientos, Sucursales, Internos, Procedimientos, Cambios recientes, Buscar (buscador de la home).
 - **Secciones sin construir (gris en el menú):** Promociones, Agendamientos, FAQ, CRM y Tipificaciones.
@@ -19,6 +19,7 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 
 ## Decisiones (y por qué)
 
+- **2026-11-17 — Datos confirmados por el usuario.** Redes de 10 a 19 hs; NPS todos los meses (sin "reportes"); no se pone "RECALL" en el turno; Monica Rodriguez es vendedora; el gerente de Lynk & Co es el de Rondeau; Car One no tiene teléfono; las listas de precios son las carpetas del Drive (el doc "Para copiar y pegar" se sacó).
 - **2026-11-17 — Portal de solicitudes.** Sección nueva que muestra embebida la app de Google del portal (el link está arriba en portal-solicitudes.html). Se embebe bien; botón "Abrir en pestaña nueva" por las dudas.
 - **2026-11-13 — Recalls editables por el admin.** Tarjetas en la hoja "Recalls" (marca, título, descripción, link de gestión
   del Drive). El admin agrega/edita/borra desde recalls.html (✏️ y "＋ Nuevo recall"); borrado lógico. El número del menú
@@ -78,28 +79,20 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 
 ## Pendientes
 
-- Dashboard: volver a publicar una vez con "Leer reportes" + "Publicar" (al redeployar como novedades, el reporte
-  viejo `cc_reporte.json` quedó en el Drive de otra cuenta y el Dashboard público salía vacío).
-- Procedimientos: el usuario tiene que revisar el borrador de las 29 fichas. Datos "a confirmar": horario de redes, campo de baja en el CRM,
-  "RECALL" en la descripción del turno, frecuencia de NPS/reportes, speech de encuestas para notas 0–9. Tipificaciones vacías (esperan CRM y Tipificaciones).
-- Procedimientos: editar en modo admin no se probó con la clave real.
-- Rehacer los "Manuales" del Drive de Procedimientos (el usuario lo quiere ver más adelante).
-- Listas de precios: confirmar que todo el equipo tiene acceso a las carpetas del Drive (son de la cuenta callcenter).
-  El doc "Precios para copiar y pegar" no se actualiza desde 2025-04.
-- Internos: falta el nombre de la recepcionista de Carrasco (figura "Pendiente") y el cargo de Ramiro Orte.
-- Internos: confirmar si Monica Rodriguez es gerente o vendedora de Lynk & Co (Sucursales dice gerente).
-- Car One no está en Sucursales y no tiene teléfono central.
-- Editar Internos en modo admin no se probó con la clave real.
-- Home: la tarjeta "¿Necesitás contactar a alguien?" sigue con datos de maqueta (se podría alimentar de Internos).
-  También son maqueta "Más consultado esta semana" y "¿Necesitás resolver?".
+- Procedimientos: falta saber en qué campo del CRM se marca la baja de comunicaciones, y el speech de encuestas para notas 0–9.
+  Tipificaciones vacías (esperan CRM y Tipificaciones).
+- Internos: falta el cargo de Ramiro Orte.
+- Rehacer los "Manuales" del Drive de Procedimientos.
+- Home: "¿Necesitás contactar a alguien?", "Más consultado esta semana" y "¿Necesitás resolver?" son datos de maqueta.
 - Taller: la regla 1 (Geely EX5/EX2 y Lynk & Co) tiene un texto contradictorio publicado.
 - Taller: separar JAC Auto y JAC Camiones en el filtro (Rondeau no atiende camiones).
-- README.md desactualizado (solo lista Inicio, Dashboard y Recalls).
+- README.md desactualizado.
 
 ---
 
 ## Historial de versiones
 
+- **1.19.1 (2026-11-17)** — Correcciones del usuario: Car One en Sucursales, gerente de Lynk & Co = el de Rondeau, sin el doc "Para copiar y pegar" en Listas de precios. En la planilla: recepcionista de Carrasco, Car One en Internos, Procedimientos (redes 10–19 hs, NPS mensual, sin paso "RECALL").
 - **1.19.0 (2026-11-17)** — Sección nueva "Portal de solicitudes": la app de Google del portal embebida en el Hub, con botón para abrirla en pestaña nueva.
 - **1.18.1 (2026-11-17)** — Productos y modelos: garantía de Fiat corregida a 3 años o 100.000 km.
 - **1.18.0 (2026-11-13)** — Recalls editables desde la página (admin), guardados en la planilla; número del menú automático.

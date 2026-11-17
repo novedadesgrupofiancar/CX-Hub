@@ -41,8 +41,7 @@ const LISTAS_PRECIOS = [
   { nombre: 'Geely',              url: 'https://drive.google.com/drive/folders/1HnBBwvK1AGYwb9FUffGK9F37121TYuGW' },
   { nombre: 'Lynk & Co',          url: 'https://drive.google.com/drive/folders/1rxavAmiuHhrS4-_iQYgZGfR2M3jt8paz' },
   { nombre: 'JAC Auto',           url: 'https://drive.google.com/drive/folders/1IxBuJ8-o59zp7vmZ6a7xjXFr9liKfkjL' },
-  { nombre: 'JAC Camiones',       url: 'https://drive.google.com/drive/folders/1MdJnxq-jhJRStAVTMStJlSUaDZVr--1q' },
-  { nombre: 'Para copiar y pegar', url: 'https://docs.google.com/document/d/1CbHXy6PplEkewZ8fjRPow-KwaykEJHov94xHdbO9Hv8/edit', doc: true }
+  { nombre: 'JAC Camiones',       url: 'https://drive.google.com/drive/folders/1MdJnxq-jhJRStAVTMStJlSUaDZVr--1q' }
 ];
 
 /* Texto que se repite en Geely y Lynk & Co */
