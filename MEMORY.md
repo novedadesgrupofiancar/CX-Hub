@@ -19,6 +19,7 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 
 ## Decisiones (y por qué)
 
+- **2026-11-18 — El Hub es para los agentes (regla del usuario).** Lo visible sin admin es solo lo que un agente necesita. Las tareas de coordinación (calidad/escucha de llamadas, KPIs, inducción, armado de la campaña, NPS) no se muestran al equipo. Está también en CLAUDE.md, en las reglas de arquitectura.
 - **2026-11-18 — Escalamientos:** todos los reclamos van con copia al coordinador y a Jimena (gerencia CC). Shopping de Autos: ventas y gestoría llegan a los dos responsables del Shopping y de gestoría (mails solo en el backend).
 - **2026-11-17 — Datos confirmados por el usuario.** Redes de 10 a 19 hs; NPS todos los meses (sin "reportes"); no se pone "RECALL" en el turno; Monica Rodriguez es vendedora; el gerente de Lynk & Co es el de Rondeau; Car One no tiene teléfono; las listas de precios son las carpetas del Drive (el doc "Para copiar y pegar" se sacó).
 - **2026-11-17 — Portal de solicitudes.** Sección nueva que muestra embebida la app de Google del portal (el link está arriba en portal-solicitudes.html). Se embebe bien; botón "Abrir en pestaña nueva" por las dudas.
@@ -80,10 +81,14 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 
 ## Pendientes
 
+- Procedimientos: 5 fichas de coordinación visibles para los agentes (Calidad: escucha de llamadas, KPIs, Inducción, armado de la Campaña mensual, NPS). Propuesta: solo admin; espera confirmación de cuáles.
 - Procedimientos: falta saber en qué campo del CRM se marca la baja de comunicaciones, y el speech de encuestas para notas 0–9.
   Tipificaciones vacías (esperan CRM y Tipificaciones).
 - Internos: falta el cargo de Ramiro Orte.
-- Rehacer los "Manuales" del Drive de Procedimientos.
+- Manuales del Drive (en curso, diseño aprobado 2026-11-18): 5 docs viejos pasan a 3 nuevos: (1) Manual del Contact Center
+  [borrador creado, espera revisión], (2) Manual de Encuestas con el speech de encuestas adentro (NO va a Guiones: CX/calidad
+  separado de atención) y camino para notas 0–9, (3) Inducción de 3 días. Los viejos no se tocan; los links de
+  Procedimientos se cambian recién con el OK.
 - Home: "¿Necesitás contactar a alguien?", "Más consultado esta semana" y "¿Necesitás resolver?" son datos de maqueta.
 - Taller: la regla 1 (Geely EX5/EX2 y Lynk & Co) tiene un texto contradictorio publicado.
 - Taller: separar JAC Auto y JAC Camiones en el filtro (Rondeau no atiende camiones).

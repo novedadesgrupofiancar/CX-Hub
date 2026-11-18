@@ -13,6 +13,9 @@ Estado, decisiones y pendientes del proyecto: **`MEMORY.md`** (ver la sección "
 
 ## Reglas de arquitectura (no negociables)
 
+- **El Hub es el repositorio centralizado de información de los AGENTES.** Todo lo que se ve sin modo admin tiene que ser
+  algo que un agente necesita para atender o hacer su tarea. Las tareas de coordinación (calidad y escucha de llamadas,
+  KPIs, inducción, armado de campañas, NPS, reportes) nunca quedan a la vista del equipo: van solo en modo admin o fuera del Hub.
 - HTML/CSS/JS plano: sin frameworks, sin npm, sin build. Una página por sección en la raíz.
 - Rutas siempre relativas (`assets/...`, nunca `/assets/...`). Archivos en minúsculas, sin tildes ni espacios.
 - `sidebar.css` lo cargan todas las páginas (aislado bajo `#sidebar`). `hub.css` y `dashboard.css`
