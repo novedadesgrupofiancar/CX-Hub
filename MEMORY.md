@@ -12,13 +12,14 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 - **Secciones activas:** Inicio, Dashboard, Productos y Modelos, Taller y Postventa, Recalls activos, Guiones,
   Escalamientos, Sucursales, Internos, Procedimientos, Cambios recientes, Buscar (buscador de la home).
 - **Secciones sin construir (gris en el menú):** Promociones, Agendamientos, FAQ, CRM y Tipificaciones.
-- **Backend:** Apps Script único "CX-Hub Backend" (reclamos + contenidos + internos + procedimientos + recalls), deployment @11.
+- **Backend:** Apps Script único "CX-Hub Backend" (reclamos + contenidos + internos + procedimientos + recalls), deployment @12.
   Dashboard: Apps Script propio (cuenta novedades), deployment @3; valida la clave contra el Hub y lee los mails de 3CX.
 
 ---
 
 ## Decisiones (y por qué)
 
+- **2026-11-18 — Escalamientos:** todos los reclamos van con copia al coordinador y a Jimena (gerencia CC). Shopping de Autos: ventas y gestoría llegan a los dos responsables del Shopping y de gestoría (mails solo en el backend).
 - **2026-11-17 — Datos confirmados por el usuario.** Redes de 10 a 19 hs; NPS todos los meses (sin "reportes"); no se pone "RECALL" en el turno; Monica Rodriguez es vendedora; el gerente de Lynk & Co es el de Rondeau; Car One no tiene teléfono; las listas de precios son las carpetas del Drive (el doc "Para copiar y pegar" se sacó).
 - **2026-11-17 — Portal de solicitudes.** Sección nueva que muestra embebida la app de Google del portal (el link está arriba en portal-solicitudes.html). Se embebe bien; botón "Abrir en pestaña nueva" por las dudas.
 - **2026-11-13 — Recalls editables por el admin.** Tarjetas en la hoja "Recalls" (marca, título, descripción, link de gestión
