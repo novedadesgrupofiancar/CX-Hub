@@ -49,11 +49,12 @@ Sin clave todo es solo lectura.
 **Backend (Google Apps Script "CX-Hub Backend", cuenta novedades)** — una sola URL en `HUB.api`:
 - `GET ?action=contenidos` → Cambios recientes / Importante hoy (público, cacheado 5 min).
 - `GET ?action=internos` → Internos (público, cacheado 5 min).
-- `GET ?action=procedimientos` → fichas de Procedimientos (público, cacheado 5 min).
+- `GET ?action=procedimientos` → fichas de Procedimientos (público, cacheado 5 min). **Nunca** incluye el bloque `coordinacion`:
+  esas fichas solo salen con `POST action: procedimientosAdmin` + clave, y `procedimientos.js` no las guarda en `localStorage`.
 - `GET ?action=recalls` → tarjetas de Recalls activos (público, cacheado 5 min).
 - `POST` sin `action` → formulario de reclamos de Escalamientos (manda mails).
 - `POST` con `action` + `clave` → escritura admin (`verificarClave`, `listarAdmin`, `guardar`, `borrar`, `guardarInternos`,
-  `guardarProcedimiento`, `borrarProcedimiento`, `guardarRecall`, `borrarRecall`).
+  `procedimientosAdmin`, `guardarProcedimiento`, `borrarProcedimiento`, `guardarRecall`, `borrarRecall`).
 - Datos en la planilla "Reclamos CX-Hub": hojas `Reclamos`, `Cambios recientes`, `Importante hoy`, `Internos`,
   `Internos - sucursales`, `Internos (historial)`, `Procedimientos`, `Recalls`. Borrado lógico en contenidos, procedimientos y recalls; en internos, cada guardado copia
   la versión anterior al historial. La clave está en Propiedades del script (`CLAVE_ADMIN`), nunca en el código.

@@ -8,17 +8,18 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 
 ## Estado actual
 
-- **Versión publicada:** 1.19.1 (2026-11-17)
+- **Versión publicada:** 1.19.2 (2026-11-18)
 - **Secciones activas:** Inicio, Dashboard, Productos y Modelos, Taller y Postventa, Recalls activos, Guiones,
   Escalamientos, Sucursales, Internos, Procedimientos, Cambios recientes, Buscar (buscador de la home).
 - **Secciones sin construir (gris en el menú):** Promociones, Agendamientos, FAQ, CRM y Tipificaciones.
-- **Backend:** Apps Script único "CX-Hub Backend" (reclamos + contenidos + internos + procedimientos + recalls), deployment @12.
+- **Backend:** Apps Script único "CX-Hub Backend" (reclamos + contenidos + internos + procedimientos + recalls), deployment @13.
   Dashboard: Apps Script propio (cuenta novedades), deployment @3; valida la clave contra el Hub y lee los mails de 3CX.
 
 ---
 
 ## Decisiones (y por qué)
 
+- **2026-11-18 — Procedimientos: bloque Coordinación solo admin.** El servidor no lo manda sin clave (GET público filtrado; admin usa `procedimientosAdmin`) y no se guarda en el navegador. Para ocultar una ficha al equipo, ponerle bloque "coordinacion".
 - **2026-11-18 — El Hub es para los agentes (regla del usuario).** Lo visible sin admin es solo lo que un agente necesita. Las tareas de coordinación (calidad/escucha de llamadas, KPIs, inducción, armado de la campaña, NPS) no se muestran al equipo. Está también en CLAUDE.md, en las reglas de arquitectura.
 - **2026-11-18 — Escalamientos:** todos los reclamos van con copia al coordinador y a Jimena (gerencia CC). Shopping de Autos: ventas y gestoría llegan a los dos responsables del Shopping y de gestoría (mails solo en el backend).
 - **2026-11-17 — Datos confirmados por el usuario.** Redes de 10 a 19 hs; NPS todos los meses (sin "reportes"); no se pone "RECALL" en el turno; Monica Rodriguez es vendedora; el gerente de Lynk & Co es el de Rondeau; Car One no tiene teléfono; las listas de precios son las carpetas del Drive (el doc "Para copiar y pegar" se sacó).
@@ -81,7 +82,6 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 
 ## Pendientes
 
-- Procedimientos: 5 fichas de coordinación visibles para los agentes (Calidad: escucha de llamadas, KPIs, Inducción, armado de la Campaña mensual, NPS). Propuesta: solo admin; espera confirmación de cuáles.
 - Procedimientos: falta saber en qué campo del CRM se marca la baja de comunicaciones, y el speech de encuestas para notas 0–9.
   Tipificaciones vacías (esperan CRM y Tipificaciones).
 - Internos: falta el cargo de Ramiro Orte.
@@ -98,6 +98,7 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 
 ## Historial de versiones
 
+- **1.19.2 (2026-11-18)** — Procedimientos: bloque "Coordinación (solo admin)" con Campaña mensual: armado, NPS, Calidad, KPIs e Inducción. El equipo no lo recibe; la Campaña mensual de service queda para los agentes solo con la parte de llamar.
 - **1.19.1 (2026-11-17)** — Correcciones del usuario: Car One en Sucursales, gerente de Lynk & Co = el de Rondeau, sin el doc "Para copiar y pegar" en Listas de precios. En la planilla: recepcionista de Carrasco, Car One en Internos, Procedimientos (redes 10–19 hs, NPS mensual, sin paso "RECALL").
 - **1.19.0 (2026-11-17)** — Sección nueva "Portal de solicitudes": la app de Google del portal embebida en el Hub, con botón para abrirla en pestaña nueva.
 - **1.18.1 (2026-11-17)** — Productos y modelos: garantía de Fiat corregida a 3 años o 100.000 km.

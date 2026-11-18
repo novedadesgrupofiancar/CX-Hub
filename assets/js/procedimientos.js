@@ -14,7 +14,8 @@ const PR_BLOQUES = [
   { id: 'atencion',  nombre: 'Atención',                     icono: '🎧' },
   { id: 'cliente',   nombre: 'Según lo que pide el cliente', icono: '📌' },
   { id: 'salientes', nombre: 'Tareas salientes y de oficina', icono: '📤' },
-  { id: 'equipo',    nombre: 'Equipo',                       icono: '👥' }
+  { id: 'equipo',    nombre: 'Equipo',                       icono: '👥' },
+  { id: 'coordinacion', nombre: 'Coordinación (solo admin)',  icono: '🔒' }   // el equipo NO lo ve: el servidor no lo manda sin clave
 ];
 
 const PR_DOCUMENTOS = [
@@ -62,6 +63,11 @@ function avisoPR(tipo, html){
 
 /* ========== Carga ========== */
 
+/* En el navegador solo quedan las fichas del equipo: las de coordinación nunca */
+function guardarCachePR(){
+  try { localStorage.setItem(PR_CACHE, JSON.stringify(fichasPR.filter(f => f.bloque !== 'coordinacion'))); } catch(e){}
+}
+
 async function cargarPR(){
   try {
     const guardado = JSON.parse(localStorage.getItem(PR_CACHE) || 'null');
@@ -71,7 +77,11 @@ async function cargarPR(){
     const res = await (await fetch(HUB.api + '?action=procedimientos&t=' + Date.now())).json();
     if (!res.ok) throw new Error(res.error || 'error');
     fichasPR = res.datos.fichas || [];
-    try { localStorage.setItem(PR_CACHE, JSON.stringify(fichasPR)); } catch(e){}
+    guardarCachePR();
+    if (claveAdmin){                       // admin: suma las fichas de coordinación (no se guardan en el navegador)
+      const todo = await llamarAdmin('procedimientosAdmin').catch(() => null);
+      if (todo && todo.ok) fichasPR = todo.datos.fichas || fichasPR;
+    }
     if (!editandoPR) renderPR();
   } catch(e){
     if (!fichasPR.length) document.getElementById('prLista').innerHTML =
@@ -85,7 +95,7 @@ async function cargarPR(){
 function renderFiltrosPR(){
   const chip = (id, txt) => `<button class="ts-chip ${filtroPR === id ? 'on' : ''}" onclick="filtrarPR('${id}')">${txt}</button>`;
   document.getElementById('prFiltros').innerHTML =
-    chip('', 'Todos') + PR_BLOQUES.map(b => chip(b.id, b.icono + ' ' + b.nombre.replace(' y de oficina', '').replace('Según lo que pide el cliente', 'Lo que pide el cliente'))).join('');
+    chip('', 'Todos') + PR_BLOQUES.filter(b => b.id !== 'coordinacion' || claveAdmin).map(b => chip(b.id, b.icono + ' ' + b.nombre.replace(' y de oficina', '').replace('Según lo que pide el cliente', 'Lo que pide el cliente'))).join('');
 }
 
 function coincidePR(f, palabras){
@@ -273,11 +283,11 @@ async function guardarPR(){
   const i = fichasPR.findIndex(f => f.id === guardada.id);
   if (i >= 0) fichasPR[i] = guardada; else fichasPR.push(guardada);
   fichasPR.sort((a, b) => PR_BLOQUES.findIndex(x => x.id === a.bloque) - PR_BLOQUES.findIndex(x => x.id === b.bloque) || (+a.orden || 0) - (+b.orden || 0));
-  try { localStorage.setItem(PR_CACHE, JSON.stringify(fichasPR)); } catch(e){}
+  guardarCachePR();
   editandoPR = null;
   sinGuardarPR = false;
   abiertaPR = guardada.id;
-  avisoPR('ok', '✓ Guardado. Ya lo ve todo el equipo.');
+  avisoPR('ok', guardada.bloque === 'coordinacion' ? '✓ Guardado. Es de coordinación: el equipo no lo ve.' : '✓ Guardado. Ya lo ve todo el equipo.');
   renderPR();
 }
 
@@ -295,7 +305,7 @@ async function borrarPR(id){
   const res = await llamarAdmin('borrarProcedimiento', { id: id }).catch(() => ({ ok: false, error: 'Sin conexión' }));
   if (!res.ok){ avisoPR('mal', '⚠️ No se borró: ' + escaparHTML(res.error || 'error') + '.'); renderPR(); return; }
   fichasPR = fichasPR.filter(f => f.id !== id);
-  try { localStorage.setItem(PR_CACHE, JSON.stringify(fichasPR)); } catch(e){}
+  guardarCachePR();
   abiertaPR = '';
   avisoPR('ok', '✓ Procedimiento borrado (queda guardado en la planilla, por las dudas).');
   renderPR();
