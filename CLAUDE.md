@@ -95,7 +95,7 @@ Hay git con credenciales guardadas en la PC del coordinador (no hay `gh`). Flujo
 git clone https://github.com/novedadesgrupofiancar/CX-Hub.git <carpeta temporal>
 # copiar solo los archivos cambiados desde la copia de trabajo
 git diff --cached --ignore-cr-at-eol --stat
-git -c user.name="Coordinación Contact Center" -c user.email="m.diaz@grupofiancar.com" commit -m "vX.Y.Z: ..."
+git -c user.name="Coordinación Contact Center" commit -m "vX.Y.Z: ..."   # mail del autor: el global de la PC (novedades), nunca uno personal
 git push origin main
 ```
 
