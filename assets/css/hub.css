@@ -1135,3 +1135,9 @@ body.rc-modo-admin .card.recalls .recall-item .promo-txt{padding-right:36px;}
 .ps-abrir{font-size:12px;font-weight:700;color:var(--blue);background:var(--blue-light);border-radius:8px;padding:7px 12px;text-decoration:none;}
 .ps-abrir:hover{background:#dbe7ff;}
 .ps-marco{display:block;width:100%;height:calc(100vh - 230px);min-height:560px;border:1px solid var(--line);border-radius:10px;background:#fff;}
+
+/* =========================================================
+   TALLER — tarjeta de taller externo (v1.19.3)
+   ========================================================= */
+.ts-externo{background:#f8fafc;}
+.ts-aviso-ext{margin-top:4px;padding:10px 12px;border-radius:10px;background:var(--amber-light);color:#7a5600;font-size:12.5px;font-weight:600;line-height:1.4;}

@@ -130,7 +130,7 @@ const MARCAS_PM = [
     garantia: '5 años o 150.000 km',
     tolerancia: 1500,
     notas: [
-      '🚫 <b>No se atienden en Taller Rondeau.</b> Van a Carrasco o a Obisun (2203 0907).'
+      '🚫 <b>No se atienden en Taller Rondeau.</b> Primera opción: Obisun (2203 0907, no se agenda, se le pasa el número). Si no, Carrasco.'
     ],
     planes: [
       { modelos: ['Todos los modelos'], primero: 10000, segundo: 20000, cada: 10000,

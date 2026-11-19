@@ -8,6 +8,10 @@
    horarios: se escriben como pares [desde, hasta] en formato 24hs.
              Un par = jornada corrida. Dos pares = con corte de mediodía.
              Los tres talleres trabajan de lunes a viernes.
+
+   TALLER EXTERNO (externo: true): no es nuestro y no agendamos.
+             Lleva telefono y aviso; no lleva horario, personas ni capacidad.
+   primeroPara: con ese filtro de marca, la tarjeta sale primera.
    ========================================================= */
 
 const TALLERES = [
@@ -17,11 +21,12 @@ const TALLERES = [
     direccion: 'Av. Giannattasio esq. Tacuarí',
     referencia: 'Frente al Puente de las Américas',
     horarios: [['08:30','12:30'], ['14:00','18:30']],
-    marcas: ['Lynk & Co', 'Geely', 'JAC'],
+    marcas: ['Lynk & Co', 'Geely', 'JAC Auto', 'JAC Camiones'],
     recepcionistas: ['Mathias Ibañez', 'Luciara Sosa'],
     jefe: 'Leonardo Landeira',
-    capacidad: '15',
-    capacidadUnidad: 'autos por día'
+    capacidad: '5',
+    capacidadUnidad: 'autos por día como máximo',
+    capacidadNota: 'La agenda es por horas: el resto es para camiones'
   },
   {
     nombre: 'Taller Rondeau',
@@ -29,7 +34,7 @@ const TALLERES = [
     direccion: 'Av. Rondeau 2165 esq. Colombia',
     referencia: '',
     horarios: [['08:00','18:15']],
-    marcas: ['Fiat', 'Lynk & Co', 'Geely', 'JAC', 'Chevrolet'],
+    marcas: ['Fiat', 'Lynk & Co', 'Geely', 'JAC Auto', 'Chevrolet'],
     recepcionistas: ['Lucero Alamos', 'Alison'],
     jefe: 'Fernando Rodríguez',
     capacidad: '70',
@@ -47,11 +52,22 @@ const TALLERES = [
     jefe: 'Daniel Massaferro',
     capacidad: '26',
     capacidadUnidad: 'autos por día'
+  },
+  {
+    nombre: 'Obisun',
+    externo: true,
+    primeroPara: 'JAC Camiones',
+    color: '#64748b',
+    direccion: 'Gral. Fausto Aguilar 1283',
+    referencia: 'Aguada · Taller independiente autorizado',
+    marcas: ['JAC Camiones'],
+    telefono: '2203 0907',
+    aviso: 'No agendamos: pasarle el número al cliente. Primera opción para camiones, sobre todo si le quedaba cómodo Rondeau (misma zona).'
   }
 ];
 
 /* Marcas para los filtros. El orden es el que se ve en pantalla. */
-const MARCAS = ['Chevrolet', 'Fiat', 'Geely', 'Lynk & Co', 'JAC'];
+const MARCAS = ['Chevrolet', 'Fiat', 'Geely', 'Lynk & Co', 'JAC Auto', 'JAC Camiones'];
 
 
 /* ---- ASISTENCIA TÉCNICA --------------------------------
@@ -107,7 +123,8 @@ function renderTalleres(filtro){
   const cont = document.getElementById('listaTalleres');
   if (!cont) return;
 
-  const visibles = TALLERES.filter(t => !filtro || t.marcas.includes(filtro));
+  const visibles = TALLERES.filter(t => !filtro || t.marcas.includes(filtro))
+    .sort((a, b) => (b.primeroPara === filtro && !!filtro) - (a.primeroPara === filtro && !!filtro));
 
   if (!visibles.length){
     cont.innerHTML = `<div class="ts-vacio">Ninguno de los talleres cargados atiende esa marca.</div>`;
@@ -115,6 +132,7 @@ function renderTalleres(filtro){
   }
 
   cont.innerHTML = visibles.map(t => {
+    if (t.externo) return tarjetaExterno(t, filtro);
     const est = estadoTaller(t);
     const marcas = t.marcas.map(m =>
       `<span class="ts-marca ${filtro === m ? 'match' : ''}">${m}</span>`).join('');
@@ -163,6 +181,33 @@ function renderTalleres(filtro){
       </div>
     </div>`;
   }).join('');
+}
+
+
+/* Taller externo: dirección, teléfono para pasarle al cliente y aviso (no se agenda) */
+function tarjetaExterno(t, filtro){
+  const marcas = t.marcas.map(m => `<span class="ts-marca ${filtro === m ? 'match' : ''}">${m}</span>`).join('');
+  const ref = t.referencia ? `<div class="ts-ref">${t.referencia}</div>` : '';
+  return `
+    <div class="ts-card ts-externo" style="--acento:${t.color}">
+      <div class="ts-top">
+        <h2 class="ts-nombre">${t.nombre}</h2>
+        <span class="ts-estado off">Taller externo</span>
+      </div>
+      <div class="ts-dir">
+        <span class="ts-pin">📍</span>
+        <div><div class="ts-calle">${t.direccion}</div>${ref}</div>
+        <button class="ts-copiar" type="button"
+                onclick="copiarDireccion(this, '${t.direccion.replace(/'/g, "\\'")}')">Copiar</button>
+      </div>
+      <div class="ts-dir">
+        <span class="ts-pin">📞</span>
+        <div><div class="ts-calle">${t.telefono}</div><div class="ts-ref">Teléfono para pasarle al cliente</div></div>
+        <button class="ts-copiar" type="button" onclick="copiarDireccion(this, '${t.telefono}')">Copiar</button>
+      </div>
+      <div class="ts-marcas">${marcas}</div>
+      <div class="ts-aviso-ext">🚫 ${t.aviso}</div>
+    </div>`;
 }
 
 
