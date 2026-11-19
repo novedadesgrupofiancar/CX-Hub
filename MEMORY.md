@@ -8,7 +8,7 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 
 ## Estado actual
 
-- **Versión publicada:** 1.19.3 (2026-11-19)
+- **Versión publicada:** 1.19.4 (2026-11-19)
 - **Secciones activas:** Inicio, Dashboard, Productos y Modelos, Taller y Postventa, Recalls activos, Guiones,
   Escalamientos, Sucursales, Internos, Procedimientos, Cambios recientes, Buscar (buscador de la home).
 - **Secciones sin construir (gris en el menú):** Promociones, Agendamientos, FAQ, CRM y Tipificaciones.
@@ -19,6 +19,8 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 
 ## Decisiones (y por qué)
 
+- **2026-11-19 — Manual del Contact Center publicado.** Reemplaza al "Manual de atención" y a "Capacitación – Atención" en Documentos de referencia; se lee con el link. El "Cronograma de inducción" queda solo admin (`soloAdmin: true` en PR_DOCUMENTOS).
+- **2026-11-19 — Geely EX5 EM-i:** plan propio (1.er service a 10.000 km, después cada 10.000), separado del EX5. Agenda de actualización: máximo 3 por día en Rondeau y 2 en Carrasco.
 - **2026-11-19 — Taller.** Carrasco: agenda por horas, máximo 5 autos por día y el resto camiones. JAC Camiones: primera opción Obisun (taller externo, Aguada); no se agenda, se le pasa el teléfono. Campañas activas de noviembre: kilometraje Chevrolet, kilometraje Marcas y JAC Camiones primer service (preguntar si lo hicieron y dónde).
 - **2026-11-18 — Procedimientos: bloque Coordinación solo admin.** El servidor no lo manda sin clave (GET público filtrado; admin usa `procedimientosAdmin`) y no se guarda en el navegador. Para ocultar una ficha al equipo, ponerle bloque "coordinacion".
 - **2026-11-18 — El Hub es para los agentes (regla del usuario).** Lo visible sin admin es solo lo que un agente necesita. Las tareas de coordinación (calidad/escucha de llamadas, KPIs, inducción, armado de la campaña, NPS) no se muestran al equipo. Está también en CLAUDE.md, en las reglas de arquitectura.
@@ -86,18 +88,17 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 - Procedimientos: falta saber en qué campo del CRM se marca la baja de comunicaciones, y el speech de encuestas para notas 0–9.
   Tipificaciones vacías (esperan CRM y Tipificaciones).
 - Internos: falta el cargo de Ramiro Orte.
-- Manuales del Drive (en curso, diseño aprobado 2026-11-18): 5 docs viejos pasan a 3 nuevos: (1) Manual del Contact Center
-  [borrador creado, espera revisión], (2) Manual de Encuestas con el speech de encuestas adentro (NO va a Guiones: CX/calidad
-  separado de atención) y camino para notas 0–9, (3) Inducción de 3 días. Los viejos no se tocan; los links de
-  Procedimientos se cambian recién con el OK.
+- Panel de tareas del equipo (sección nueva, pedida 2026-11-19): diseño propuesto, espera OK.
+- Manuales del Drive (diseño aprobado 2026-11-18): (1) Manual del Contact Center [publicado 2026-11-19], (2) Manual de Encuestas con el speech de encuestas adentro (NO va a Guiones: CX/calidad
+  separado de atención) y camino para notas 0–9, (3) Inducción de 3 días. Los viejos no se tocan.
 - Home: "¿Necesitás contactar a alguien?", "Más consultado esta semana" y "¿Necesitás resolver?" son datos de maqueta.
-- Taller: la regla 1 (Geely EX5/EX2 y Lynk & Co) tiene un texto contradictorio publicado.
 - README.md desactualizado.
 
 ---
 
 ## Historial de versiones
 
+- **1.19.4 (2026-11-19)** — Manual del Contact Center en Procedimientos (Cronograma de inducción solo admin), plan propio del Geely EX5 EM-i, regla 1 de Taller corregida (3 Rondeau / 2 Carrasco).
 - **1.19.3 (2026-11-19)** — Taller: Obisun como taller externo (JAC Camiones, primera opción, no se agenda), filtro JAC Auto / JAC Camiones, Carrasco máximo 5 autos por día (agenda por horas). Avisos en Cambios recientes e Importante hoy hasta el 30/11.
 - **1.19.2 (2026-11-18)** — Procedimientos: bloque "Coordinación (solo admin)" con Campaña mensual: armado, NPS, Calidad, KPIs e Inducción. El equipo no lo recibe; la Campaña mensual de service queda para los agentes solo con la parte de llamar.
 - **1.19.1 (2026-11-17)** — Correcciones del usuario: Car One en Sucursales, gerente de Lynk & Co = el de Rondeau, sin el doc "Para copiar y pegar" en Listas de precios. En la planilla: recepcionista de Carrasco, Car One en Internos, Procedimientos (redes 10–19 hs, NPS mensual, sin paso "RECALL").

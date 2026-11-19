@@ -84,12 +84,14 @@ const MARCAS_PM = [
     notas: [
       '📅 Vehículos <b>anteriores a mayo 2024</b>: 4 años o 100.000 km.',
       '🔋 <b>Eléctricos:</b> la batería tiene 8 años de garantía.',
+      '⚠️ <b>EX5 EM-i no es lo mismo que EX5:</b> el EM-i hace el 1.er service a los <b>10.000 km</b> y después cada 10.000 km.',
       NOTA_ACTUALIZACION
     ],
     planes: [
       { modelos: ['EX2', 'EX5'], primero: 5000, segundo: 20000, cada: 20000, porTiempo: true },
+      { modelos: ['EX5 EM-i'], primero: 10000, segundo: 20000, cada: 10000 },
       { modelos: ['Resto de los modelos'], primero: 10000, segundo: 20000, cada: 10000,
-        incluye: 'Coolray, Coolray Lite, Coolray New, Azkarra, Cityray, EX5 EM-i, Geometry C, Geometry E, GX3, GX3 Pro' }
+        incluye: 'Coolray, Coolray Lite, Coolray New, Azkarra, Cityray, Geometry C, Geometry E, GX3, GX3 Pro' }
     ]
   },
   {

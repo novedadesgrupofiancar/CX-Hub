@@ -19,12 +19,12 @@ const PR_BLOQUES = [
 ];
 
 const PR_DOCUMENTOS = [
-  { nombre: 'Manual de atención',       url: 'https://docs.google.com/document/d/1Abmlqn77oc_jiMXNP2pXdQ4dog-Fnuvps7pGX5_Vra8/edit' },
-  { nombre: 'Capacitación – Atención',  url: 'https://docs.google.com/document/d/1PL9o-R8r1pYDLlE3h-Ow8yZN_veIYtqBed8tsG_ZfOs/edit' },
+  { nombre: 'Manual del Contact Center', url: 'https://docs.google.com/document/d/1X7OdPlxLAs6vhxcxhcyPmVLsYCVcJWBOYuL7uor_DR0/edit' },
   { nombre: 'Capacitación – Encuestas', url: 'https://docs.google.com/document/d/1HJL5ZuuoNoVpsKSPJ7t8Rdx29BHpPhFRr7nircI1rE0/edit' },
   { nombre: 'Speech de encuestas',      url: 'https://docs.google.com/document/d/1n0BJgDTFk0jAinlB08P2r4Dz-hz5YZqZcEXvc5gR-fM/edit' },
-  { nombre: 'Cronograma de inducción',  url: 'https://docs.google.com/document/d/1Jgy6rLtX_CA0bbUY7S5zII0yJId_-eq0mPbmQPwxO7U/edit' }
+  { nombre: 'Cronograma de inducción',  url: 'https://docs.google.com/document/d/1Jgy6rLtX_CA0bbUY7S5zII0yJId_-eq0mPbmQPwxO7U/edit', soloAdmin: true }
 ];
+// soloAdmin: true -> el link solo se ve en modo admin (material de coordinación, no del equipo)
 
 
 /* =========================================================
@@ -184,7 +184,7 @@ function filtrarPR(id){ filtroPR = id; renderPR(); }
 function buscarPR(t){ textoPR = t.trim(); renderPR(); }
 
 function renderDocsPR(){
-  document.getElementById('prDocs').innerHTML = PR_DOCUMENTOS.map(d =>
+  document.getElementById('prDocs').innerHTML = PR_DOCUMENTOS.filter(d => !d.soloAdmin || claveAdmin).map(d =>
     `<a class="ts-tarifa" target="_blank" rel="noopener" href="${escaparHTML(d.url)}"><b>${escaparHTML(d.nombre)}</b><span>Abrir →</span></a>`).join('');
 }
 
@@ -201,6 +201,7 @@ async function iniciarAdminPR(clave){
     return;
   }
   document.body.classList.add('pr-modo-admin');
+  renderDocsPR();
 }
 
 function editarPR(id){
