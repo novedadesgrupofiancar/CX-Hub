@@ -1141,3 +1141,40 @@ body.rc-modo-admin .card.recalls .recall-item .promo-txt{padding-right:36px;}
    ========================================================= */
 .ts-externo{background:#f8fafc;}
 .ts-aviso-ext{margin-top:4px;padding:10px 12px;border-radius:10px;background:var(--amber-light);color:#7a5600;font-size:12.5px;font-weight:600;line-height:1.4;}
+
+/* =========================================================
+   TAREAS DE LA SEMANA — panel del equipo (v1.20.0)
+   ========================================================= */
+.tr-solo-admin{display:none !important;}
+body.tr-modo-admin .tr-solo-admin{display:inline-flex !important;}
+body.tr-modo-admin .cr-admin-banner.tr-solo-admin{display:flex !important;}
+.tr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-bottom:16px;align-items:start;}
+.tr-card{border-top:4px solid var(--tr-color,var(--blue));padding:16px;margin:0;position:relative;}
+body.tr-modo-admin .tr-card .tr-cab{padding-right:38px;}
+.tr-card.tr-hoy{box-shadow:0 0 0 2px var(--tr-color,var(--blue));}
+.tr-cab{display:flex;align-items:flex-start;gap:8px;flex-wrap:wrap;}
+.tr-titulo{font-size:15px;flex:1;min-width:140px;}
+.tr-frec{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;background:var(--blue-light);color:var(--blue);border-radius:6px;padding:3px 8px;}
+.tr-editar{position:absolute;top:12px;right:12px;background:var(--blue-light);border:none;border-radius:7px;padding:4px 7px;font-size:13px;cursor:pointer;}
+.tr-texto{font-size:13px;color:var(--sub);line-height:1.45;margin:10px 0;}
+.tr-quien{font-size:13px;font-weight:600;margin-bottom:8px;}
+.tr-turnos{list-style:none;margin:0 0 8px;padding:0;display:flex;flex-direction:column;gap:4px;}
+.tr-turnos li{display:flex;align-items:center;gap:8px;font-size:13px;padding:6px 8px;border-radius:8px;background:#f8fafc;}
+.tr-turnos li b{min-width:82px;}
+.tr-turnos li span{flex:1;}
+.tr-turnos li.hoy{background:var(--amber-light);}
+.tr-turnos li em{font-style:normal;font-size:10px;font-weight:800;color:#7a5600;}
+.tr-link{display:inline-block;font-size:12px;font-weight:700;color:var(--blue);margin-top:4px;}
+.tr-vacio{background:#f8fafc;color:var(--sub);border-radius:10px;padding:14px;font-size:13px;font-weight:600;text-align:center;}
+.tr-editando .cr-form{width:100%;}
+.tr-editando .cr-form input:not([type=checkbox]),.tr-editando .cr-form textarea{width:100%;box-sizing:border-box;}
+.tr-dias{display:flex;flex-direction:column;gap:6px;margin:4px 0 10px;}
+.tr-dia{display:flex;align-items:center;gap:8px;}
+.tr-dia .tr-check{display:flex;align-items:center;gap:6px;min-width:110px;font-size:13px;margin:0;}
+.tr-dia input[data-quien]{flex:1;min-width:0;}
+.tr-home{margin-bottom:16px;}
+.tr-home-lista{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;}
+.tr-home-item{display:flex;flex-direction:column;gap:2px;padding:10px 12px;border-radius:10px;background:#f8fafc;border-left:4px solid var(--tr-color,var(--blue));color:var(--ink);text-decoration:none;}
+.tr-home-item b{font-size:13.5px;}
+.tr-home-item span{font-size:12px;color:var(--sub);}
+.tr-home-item:hover{background:var(--blue-light);}

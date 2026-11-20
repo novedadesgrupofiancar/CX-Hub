@@ -12,8 +12,8 @@
 
 const HUB = {
 
-  version: '1.19.4',
-  actualizado: '19/11/2026',
+  version: '1.20.0',
+  actualizado: '20/11/2026',
 
   /* Saludo de la home. Cambia solo según la hora: "¡Buen día, equipo!",
      "¡Buenas tardes, equipo!", "¡Buenas noches, equipo!".
@@ -32,6 +32,7 @@ const HUB = {
   ------------------------------------------------------- */
   nav: [
     { icon: '🏠',  label: 'Inicio',              href: 'index.html' },
+    { icon: '📋',  label: 'Tareas de la semana', href: 'tareas.html' },
     { icon: '📊',  label: 'Dashboard',           href: 'dashboard.html' },
     { icon: '🔎',  label: 'Buscar',              href: 'index.html#buscar' },
     { icon: '🚗',  label: 'Productos y Modelos', href: 'productos-modelos.html' },

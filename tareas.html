@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tareas de la semana — Contact Center Hub</title>
+<link rel="stylesheet" href="assets/css/sidebar.css">
+<link rel="stylesheet" href="assets/css/hub.css">
+</head>
+<body>
+<div class="app">
+
+  <div id="sidebar"></div>
+
+  <div class="main">
+
+    <div class="topbar">
+      <div class="greeting">
+        <h1>📋 Tareas de la semana</h1>
+        <p id="trSemana">Lo que tiene que hacer el equipo, día por día</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;">
+        <a href="index.html" style="font-size:12px;color:var(--blue);font-weight:600;">← Volver al inicio</a>
+      </div>
+    </div>
+
+    <!-- Solo en modo admin (botón "Ingresar como admin" del menú lateral) -->
+    <div class="cr-admin-banner tr-solo-admin">
+      <span>🔐 <b>Modo administrador.</b> Tocá ✏️ en una tarea para editarla. Lo que guardes lo ve todo el equipo.</span>
+      <span style="display:flex;gap:8px;">
+        <button type="button" onclick="nuevaTR()">＋ Nueva tarea</button>
+        <button type="button" onclick="salirAdmin()">Salir del modo admin</button>
+      </span>
+    </div>
+
+    <div id="trAviso" hidden></div>
+
+    <!-- Las tareas se guardan en la planilla del Hub (hoja "Tareas") y las arma assets/js/tareas.js -->
+    <div class="tr-grid" id="trLista"><div class="tr-vacio">Cargando…</div></div>
+
+    <div data-hub-footer></div>
+
+  </div>
+</div>
+
+<script src="assets/js/hub.js"></script>
+<script src="assets/js/tareas.js"></script>
+</body>
+</html>

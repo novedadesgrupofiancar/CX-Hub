@@ -8,17 +8,18 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 
 ## Estado actual
 
-- **Versión publicada:** 1.19.4 (2026-11-19)
-- **Secciones activas:** Inicio, Dashboard, Productos y Modelos, Taller y Postventa, Recalls activos, Guiones,
+- **Versión publicada:** 1.20.0 (2026-11-20)
+- **Secciones activas:** Inicio, Tareas de la semana, Dashboard, Productos y Modelos, Taller y Postventa, Recalls activos, Guiones,
   Escalamientos, Sucursales, Internos, Procedimientos, Cambios recientes, Buscar (buscador de la home).
 - **Secciones sin construir (gris en el menú):** Promociones, Agendamientos, FAQ, CRM y Tipificaciones.
-- **Backend:** Apps Script único "CX-Hub Backend" (reclamos + contenidos + internos + procedimientos + recalls), deployment @13.
+- **Backend:** Apps Script único "CX-Hub Backend" (reclamos + contenidos + internos + procedimientos + recalls), deployment @14.
   Dashboard: Apps Script propio (cuenta novedades), deployment @3; valida la clave contra el Hub y lee los mails de 3CX.
 
 ---
 
 ## Decisiones (y por qué)
 
+- **2026-11-20 — Tareas de la semana (panel del equipo).** Sección nueva que el admin actualiza semana a semana (hoja "Tareas"): título, qué hacer, días y quién (por día si hace falta), link opcional. El Inicio muestra "Tareas de hoy". Arrancó con Campaña Chevrolet y Campaña Marcas (todos los días, todo el equipo) y Campaña JAC Camiones (miércoles, jueves y viernes, con dupla por día). Se sacó de Importante hoy el aviso "Campañas de service activas".
 - **2026-11-19 — Manual del Contact Center publicado.** Reemplaza al "Manual de atención" y a "Capacitación – Atención" en Documentos de referencia; se lee con el link. El "Cronograma de inducción" queda solo admin (`soloAdmin: true` en PR_DOCUMENTOS).
 - **2026-11-19 — Geely EX5 EM-i:** plan propio (1.er service a 10.000 km, después cada 10.000), separado del EX5. Agenda de actualización: máximo 3 por día en Rondeau y 2 en Carrasco.
 - **2026-11-19 — Taller.** Carrasco: agenda por horas, máximo 5 autos por día y el resto camiones. JAC Camiones: primera opción Obisun (taller externo, Aguada); no se agenda, se le pasa el teléfono. Campañas activas de noviembre: kilometraje Chevrolet, kilometraje Marcas y JAC Camiones primer service (preguntar si lo hicieron y dónde).
@@ -88,7 +89,6 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 - Procedimientos: falta saber en qué campo del CRM se marca la baja de comunicaciones, y el speech de encuestas para notas 0–9.
   Tipificaciones vacías (esperan CRM y Tipificaciones).
 - Internos: falta el cargo de Ramiro Orte.
-- Panel de tareas del equipo (sección nueva, pedida 2026-11-19): diseño propuesto, espera OK.
 - Manuales del Drive (diseño aprobado 2026-11-18): (1) Manual del Contact Center [publicado 2026-11-19], (2) Manual de Encuestas con el speech de encuestas adentro (NO va a Guiones: CX/calidad
   separado de atención) y camino para notas 0–9, (3) Inducción de 3 días. Los viejos no se tocan.
 - Home: "¿Necesitás contactar a alguien?", "Más consultado esta semana" y "¿Necesitás resolver?" son datos de maqueta.
@@ -98,6 +98,7 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 
 ## Historial de versiones
 
+- **1.20.0 (2026-11-20)** — Sección Tareas de la semana (editable por el admin) y bloque "Tareas de hoy" en el Inicio.
 - **1.19.4 (2026-11-19)** — Manual del Contact Center en Procedimientos (Cronograma de inducción solo admin), plan propio del Geely EX5 EM-i, regla 1 de Taller corregida (3 Rondeau / 2 Carrasco).
 - **1.19.3 (2026-11-19)** — Taller: Obisun como taller externo (JAC Camiones, primera opción, no se agenda), filtro JAC Auto / JAC Camiones, Carrasco máximo 5 autos por día (agenda por horas). Avisos en Cambios recientes e Importante hoy hasta el 30/11.
 - **1.19.2 (2026-11-18)** — Procedimientos: bloque "Coordinación (solo admin)" con Campaña mensual: armado, NPS, Calidad, KPIs e Inducción. El equipo no lo recibe; la Campaña mensual de service queda para los agentes solo con la parte de llamar.
