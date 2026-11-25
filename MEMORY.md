@@ -8,7 +8,7 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 
 ## Estado actual
 
-- **Versión publicada:** 1.20.0 (2026-11-20)
+- **Versión publicada:** 1.20.1 (2026-11-25)
 - **Secciones activas:** Inicio, Tareas de la semana, Dashboard, Productos y Modelos, Taller y Postventa, Recalls activos, Guiones,
   Escalamientos, Sucursales, Internos, Procedimientos, Cambios recientes, Buscar (buscador de la home).
 - **Secciones sin construir (gris en el menú):** Promociones, Agendamientos, FAQ, CRM y Tipificaciones.
@@ -98,6 +98,7 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 
 ## Historial de versiones
 
+- **1.20.1 (2026-11-25)** — Taller y Postventa: tarifario de JAC Auto agregado.
 - **1.20.0 (2026-11-20)** — Sección Tareas de la semana (editable por el admin) y bloque "Tareas de hoy" en el Inicio.
 - **1.19.4 (2026-11-19)** — Manual del Contact Center en Procedimientos (Cronograma de inducción solo admin), plan propio del Geely EX5 EM-i, regla 1 de Taller corregida (3 Rondeau / 2 Carrasco).
 - **1.19.3 (2026-11-19)** — Taller: Obisun como taller externo (JAC Camiones, primera opción, no se agenda), filtro JAC Auto / JAC Camiones, Carrasco máximo 5 autos por día (agenda por horas). Avisos en Cambios recientes e Importante hoy hasta el 30/11.
