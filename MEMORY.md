@@ -8,17 +8,18 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 
 ## Estado actual
 
-- **Versión publicada:** 1.20.1 (2026-11-25)
+- **Versión publicada:** 1.20.2 (2026-11-26)
 - **Secciones activas:** Inicio, Tareas de la semana, Dashboard, Productos y Modelos, Taller y Postventa, Recalls activos, Guiones,
   Escalamientos, Sucursales, Internos, Procedimientos, Cambios recientes, Buscar (buscador de la home).
 - **Secciones sin construir (gris en el menú):** Promociones, Agendamientos, FAQ, CRM y Tipificaciones.
-- **Backend:** Apps Script único "CX-Hub Backend" (reclamos + contenidos + internos + procedimientos + recalls), deployment @14.
+- **Backend:** Apps Script único "CX-Hub Backend" (reclamos + contenidos + internos + procedimientos + recalls), deployment @15.
   Dashboard: Apps Script propio (cuenta novedades), deployment @3; valida la clave contra el Hub y lee los mails de 3CX.
 
 ---
 
 ## Decisiones (y por qué)
 
+- **2026-11-26 — Escalamientos: Repuestos.** Área única para todas las sucursales (como Atención al cliente), en Postventa. Le llega al encargado de Repuestos y al gerente de asistencia técnica y repuestos, más Jimena y el coordinador (mails solo en el backend).
 - **2026-11-20 — Tareas de la semana (panel del equipo).** Sección nueva que el admin actualiza semana a semana (hoja "Tareas"): título, qué hacer, días y quién (por día si hace falta), link opcional. El Inicio muestra "Tareas de hoy". Arrancó con Campaña Chevrolet y Campaña Marcas (todos los días, todo el equipo) y Campaña JAC Camiones (miércoles, jueves y viernes, con dupla por día). Se sacó de Importante hoy el aviso "Campañas de service activas".
 - **2026-11-19 — Manual del Contact Center publicado.** Reemplaza al "Manual de atención" y a "Capacitación – Atención" en Documentos de referencia; se lee con el link. El "Cronograma de inducción" queda solo admin (`soloAdmin: true` en PR_DOCUMENTOS).
 - **2026-11-19 — Geely EX5 EM-i:** plan propio (1.er service a 10.000 km, después cada 10.000), separado del EX5. Agenda de actualización: máximo 3 por día en Rondeau y 2 en Carrasco.
@@ -98,6 +99,7 @@ Lo más nuevo va arriba en cada sección. Fechas en formato AAAA-MM-DD.
 
 ## Historial de versiones
 
+- **1.20.2 (2026-11-26)** — Escalamientos: área Repuestos (una sola para todas las sucursales), backend @15.
 - **1.20.1 (2026-11-25)** — Taller y Postventa: tarifario de JAC Auto agregado.
 - **1.20.0 (2026-11-20)** — Sección Tareas de la semana (editable por el admin) y bloque "Tareas de hoy" en el Inicio.
 - **1.19.4 (2026-11-19)** — Manual del Contact Center en Procedimientos (Cronograma de inducción solo admin), plan propio del Geely EX5 EM-i, regla 1 de Taller corregida (3 Rondeau / 2 Carrasco).

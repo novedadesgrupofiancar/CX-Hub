@@ -41,6 +41,7 @@ const AREAS = [
 
   { id: 'garantias',          grupo: 'Postventa', nombre: 'Garantías',              responsable: 'Nicolas Vazquez' },
   { id: 'red-talleres',       grupo: 'Postventa', nombre: 'Red de talleres oficiales (Montevideo e interior)', responsable: 'Nicolas Vazquez' },
+  { id: 'repuestos',          grupo: 'Postventa', nombre: 'Repuestos (todas las sucursales)', responsable: 'Pablo Martino y Leonardo Bicchierai' },
 
   { id: 'gestoria-rondeau',   grupo: 'Gestoría', nombre: 'Gestoría Rondeau',        responsable: 'Gestoría' },
   { id: 'gestoria-carrasco',  grupo: 'Gestoría', nombre: 'Gestoría Carrasco',       responsable: 'Gestoría' },
