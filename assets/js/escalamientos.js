@@ -39,7 +39,7 @@ const AREAS = [
   { id: 'taller-carrasco',    grupo: 'Taller',   nombre: 'Taller Carrasco',         responsable: 'Leonardo Biccherai y Leonardo Landeira' },
   { id: 'taller-chevrolet',   grupo: 'Taller',   nombre: 'Taller Chevrolet',        responsable: 'Fernando Sánchez y Daniel Massaferro' },
 
-  { id: 'garantias',          grupo: 'Postventa', nombre: 'Garantías',              responsable: 'Nicolas Vazquez' },
+  { id: 'garantias',          grupo: 'Postventa', nombre: 'Garantías',              responsable: 'Mariana Alonso (copia a Leonardo Bicchierai)' },
   { id: 'red-talleres',       grupo: 'Postventa', nombre: 'Red de talleres oficiales (Montevideo e interior)', responsable: 'Nicolas Vazquez' },
   { id: 'repuestos',          grupo: 'Postventa', nombre: 'Repuestos (todas las sucursales)', responsable: 'Pablo Martino y Leonardo Bicchierai' },
 
